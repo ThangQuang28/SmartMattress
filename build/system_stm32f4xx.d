@@ -1,0 +1,17 @@
+.\build\system_stm32f4xx.o: ..\..\driver\cmsis\stm32f4\src\system_stm32f4xx.c
+.\build\system_stm32f4xx.o: ..\..\driver\hal\stm32f4\inc\stm32f4xx_hal.h
+.\build\system_stm32f4xx.o: ..\..\driver\hal\stm32f4\inc\stm32f4xx_hal_conf.h
+.\build\system_stm32f4xx.o: ..\..\driver\hal\stm32f4\inc\stm32f4xx_hal_rcc.h
+.\build\system_stm32f4xx.o: ..\..\driver\hal\stm32f4\inc\stm32f4xx_hal_def.h
+.\build\system_stm32f4xx.o: ..\..\driver\cmsis\stm32f4\inc\stm32f4xx.h
+.\build\system_stm32f4xx.o: ..\..\driver\cmsis\stm32f4\inc\stm32f407xx.h
+.\build\system_stm32f4xx.o: ..\..\driver\cmsis\inc\core_cm4.h
+.\build\system_stm32f4xx.o: C:\Users\HP\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06\Bin\..\include\stdint.h
+.\build\system_stm32f4xx.o: ..\..\driver\cmsis\inc\core_cmInstr.h
+.\build\system_stm32f4xx.o: ..\..\driver\cmsis\inc\core_cmFunc.h
+.\build\system_stm32f4xx.o: ..\..\driver\cmsis\inc\core_cm4_simd.h
+.\build\system_stm32f4xx.o: ..\..\driver\cmsis\stm32f4\inc\system_stm32f4xx.h
+.\build\system_stm32f4xx.o: ..\..\driver\hal\stm32f4\inc\stm32f4xx_hal_rcc_ex.h
+.\build\system_stm32f4xx.o: ..\..\driver\hal\stm32f4\inc\stm32f4xx_hal_gpio.h
+.\build\system_stm32f4xx.o: ..\..\driver\hal\stm32f4\inc\stm32f4xx_hal_gpio_ex.h
+.\build\system_stm32f4xx.o: ..\..\driver\hal\stm32f4\inc\stm32f4xx_hal_cortex.h

@@ -1,0 +1,14 @@
+.\build\event_groups.o: ..\..\mid\rtos\freertos\event_groups.c
+.\build\event_groups.o: C:\Users\HP\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06\Bin\..\include\stdlib.h
+.\build\event_groups.o: ..\..\mid\rtos\freertos\include\FreeRTOS.h
+.\build\event_groups.o: C:\Users\HP\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06\Bin\..\include\stddef.h
+.\build\event_groups.o: C:\Users\HP\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06\Bin\..\include\stdint.h
+.\build\event_groups.o: ..\..\mid\rtos\freertos\FreeRTOSConfig.h
+.\build\event_groups.o: ..\..\mid\rtos\freertos\include\projdefs.h
+.\build\event_groups.o: ..\..\mid\rtos\freertos\include\portable.h
+.\build\event_groups.o: ..\..\mid\rtos\freertos\portable\rvds\ARM_CM4F\portmacro.h
+.\build\event_groups.o: ..\..\mid\rtos\freertos\include\mpu_wrappers.h
+.\build\event_groups.o: ..\..\mid\rtos\freertos\include\task.h
+.\build\event_groups.o: ..\..\mid\rtos\freertos\include\list.h
+.\build\event_groups.o: ..\..\mid\rtos\freertos\include\timers.h
+.\build\event_groups.o: ..\..\mid\rtos\freertos\include\event_groups.h

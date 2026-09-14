@@ -1,0 +1,15 @@
+.\build\tasks.o: ..\..\mid\rtos\freertos\tasks.c
+.\build\tasks.o: C:\Users\HP\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06\Bin\..\include\stdlib.h
+.\build\tasks.o: C:\Users\HP\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06\Bin\..\include\string.h
+.\build\tasks.o: ..\..\mid\rtos\freertos\include\FreeRTOS.h
+.\build\tasks.o: C:\Users\HP\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06\Bin\..\include\stddef.h
+.\build\tasks.o: C:\Users\HP\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06\Bin\..\include\stdint.h
+.\build\tasks.o: ..\..\mid\rtos\freertos\FreeRTOSConfig.h
+.\build\tasks.o: ..\..\mid\rtos\freertos\include\projdefs.h
+.\build\tasks.o: ..\..\mid\rtos\freertos\include\portable.h
+.\build\tasks.o: ..\..\mid\rtos\freertos\portable\rvds\ARM_CM4F\portmacro.h
+.\build\tasks.o: ..\..\mid\rtos\freertos\include\mpu_wrappers.h
+.\build\tasks.o: ..\..\mid\rtos\freertos\include\task.h
+.\build\tasks.o: ..\..\mid\rtos\freertos\include\list.h
+.\build\tasks.o: ..\..\mid\rtos\freertos\include\timers.h
+.\build\tasks.o: ..\..\mid\rtos\freertos\include\stack_macros.h

@@ -1,0 +1,14 @@
+.\build\timers.o: ..\..\mid\rtos\freertos\timers.c
+.\build\timers.o: C:\Users\HP\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06\Bin\..\include\stdlib.h
+.\build\timers.o: ..\..\mid\rtos\freertos\include\FreeRTOS.h
+.\build\timers.o: C:\Users\HP\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06\Bin\..\include\stddef.h
+.\build\timers.o: C:\Users\HP\AppData\Local\Keil_v5\ARM\Arm_Compiler_5.06\Bin\..\include\stdint.h
+.\build\timers.o: ..\..\mid\rtos\freertos\FreeRTOSConfig.h
+.\build\timers.o: ..\..\mid\rtos\freertos\include\projdefs.h
+.\build\timers.o: ..\..\mid\rtos\freertos\include\portable.h
+.\build\timers.o: ..\..\mid\rtos\freertos\portable\rvds\ARM_CM4F\portmacro.h
+.\build\timers.o: ..\..\mid\rtos\freertos\include\mpu_wrappers.h
+.\build\timers.o: ..\..\mid\rtos\freertos\include\task.h
+.\build\timers.o: ..\..\mid\rtos\freertos\include\list.h
+.\build\timers.o: ..\..\mid\rtos\freertos\include\queue.h
+.\build\timers.o: ..\..\mid\rtos\freertos\include\timers.h
