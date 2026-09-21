@@ -1,0 +1,238 @@
+[0;32mI (140) esp_image: segment 1: paddr=0005d5f4 vaddr=3fc95c00 sizeESP-ROM:esp32c3-api1-20210207[0m
+Build:Feb  7 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038538e
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x158c
+load:0x403cc710,len:0xc84
+load:0x403ce710,len:0x2f64
+entry 0x403cc71a
+[0;32mI (24) boot: ESP-IDF v5.4.4 2nd stage bootloader[0m
+[0;32mI (24) boot: compile time Sep 17 2026 11:54:56[0m
+[0;32mI (25) boot: chip revision: v0.4[0m
+[0;32mI (25) boot: efuse block revision: v1.3[0m
+[0;32mI (28) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (32) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (36) boot.esp32c3: SPI Flash Size : 4MB[0m
+[0;32mI (39) boot: Enabling RNG early entropy source...[0m
+[0;32mI (44) boot: Partition Table:[0m
+[0;32mI (46) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (53) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (59) boot:  1 otadata          OTA data         01 00 0000f000 00002000[0m
+[0;32mI (66) boot:  2 phy_init         RF data          01 01 00011000 00001000[0m
+[0;32mI (72) boot:  3 ota_0            OTA app          00 10 00020000 00180000[0m
+[0;32mI (79) boot:  4 ota_1            OTA app          00 11 001a0000 00180000[0m
+[0;32mI (85) boot: End of partition table[0m
+[0;32mI (89) esp_image: segment 0: paddr=00020020 vaddr=3c0e0020 size=3d5cch (251340) map[0m
+[0;32mI (136) esp_image: segment 1: paddr=0005d5f4 vaddr=3fc95c00 size=02a24h ( 10788) load[0m
+[0;32mI (138) esp_image: segment 2: paddr=00060020 vaddr=42000020 size=d7990h (883088) map[0m
+[0;32mI (281) esp_image: segment 3: paddr=001379b8 vaddr=3fc98624 size=00a80h (  2688) load[0m
+[0;32mI (281) esp_image: segment 4: paddr=00138440 vaddr=40380000 size=15b1ch ( 88860) load[0m
+[0;32mI (300) esp_image: segment 5: paddr=0014df64 vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (308) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (308) boot: Disabling RNG early entropy source...[0m
+[0;32mI (318) cpu_start: Unicore app[0m
+[0;32mI (326) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (327) cpu_start: Pro cpu start user code[0m
+[0;32mI (327) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (328) app_init: Application information:[0m
+[0;32mI (332) app_init: Project name:     zenFWCore[0m
+[0;32mI (336) app_init: App version:      a0e5475-dirty[0m
+[0;32mI (341) app_init: Compile time:     Sep 17 2026 11:54:46[0m
+[0;32mI (346) app_init: ELF file SHA256:  0be853ee0...[0m
+[0;32mI (350) app_init: ESP-IDF:          v5.4.4[0m
+[0;32mI (354) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (358) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (362) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (366) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (372) heap_init: At 3FC9DD40 len 000222C0 (136 KiB): RAM[0m
+[0;32mI (377) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (383) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (389) heap_init: At 5000001C len 00001FCC (7 KiB): RTCRAM[0m
+[0;32mI (395) spi_flash: detected chip: generic[0m
+[0;32mI (398) spi_flash: flash io: dio[0m
+[0;32mI (402) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (407) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (423) main_task: Started on CPU0[0m
+[0;32mI (423) main_task: Calling app_main()[0m
+[0;32mI (443) OTA: Running partition:[0m
+[0;32mI (443) OTA:   Label : ota_0[0m
+[0;32mI (443) OTA:   Type  : 0[0m
+[0;32mI (443) OTA:   SubType: 16[0m
+[0;32mI (443) OTA:   Offset: 0x20000[0m
+[0;32mI (453) OTA:   Size  : 0x180000[0m
+[0;32mI (453) pp: pp rom version: 9387209[0m
+[0;32mI (453) net80211: net80211 rom version: 9387209[0m
+[0;32mI (463) main_task: Returned from app_main()[0m
+[0;32mI (473) wifi:wifi driver task: 3fcad5d4, prio:23, stack:6656, core=0[0m
+[0;32mI (483) wifi:wifi firmware version: 8896d66[0m
+[0;32mI (483) wifi:wifi certification version: v7.0[0m
+[0;32mI (483) wifi:config NVS flash: enabled[0m
+[0;32mI (483) wifi:config nano formatting: disabled[0m
+[0;32mI (483) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (493) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (493) wifi:Init management short buffer num: 32[0m
+[0;32mI (493) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (503) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (503) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (513) wifi:Init static rx buffer num: 10[0m
+[0;32mI (513) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (513) wifi_init: rx ba win: 6[0m
+[0;32mI (523) wifi_init: accept mbox: 6[0m
+[0;32mI (523) wifi_init: tcpip mbox: 32[0m
+[0;32mI (523) wifi_init: udp mbox: 6[0m
+[0;32mI (533) wifi_init: tcp mbox: 6[0m
+[0;32mI (533) wifi_init: tcp tx win: 5760[0m
+[0;32mI (533) wifi_init: tcp rx win: 5760[0m
+[0;32mI (543) wifi_init: tcp mss: 1440[0m
+[0;32mI (543) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (543) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (573) ZAPP: provisioned=0[0m
+[0;32mI (573) ZAPP: START PROVISION[0m
+[0;32mI (573) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (623) wifi:mode : sta (10:20:ba:d4:b5:a0)[0m
+[0;32mI (623) wifi:enable tsf[0m
+[0;32mI (633) wifi:mode : sta (10:20:ba:d4:b5:a0) + softAP (10:20:ba:d4:b5:a1)[0m
+[0;32mI (633) wifi:Total power save buffer number: 16[0m
+[0;32mI (633) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (633) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (643) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (653) wifi:Total power save buffer number: 16[0m
+[0;32mI (653) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (663) wifi_prov_mgr: Provisioning started with service name : mzService [0m
+[0;32mI (673) wifi_prov: Provisioning started[0m
+[0;32mI (673) wifi_prov: QR Payload:[0m
+[0;32mI (673) wifi_prov: {"ver":"v1","name":"mzService","pop":"mz12345678","transport":"softap"}[0m
+[0;32mI (683) wifi_prov: Provisioning AP: mzService[0m
+[0;32mI (14433) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<0,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (14433) wifi:station: 56:94:cb:da:fb:ed join, AID=1, bgn, 20[0m
+[0;32mI (14433) wifi_prov: Phone connected[0m
+[0;32mI (14533) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[0;32mI (14603) wifi:<ba-add>idx:2 (ifx:1, 56:94:cb:da:fb:ed), tid:0, ssn:16, winSize:64[0m
+[0;33mW (39363) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2[0m
+[0;32mI (39373) wifi_prov: SSID: HOMICHI[0m
+[0;32mI (43333) wifi:new:<1,1>, old:<1,0>, ap:<1,1>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (43333) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (43343) wifi:state: auth -> assoc (0x0)[0m
+[1;31mE (43363) wifi:Set status to INIT[0m
+[0;32mI (43363) wifi:state: assoc -> init (0x1e10)[0m
+[0;32mI (43373) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;33mW (43373) wifi_prov: Reconnect WiFi[0m
+[1;31mE (43373) wifi_prov_mgr: STA Disconnected[0m
+[1;31mE (43373) wifi_prov_mgr: Disconnect reason : 203[0m
+[1;31mE (43373) wifi:sta is connecting, return error[0m
+[0;33mW (46203) wifi_prov: Reconnect WiFi[0m
+[1;31mE (46213) wifi_prov_mgr: STA Disconnected[0m
+[1;31mE (46213) wifi_prov_mgr: Disconnect reason : 205[0m
+[1;31mE (46213) wifi:sta is connecting, return error[0m
+[0;32mI (49043) wifi:new:<1,1>, old:<1,0>, ap:<1,1>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (49043) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (49053) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (49063) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (53063) wifi:state: run -> init (0x2a0)[0m
+[0;32mI (53073) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (53073) wifi:primary chan differ, old=1, new=6, start CSA timer[0m
+[0;32mI (53473) wifi:switch to channel 6[0m
+[0;32mI (53473) wifi:ap channel adjust o:1,1 n:6,2[0m
+[0;32mI (53473) wifi:new:<6,0>, old:<1,0>, ap:<6,2>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (53473) wifi:new:<6,2>, old:<6,0>, ap:<6,2>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (53483) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (54493) wifi:state: auth -> init (0x200)[0m
+[0;32mI (54503) wifi:new:<6,0>, old:<6,2>, ap:<6,2>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;33mW (54503) wifi_prov: Reconnect WiFi[0m
+[1;31mE (54503) wifi_prov_mgr: STA Disconnected[0m
+[1;31mE (54503) wifi_prov_mgr: Disconnect reason : 2[0m
+[1;31mE (54503) wifi:sta is connecting, return error[0m
+[0;33mW (57333) wifi_prov: Reconnect WiFi[0m
+[1;31mE (57343) wifi_prov_mgr: STA Disconnected[0m
+[1;31mE (57343) wifi_prov_mgr: Disconnect reason : 205[0m
+[1;31mE (57343) wifi:sta is connecting, return error[0m
+[0;32mI (60173) wifi:primary chan differ, old=6, new=1, start CSA timer[0m
+[0;32mI (60573) wifi:switch to channel 1[0m
+[0;32mI (60573) wifi:ap channel adjust o:6,2 n:1,1[0m
+[0;32mI (60573) wifi:new:<1,0>, old:<6,0>, ap:<1,1>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (60573) wifi:new:<1,1>, old:<1,0>, ap:<1,1>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (60583) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (60593) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (60613) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (61623) wifi:connected with HOMICHI, aid = 1, channel 1, BW20, bssid = 30:cb:c7:28:bb:b0[0m
+[0;32mI (61623) wifi:security: WPA2-PSK, phy: bgn, rssi: -57, cipher(pairwise:0x3, group:0x3), pmf:1[0m
+[0;32mI (61643) wifi:pm start, type: 1[0m
+
+[0;32mI (61643) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (61643) wifi:set rx beacon pti, rx_bcn_pti: 14, bcn_timeout: 25000, mt_pti: 14, mt_time: 10000[0m
+[0;32mI (61653) wifi:<ba-add>idx:0 (ifx:0, 30:cb:c7:28:bb:b0), tid:6, ssn:3, winSize:64[0m
+[0;32mI (61783) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (62663) esp_netif_handlers: sta ip: 192.168.20.23, mask: 255.255.255.0, gw: 192.168.20.1[0m
+[0;32mI (62663) wifi_prov: WiFi connected[0m
+[0;32mI (62663) wifi_prov_mgr: STA Got IP[0m
+[0;32mI (62663) wifi_prov: Provisioning success[0m
+[0;32mI (65663) TIME: Initializing SNTP with server: time.google.com[0m
+[0;32mI (67293) wifi:<ba-add>idx:1 (ifx:0, 30:cb:c7:28:bb:b0), tid:0, ssn:4, winSize:64[0m
+[0;32mI (67343) TIME: Time synchronized[0m
+[0;32mI (67343) TIME: ztime_open: NTP OKIEEEEEEEEEE[0m
+[0;32mI (67343) MQTT: Device Client ID : 05092026A3[0m
+[0;32mI (67343) MQTT: Device Sub Topic : v1/devices/me/rpc/request/+[0m
+[0;32mI (67353) MQTT: Root CA length=1147[0m
+[0;32mI (67353) MQTT: Client cert length=2355[0m
+[0;32mI (67353) MQTT: MQTT START[0m
+[0;32mI (68753) wifi:station: 56:94:cb:da:fb:ed leave, AID = 1, reason = 2, bss_flags is 33721459, bss:0x3fcb6674[0m
+[0;32mI (68753) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (68753) wifi:<ba-del>idx:2, tid:0[0m
+[0;32mI (68753) wifi:new:<1,1>, old:<1,0>, ap:<1,1>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (68763) wifi:mode : sta (10:20:ba:d4:b5:a0)[0m
+[0;32mI (68783) wifi_prov_mgr: Provisioning stopped[0m
+[0;32mI (68783) wifi_prov: Phone disconnected[0m
+[0;32mI (69413) MQTT: CONNECTED[0m
+[0;32mI (69473) MQTT: SUBSCRIBED msg_id=51910[0m
+[0;32mI (468) OTA: Running partition:[0m
+[0;32mI (468) OTA:   Label : ota_0[0m
+[0;32mI (468) OTA:   Type  : 0[0m
+[0;32mI (468) OTA:   SubType: 16[0m
+[0;32mI (468) OTA:   Offset: 0x20000[0m
+[0;32mI (468) OTA:   Size  : 0x180000[0m
+[0;32mI (478) pp: pp rom version: 9387209[0m
+[0;32mI (478) net80211: net80211 rom version: 9387209[0m
+[0;32mI (478) main_task: Returned from app_main()[0m
+[0;32mI (488) wifi:wifi driver task: 3fcad658, prio:23, stack:6656, core=0[0m
+[0;32mI (498) wifi:wifi firmware version: 8896d66[0m
+[0;32mI (498) wifi:wifi certification version: v7.0[0m
+[0;32mI (498) wifi:config NVS flash: enabled[0m
+[0;32mI (498) wifi:config nano formatting: disabled[0m
+[0;32mI (508) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (508) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (518) wifi:Init management short buffer num: 32[0m
+[0;32mI (518) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (528) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (528) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (528) wifi:Init static rx buffer num: 10[0m
+[0;32mI (538) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (538) wifi_init: rx ba win: 6[0m
+[0;32mI (548) wifi_init: accept mbox: 6[0m
+[0;32mI (548) wifi_init: tcpip mbox: 32[0m
+[0;32mI (548) wifi_init: udp mbox: 6[0m
+[0;32mI (548) wifi_init: tcp mbox: 6[0m
+[0;32mI (558) wifi_init: tcp tx win: 5760[0m
+[0;32mI (558) wifi_init: tcp rx win: 5760[0m
+[0;32mI (558) wifi_init: tcp mss: 1440[0m
+[0;32mI (568) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (568) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (578) ZAPP: provisioned=0[0m
+[0;32mI (588) ZAPP: START PROVISION[0m
+[0;32mI (588) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (628) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (668) wifi:mode : sta (10:20:ba:d4:b5:a0)[0m
+[0;32mI (668) wifi:enable tsf[0m
+[0;32mI (668) wifi:mode : sta (10:20:ba:d4:b5:a0) + softAP (10:20:ba:d4:b5:a1)[0m
+[0;32mI (678) wifi:Total power save buffer number: 16[0m
+[0;32mI (678) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (678) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (678) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (688) wifi:Total power save buffer number: 16[0m
+[0;32mI (698) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (698) wifi_prov_mgr: Provisioning started with service name : mzService [0m
+[0;32mI (708) wifi_prov: Provisioning started[0m
+[0;32mI (708) wifi_prov: QR Payload:[0m
+[0;32mI (718) wifi_prov: {"ver":"v1","name":"mzService","pop":"mz12345678","transport":"softap"}[0m
+[0;32mI (718) wifi_prov: Provisioning AP: mzService[0m
