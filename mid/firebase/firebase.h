@@ -17,6 +17,7 @@
 extern "C" {
 #endif
 
+#include "zerr.h"
 #include "esp_http_client.h"
 
 /* Public macros ---------------------------------------------------------------------------------*/
@@ -27,13 +28,17 @@ extern "C" {
 /* Define ----------------------------------------------------------------------------------------*/
 /* Private data types ----------------------------------------------------------------------------*/
 /* Public data types -----------------------------------------------------------------------------*/
+
+typedef void (*firebase_callback_t)(const char *p_data, uint32_t data_len);
+
 /* Private function prototypes -------------------------------------------------------------------*/
 /* Public function prototypes --------------------------------------------------------------------*/
 
-void firebase_open(void);
+zerr_t firebase_open(void);
+
+void firebase_set_reg(firebase_callback_t callback);
 
 void firebase_get_data(void);
-
 void firebase_put_data(const char *json_string);
 
 #ifdef __cplusplus__

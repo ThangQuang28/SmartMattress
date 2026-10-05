@@ -1,8 +1,10 @@
 idf_component_register(
     SRCS
         "common/src/utility.c"
+        "common/src/zerr.c"
         "espnow/espnow.c"
         "espnow/package.c"
+        "ota/zota.c"
         "firebase/firebase.c"
         "smartconfig/smart_config.c"
         "wifi_prov/wifi_prov.c"
@@ -16,6 +18,7 @@ idf_component_register(
         "scr/scr.c"
         "scr/bitmaps.c"
         "btn/btn.c"
+        "flash/flash.c"
         "scr/oled_096/oled_096.c"
         "ztime/ztime.c"
         "zschedule/zschedule.c"
@@ -35,6 +38,8 @@ idf_component_register(
         "wifi_prov"
         "mqtt"
         "esp"
+        "flash"
+        "ota"
         "ztime"
         "zschedule"
         "send_frame"

@@ -46,6 +46,7 @@ extern "C" {
 #include "freertos/event_groups.h"
 
 #include "esp_log.h"
+#include "ztrace.h"
 
 /* -------------------------------------
     ------- Task priority options -------
