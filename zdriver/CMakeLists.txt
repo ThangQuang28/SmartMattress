@@ -5,6 +5,9 @@ idf_component_register(
         "zen/src/iic_global_bsp.c"
         "zen/src/btn_bsp.c"
         "zen/src/esp_bsp.c"
+        "zen/src/tca9548_bsp.c"
+        "zen/src/agr12_bsp.c"
+        "zen/src/74hc595_bsp.c"
     INCLUDE_DIRS
         "zen/inc"
 

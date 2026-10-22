@@ -15,14 +15,17 @@ idf_component_register(
         "temperature/aht20/aht20.c"
         "temperature/bmp280/bmp280.c"
         "temperature/sht3x/sht3x.c"
-        "scr/scr.c"
-        "scr/bitmaps.c"
         "btn/btn.c"
         "flash/flash.c"
-        "scr/oled_096/oled_096.c"
         "ztime/ztime.c"
         "zschedule/zschedule.c"
         "send_frame/fan_send.c"
+
+        "iic_devices/drivers/tca9548/tca9548.c"
+        "iic_devices/screen/oled/driver/esp_lcd_panel_sh1106.c"
+        "iic_devices/screen/oled/oled_lvgl.c"
+        "iic_devices/pressure/agr12/agr12.c"
+        "logic_ic/74hc595/74hc595.c"
     INCLUDE_DIRS
         "common/inc"
         "dc_motor"
@@ -30,8 +33,6 @@ idf_component_register(
         "temperature/bmp280"
         "temperature/sht3x"
         "btn"
-        "scr"
-        "scr/oled_096"
         "espnow"
         "firebase"
         "smartconfig"
@@ -43,6 +44,12 @@ idf_component_register(
         "ztime"
         "zschedule"
         "send_frame"
+
+        "iic_devices/drivers/tca9548"
+        "iic_devices/screen/oled/driver"
+        "iic_devices/screen/oled"
+        "iic_devices/pressure/agr12"
+        "logic_ic/74hc595"
     REQUIRES 
         esp_driver_gpio
         esp_event 
