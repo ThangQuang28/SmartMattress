@@ -42,6 +42,10 @@ zerr_t tca9548_bsp_open(void)
 
     if(ZERR_OK == ret)
     {
+        /* Latch RESET high before the pins become outputs, so configuring them never resets a mux. */
+        gpio_set_level(TCA9548_BSP_ONE_RESET_PIN, 1);
+        gpio_set_level(TCA9548_BSP_TWO_RESET_PIN, 1);
+
         /* Reset Pin config */
         gpio_config_t config = {
             .pin_bit_mask = (1ULL << TCA9548_BSP_ONE_RESET_PIN) | (1ULL << TCA9548_BSP_TWO_RESET_PIN),
@@ -58,7 +62,7 @@ zerr_t tca9548_bsp_open(void)
             ret = ZERR_NOT_OPEN;
         }
     }
-    if (ret == ESP_OK)
+    if (ZERR_OK == ret)
     {
         gpio_set_level(TCA9548_BSP_ONE_RESET_PIN, 1);
         gpio_set_level(TCA9548_BSP_TWO_RESET_PIN, 1);

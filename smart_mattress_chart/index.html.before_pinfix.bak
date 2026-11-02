@@ -1,0 +1,241 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Đệm thông minh — Bảng điều khiển</title>
+<style>
+:root{--bg:#f3f6fa;--card:#fff;--ink:#14263a;--muted:#64768a;--line:#e1e8f0;--soft:#f6f9fc;--brand:#1665c1;--brand2:#0f9b8e;--ok:#12805c;--okbg:#e4f6ee;--warn:#9a6200;--warnbg:#fff4dc;--bad:#b42318;--badbg:#fdecea;--shoulder:#8fc8f8;--waist:#ffe1a0;--hip:#a7e2c8;--r:14px;--sh:0 1px 2px #10284014,0 4px 14px #1028400d}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1621;--card:#152232;--ink:#e6eef7;--muted:#93a6ba;--line:#24364a;--soft:#1a2a3d;--brand:#4b9cf5;--brand2:#2cc4b4;--ok:#47d19a;--okbg:#123326;--warn:#f2b84b;--warnbg:#3a2c10;--bad:#ff7a6e;--badbg:#3d1714;--sh:none}.chart text[fill="#234d69"],.chart text[fill="#18344d"],.chart text[fill="#66798a"],.chart text[fill="#47657b"],.chart text[fill="#526b7b"]{fill:var(--ink)}.outside{background:#2a3b4f!important;color:var(--ink)!important}}
+*{box-sizing:border-box}html,body{margin:0}body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.45}
+.ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.top{position:sticky;top:0;z-index:5;background:linear-gradient(100deg,#0f4d93,#0f8a86);color:#fff;box-shadow:0 2px 10px #0003}
+.top .in{max-width:1280px;margin:auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{width:38px;height:38px;border-radius:10px;background:#ffffff26;display:grid;place-items:center}.logo .ic{width:22px;height:22px}
+.brand h1{margin:0;font-size:18px;letter-spacing:.2px}.brand p{margin:0;font-size:12px;opacity:.85}.grow{flex:1}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:12.5px;font-weight:650;background:#ffffff26;color:#fff}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:#ffd166}.pill.on::before{background:#38e08f}.pill.off::before{background:#ff6b5e}
+.wrap{max-width:1280px;margin:auto;padding:16px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:14px;display:flex;gap:12px;align-items:center;min-width:0}
+.kpi .bub{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--soft);color:var(--brand);flex:none}
+.kpi b{display:block;font-size:20px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.kpi span{color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px;margin-top:14px;align-items:start}
+.col{display:grid;gap:14px;min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);min-width:0}
+.card>header{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line)}
+.card>header h2{margin:0;font-size:15px;font-weight:700}.card>header .ic{color:var(--brand)}.card>header .sub{margin-left:auto;color:var(--muted);font-size:12px}
+.card .bd{padding:14px 16px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row.spread{justify-content:space-between}
+.small{font-size:12.5px;color:var(--muted)}.subhead{font-weight:700;margin:14px 0 8px;display:flex;gap:8px;align-items:center}.subhead .ic{color:var(--brand2)}
+button{font:inherit;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:9px;padding:8px 12px;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+button:hover:not(:disabled){border-color:var(--brand);color:var(--brand)}button.primary,button.active{background:var(--brand);border-color:var(--brand);color:#fff}button.primary:hover:not(:disabled){filter:brightness(1.08);color:#fff}
+button.danger{color:var(--bad)}button:disabled{opacity:.45;cursor:not-allowed}
+input,select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 10px;min-width:0}
+input:focus,select:focus{outline:2px solid color-mix(in srgb,var(--brand) 40%,transparent);border-color:var(--brand)}
+.field{display:flex;flex-direction:column;gap:4px;font-size:12.5px;font-weight:600;color:var(--muted)}.field input,.field select{width:100%}
+.field.inline{flex-direction:row;align-items:center;gap:8px}.field.inline input,.field.inline select{width:auto;flex:1}
+.check{display:inline-flex;align-items:center;gap:8px;font-weight:600;cursor:pointer}.check input{width:16px;height:16px;accent-color:var(--brand)}
+.live{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:6px;margin-top:12px}
+.live div{border:1px solid var(--line);border-radius:10px;padding:8px 2px;text-align:center;background:var(--soft);min-width:0}
+.live b{display:block;font-size:clamp(12px,1.25vw,17px);font-variant-numeric:tabular-nums}.live small{display:block;font-size:10.5px;color:var(--muted)}
+.live .err{background:var(--badbg);border-color:color-mix(in srgb,var(--bad) 40%,transparent)}.live .err b{color:var(--bad)}
+.valves{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}.valves button{justify-content:center;padding:8px 0;font-size:12px}
+.valves button.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.note{border-radius:10px;padding:10px 12px;margin-top:12px;background:var(--warnbg);color:var(--warn);font-size:13px}.note.success{background:var(--okbg);color:var(--ok)}.note.danger{background:var(--badbg);color:var(--bad)}
+.chart{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:6px 0}.dot{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.chambers{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:3px;margin-top:6px}.cell{text-align:center;border-radius:6px;padding:7px 0;font-weight:700;font-size:12px;color:#14263a}
+.outside{background:#e8eef4}.shoulder{background:var(--shoulder)}.waist{background:var(--waist)}.hip{background:var(--hip)}
+.zone-summary{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.zone-summary b{padding:6px 10px;border-radius:8px;font-size:12.5px;color:#14263a}
+.kpi3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.kpi3>div{background:var(--soft);border-radius:10px;padding:10px;text-align:center}.kpi3 strong{display:block;font-size:22px;color:var(--brand)}.kpi3 span{font-size:12px;color:var(--muted)}
+.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.pressures{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.pressures label{display:flex;flex-direction:column;font-size:11.5px;text-align:center;color:var(--muted);font-weight:650;gap:3px}.pressures input{width:100%;text-align:center;padding:7px 2px}
+.examples{display:flex;flex-wrap:wrap;gap:6px}
+#comparison{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:10px}.mini{display:block;text-align:left;padding:10px;border-radius:10px}.mini.current{border:2px solid var(--brand)}
+.mini strong{display:block;font-size:12.5px;min-height:34px}.mini .strips{display:grid;grid-template-columns:repeat(13,1fr);gap:1px;margin:6px 0}.mini .strips i{height:18px;border-radius:2px}.mini small{font-size:11px;color:var(--muted)}
+details.card>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 16px}details.card>summary::-webkit-details-marker{display:none}
+details.card>summary h2{margin:0;font-size:15px}details.card>summary .ic{color:var(--brand)}details.card>summary .chev{margin-left:auto;transition:.2s;color:var(--muted)}details[open]>summary .chev{transform:rotate(180deg)}details[open]>summary{border-bottom:1px solid var(--line)}
+.split{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px}
+.foot{color:var(--muted);font-size:12px;text-align:center;padding:18px 0 8px}
+@media(max-width:1000px){.grid,.split{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}#comparison{grid-template-columns:repeat(2,1fr)}.live,.chambers{grid-template-columns:repeat(7,minmax(0,1fr))}}
+@media(max-width:560px){.wrap{padding:10px}.valves{grid-template-columns:repeat(4,minmax(0,1fr))}.controls{grid-template-columns:repeat(2,1fr)}.pressures{grid-template-columns:repeat(4,1fr)}#comparison{grid-template-columns:1fr}.kpi b{font-size:17px}.top .in{padding:10px}}
+@media print{.top{position:static}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute">
+<symbol id="i-bed" viewBox="0 0 24 24"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a15 15 0 0 1 20 0"/><circle cx="12" cy="19.5" r=".8"/></symbol>
+<symbol id="i-usb" viewBox="0 0 24 24"><circle cx="10" cy="18" r="2"/><path d="M10 16V4M10 4l-2 3M10 4l2 3M10 13l5-3V7M10 10 6 8V6"/><rect x="13.5" y="5" width="3" height="2"/><circle cx="6" cy="5" r="1"/></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><path d="M12 14l4-4M3.3 19a10 10 0 1 1 17.4 0"/></symbol>
+<symbol id="i-auto" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M3 21v-5h5"/></symbol>
+<symbol id="i-valve" viewBox="0 0 24 24"><path d="M3 8v8M21 8v8M3 12h18M12 12V6M8 6h8"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M8 17v-5M13 17V8M18 17v-9"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-power" viewBox="0 0 24 24"><path d="M12 2v10M18.4 6.6a9 9 0 1 1-12.8 0"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+<symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></symbol>
+<symbol id="i-undo" viewBox="0 0 24 24"><path d="M3 7v6h6M3 13a9 9 0 1 0 3-7.7L3 8"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-sensor" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></symbol>
+<symbol id="i-weight" viewBox="0 0 24 24"><path d="M6 7h12l2 13H4L6 7zM9 7a3 3 0 0 1 6 0"/></symbol>
+</svg>
+
+<header class="top"><div class="in">
+  <div class="logo"><svg class="ic"><use href="#i-bed"/></svg></div>
+  <div class="brand"><h1>Đệm thông minh</h1><p>13 khoang khí · Vai – Eo – Hông</p></div>
+  <div class="grow"></div>
+  <span class="pill wait" id="connState">Chưa kết nối</span>
+</div></header>
+
+<main class="wrap">
+  <section class="kpis">
+    <div class="kpi"><div class="bub"><svg class="ic"><use href="#i-link"/></svg></div><div><b id="kConn">—</b><span id="connInfo">Kết nối</span></div></div>
+    <div class="kpi"><div class="bub"><svg class="ic"><use href="#i-sensor"/></svg></div><div><b id="kSensors">—/13</b><span>Cảm biến hoạt động</span></div></div>
+    <div class="kpi"><div class="bub"><svg class="ic"><use href="#i-auto"/></svg></div><div><b id="kAuto">—</b><span>Tự động giữ áp</span></div></div>
+    <div class="kpi"><div class="bub"><svg class="ic"><use href="#i-valve"/></svg></div><div><b id="kValves">—</b><span>Van đang mở</span></div></div>
+  </section>
+
+  <div class="grid">
+    <div class="col">
+      <section class="card"><header><svg class="ic"><use href="#i-gauge"/></svg><h2>Áp suất 13 khoang</h2><span class="sub">kPa · đầu → chân</span></header><div class="bd">
+        <div class="row spread"><b id="caseTitle"></b><label class="check"><input type="checkbox" id="useLive" checked> Dùng áp suất thật</label></div>
+        <div class="live" id="liveCells"></div>
+        <p class="small" id="liveStamp">Chưa có dữ liệu.</p>
+        <svg id="chart" class="chart" viewBox="0 0 960 370" role="img" aria-label="Biểu đồ áp suất 13 khoang"></svg>
+        <div class="legend"><span><i class="dot" style="background:var(--shoulder)"></i>Vai</span><span><i class="dot" style="background:var(--waist)"></i>Eo</span><span><i class="dot" style="background:var(--hip)"></i>Hông</span><span><i class="dot" style="background:#e8eef4"></i>Ngoài vùng</span></div>
+        <div class="chambers" id="chambers"></div>
+        <div class="zone-summary" id="zoneSummary"></div>
+      </div></section>
+
+      <section class="card"><header><svg class="ic"><use href="#i-auto"/></svg><h2>Tự động giữ áp suất</h2><span class="sub">theo RD · ±0,5 kPa</span></header><div class="bd">
+        <div class="row"><button class="primary" id="btnAutoOn" data-need><svg class="ic"><use href="#i-power"/></svg>Bật tự động</button><button id="btnAutoOff" data-need><svg class="ic"><use href="#i-x"/></svg>Tắt</button>
+          <div class="grow"></div>
+          <label class="field inline">Cấp<select id="autoLevel" data-need><option value="1">1 · 2 kPa</option><option value="2">2 · 4 kPa</option><option value="3">3 · 6 kPa</option><option value="4">4 · 8 kPa</option><option value="5">5 · 10 kPa</option><option value="6">6 · 12 kPa</option><option value="7">7 · 14 kPa</option><option value="8" selected>8 · 17 kPa</option></select></label><button id="btnLevel" data-need>Đặt cấp</button></div>
+        <div class="row" style="margin-top:8px"><label class="field inline" style="flex:1"><svg class="ic"><use href="#i-weight"/></svg>Cân nặng (kg)<input id="autoKg" type="number" min="1" max="200" step="1" placeholder="VD: 65"></label><button id="btnKg" data-need>Đặt theo cân nặng</button></div>
+        <div class="row" style="margin-top:8px"><label class="field inline">Khoang<input id="targetIndex" type="number" min="1" max="13" value="1" data-need></label><label class="field inline">Áp suất (kPa)<input id="targetKpa" type="number" min="0" max="17" step="0.1" value="10" data-need></label><button id="btnTarget" data-need>Đặt riêng khoang</button></div><div class="live" id="autoCells"></div>
+        <p class="small" id="autoInfo">Chưa có dữ liệu.</p>
+      </div></section>
+    </div>
+
+    <div class="col">
+      <section class="card"><header><svg class="ic"><use href="#i-link"/></svg><h2>Kết nối thiết bị</h2></header><div class="bd">
+        <label class="field">Địa chỉ đệm<input id="devHost" value="smartmattress.local" placeholder="smartmattress.local"></label>
+        <div class="row" style="margin-top:10px"><button class="primary" id="btnHttp"><svg class="ic"><use href="#i-wifi"/></svg>Kết nối WiFi</button><button id="btnSerial"><svg class="ic"><use href="#i-usb"/></svg>Kết nối USB</button><button id="btnStop"><svg class="ic"><use href="#i-x"/></svg>Ngắt</button></div>
+        <p class="small"><b>WiFi nhà:</b> mở <b>http://smartmattress.local</b> hoặc IP trên màn OLED. <b>USB:</b> bấm đúp <b>Mo_web_qua_USB.bat</b>. <b>Chưa cài WiFi:</b> vào WiFi <b id="apName">SmartMattress-xxxx</b> (mật khẩu <b>12345678</b>).</p>
+        <div class="note" id="cmdMsg" style="display:none"></div>
+      </div></section>
+
+      <section class="card"><header><svg class="ic"><use href="#i-valve"/></svg><h2>Van khí</h2><span class="sub">74HC595 · V1–V32</span></header><div class="bd">
+        <div class="valves" id="valveGrid"></div>
+        <div class="row" style="margin-top:10px"><button id="btnValveAll" data-need><svg class="ic"><use href="#i-power"/></svg>Bật tất cả</button><button class="danger" id="btnValveOff" data-need><svg class="ic"><use href="#i-x"/></svg>Tắt tất cả</button></div>
+        <p class="small" id="valveInfo"></p>
+      </div></section>
+
+      <section class="card"><header><svg class="ic"><use href="#i-gear"/></svg><h2>Cài đặt</h2></header><div class="bd">
+        <div class="row"><button class="primary" id="btnTare" data-need><svg class="ic"><use href="#i-target"/></svg>Cân 0</button><button id="btnTareClear" data-need><svg class="ic"><use href="#i-undo"/></svg>Xóa hiệu chỉnh 0</button></div>
+        <p class="small">Cân 0: lấy mức đang đọc làm điểm 0 cho mọi cảm biến (khi đệm không có tải).</p>
+        <label class="field inline" style="margin-top:6px">Chu kỳ đọc<select id="period" data-need><option value="500">0,5 giây</option><option value="1000">1 giây</option><option value="2000">2 giây</option><option value="5000">5 giây</option></select></label>
+        <p class="subhead"><svg class="ic"><use href="#i-wifi"/></svg>WiFi nhà</p>
+        <div class="row"><input id="wSsid" placeholder="Tên WiFi" autocomplete="off" style="flex:1"><input id="wPass" type="password" placeholder="Mật khẩu" autocomplete="off" style="flex:1"><button id="btnWifi" data-need>Lưu</button></div>
+        <p class="small" id="wifiInfo"></p>
+      </div></section>
+    </div>
+  </div>
+
+  <details class="card" style="margin-top:14px"><summary><svg class="ic"><use href="#i-chart"/></svg><h2>Phân vùng Vai – Eo – Hông</h2><span class="small" style="margin-left:8px">mô phỏng theo RD</span><svg class="ic chev"><use href="#i-chev"/></svg></summary><div class="bd">
+    <div class="examples" id="exampleButtons"></div>
+    <div class="split" style="margin-top:12px">
+      <div>
+        <div class="note" id="warning"></div>
+        <p class="subhead">Năm ví dụ để so sánh</p><div id="comparison"></div>
+        <div class="row" style="margin-top:12px"><button class="primary" id="saveSvg"><svg class="ic"><use href="#i-down"/></svg>Tải SVG</button><button id="downloadJson"><svg class="ic"><use href="#i-down"/></svg>Xuất JSON</button><button id="print"><svg class="ic"><use href="#i-print"/></svg>In</button><button id="reset"><svg class="ic"><use href="#i-undo"/></svg>Khôi phục ví dụ</button></div>
+      </div>
+      <div>
+        <div class="kpi3"><div><strong id="kA">4</strong><span>Tâm A – Vai</span></div><div><strong id="kB">10</strong><span>Tâm B – Hông</span></div><div><strong id="kDistance">5</strong><span>Khoang giữa</span></div></div>
+        <div class="controls"><label class="field">Mốc A<input type="number" id="a" min="1" max="13" step="0.5"></label><label class="field">Mốc B<input type="number" id="b" min="1" max="13" step="0.5"></label><label class="field">Kiểu chia<select id="plan"><option value="2-1-2">2–1–2</option><option value="3-1-3">3–1–3</option><option value="2-2-2">2–2–2</option><option value="3-2-3">3–2–3</option><option value="2-3-2">2–3–2</option><option value="3-3-3">3–3–3</option><option value="4-2-4">4–2–4</option><option value="4-3-4">4–3–4</option><option value="4-4-4">4–4–4</option></select></label><label class="field">Đầu vùng Vai<input type="number" id="s" min="1" max="13" step="1"></label><label class="field">Đầu vùng Eo<input type="number" id="e" min="1" max="13" step="1"></label><label class="field">Đầu vùng Hông<input type="number" id="h" min="1" max="13" step="1"></label></div>
+        <p class="subhead">Áp suất 13 khoang (kPa)</p><div class="pressures" id="pressureInputs"></div>
+        <p class="small">Khi bật "Dùng áp suất thật", ô áp suất lấy theo cảm biến và bị khóa.</p>
+      </div>
+    </div>
+  </div></details>
+
+  <p class="foot">Đệm thông minh · ESP32 · Các ranh giới vùng là giả định minh họa, chưa phải thuật toán RD phê duyệt.</p>
+</main>
+<script>
+const $=id=>document.getElementById(id), SVG='http://www.w3.org/2000/svg';
+const cases=[
+ {name:'Ví dụ 1 · A=4, B=10 · 3–3–3',a:4,b:10,plan:'3-3-3',s:3,e:6,h:9,p:[4,6,14,16,14,8,7,8,14,16,14,6,4]},
+ {name:'Ví dụ 2 · A=3,5, B=9,5 · 2–2–2',a:3.5,b:9.5,plan:'2-2-2',s:3,e:5,h:9,p:[4,6,14,15,15,8,8,8,14,15,15,6,4]},
+ {name:'Ví dụ 3 · A=4,5, B=10,5 · 4–2–4',a:4.5,b:10.5,plan:'4-2-4',s:3,e:7,h:9,p:[4,6,12,14,15,13,12,13,15,15,14,12,4]},
+ {name:'Ví dụ 4 · A=4,5, B=11,5 · 4–3–4',a:4.5,b:11.5,plan:'4-3-4',s:3,e:7,h:10,p:[4,5,12,14,15,12,11,12,15,15,14,14,12]},
+ {name:'Ví dụ 5 · A=3,5, B=11,5 · 4–4–4',a:3.5,b:11.5,plan:'4-4-4',s:2,e:6,h:10,p:[4,12,14,15,14,13,12,13,14,15,14,12,5]}
+];
+let current=0, state=structuredClone(cases[0]);
+const val=id=>Number($(id).value), lengths=()=>state.plan.split('-').map(Number);
+function between(a,b){if(!Number.isFinite(a)||!Number.isFinite(b)||b<=a)return null;let count=0;for(let i=1;i<=13;i++) if(i>a&&i<b)count++;return count;}
+function zones(){let [nv,ne,nh]=lengths();return [{key:'shoulder',label:'Vai',start:state.s,n:nv,color:'#8fc8f8'},{key:'waist',label:'Eo',start:state.e,n:ne,color:'#ffe1a0'},{key:'hip',label:'Hông',start:state.h,n:nh,color:'#a7e2c8'}]}
+function colorAt(i){let z=zones().find(z=>i>=z.start&&i<z.start+z.n);return z?z.color:'#eaf0f5'}
+function zoneName(i){return zones().filter(z=>i>=z.start&&i<z.start+z.n).map(z=>z.label).join('/')||'Ngoài vùng'}
+function svgEl(tag,attrs={},text){let e=document.createElementNS(SVG,tag);for(let [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;return e}
+function renderChart(){let svg=$('chart');svg.replaceChildren();const left=52,top=50,w=870,h=255,dx=w/13,peak=Math.max(0,...state.p.map(v=>Number(v)||0)),max=Math.max(20,Math.ceil(peak/5)*5),step=max/4;
+for(let t=0;t<=max;t+=step){let y=top+h-t/max*h;svg.append(svgEl('line',{x1:left,y1:y,x2:left+w,y2:y,stroke:'#d5e3ed','stroke-width':1}));svg.append(svgEl('text',{x:40,y:y+5,'text-anchor':'end','font-size':15,fill:'#66798a'},String(t)))}
+svg.append(svgEl('text',{x:10,y:20,fill:'#47657b','font-size':16},'Áp suất (kPa)'));
+for(let i=0;i<13;i++){let x=left+i*dx+dx*.12,barW=dx*.76,v=Number(state.p[i])||0,barH=Math.max(0,v/max*h),y=top+h-barH;svg.append(svgEl('rect',{x,y,width:barW,height:barH,rx:4,fill:colorAt(i+1),stroke:'#76aacc','stroke-width':1}));svg.append(svgEl('text',{x:x+barW/2,y:y-8,'font-size':14,'font-weight':700,'text-anchor':'middle',fill:'#234d69'},state.live&&!(state.ok>>>i&1)?'ERR':v.toLocaleString('vi-VN',{maximumFractionDigits:1})));svg.append(svgEl('text',{x:left+(i+.5)*dx,y:top+h+25,'font-size':14,'text-anchor':'middle',fill:'#18344d'},String(i+1)))}
+for(let [key,label] of [['a','A – Vai'],['b','B – Hông']]){let n=state[key];if(n>=1&&n<=13){let x=left+(n-.5)*dx, y=34;svg.append(svgEl('path',{d:`M${x} ${y+1} V${top-3}`,stroke:key==='a'?'#c53d39':'#078774','stroke-width':3}));svg.append(svgEl('path',{d:`M${x-6} ${top-10} L${x+6} ${top-10} L${x} ${top-1}Z`,fill:key==='a'?'#c53d39':'#078774'}));svg.append(svgEl('text',{x,y:23,'font-size':17,'font-weight':750,'text-anchor':'middle',fill:key==='a'?'#c53d39':'#078774'},label+': '+String(n).replace('.',',')))}}
+svg.append(svgEl('text',{x:left+w/2,y:359,'font-size':16,'text-anchor':'middle',fill:'#526b7b'},'Khoang khí từ đầu giường đến chân giường →'));
+}
+function validate(){let z=zones(), errs=[],warns=[];let types=Array.from({length:13},()=>[]);for(let zone of z){if(!Number.isInteger(zone.start)||zone.start<1||zone.start+zone.n-1>13)errs.push('Vùng '+zone.label+' vượt ngoài khoang 1–13.');for(let i=zone.start;i<zone.start+zone.n;i++) if(i>=1&&i<=13)types[i-1].push(zone.label)}if(types.some(v=>v.length>1))errs.push('Có khoang được gán vào nhiều vùng.');if(z[1].start!==z[0].start+z[0].n||z[2].start!==z[1].start+z[1].n)warns.push('Ba vùng không ghép thành một đoạn liên tiếp. Đây là điểm phải chốt với RD.');let cnt=between(state.a,state.b);let plans={3:['2-1-2','3-1-3'],4:['2-2-2','3-2-3'],5:['2-3-2','3-3-3'],6:['4-2-4'],7:['4-3-4'],8:['4-4-4']};if(!plans[cnt]?.includes(state.plan))warns.push(`Phương án ${state.plan} không tương ứng với số khoang giữa A/B theo bảng RD (${cnt??'không hợp lệ'}).`);let zoneCenter=z0=>z0.start+(z0.n-1)/2;if(Math.abs(zoneCenter(z[0])-state.a)>0.001||Math.abs(zoneCenter(z[2])-state.b)>0.001)warns.push('Tâm vùng Vai/Hông chưa trùng A/B; quy tắc căn tâm chỉ là giả định minh họa.');return {errs,warns,cnt}}
+function render(){renderChart();$('caseTitle').textContent=state.name;$('kA').textContent=String(state.a).replace('.',',');$('kB').textContent=String(state.b).replace('.',',');let {errs,warns,cnt}=validate();$('kDistance').textContent=cnt===null?'—':cnt;$('chambers').innerHTML=Array.from({length:13},(_,i)=>`<div class="cell ${zoneName(i+1).includes('Vai')?'shoulder':zoneName(i+1).includes('Eo')?'waist':zoneName(i+1).includes('Hông')?'hip':'outside'}" title="Khoang ${i+1}: ${zoneName(i+1)}">${i+1}</div>`).join('');$('zoneSummary').innerHTML=zones().map(z=>`<b style="background:${z.color}">${z.label}: ${z.start}–${z.start+z.n-1} (${z.n} khoang)</b>`).join('');let msg=$('warning');msg.className='note '+(errs.length?'danger':warns.length?'':'success');msg.innerHTML=errs.length?'<b>Lỗi cấu hình:</b> '+errs.join(' '):warns.length?'<b>Cần RD xác nhận:</b> '+warns.join(' '):'<b>Phân vùng hợp lệ theo các giả định minh họa.</b> Vẫn cần RD xác nhận đây là quy tắc chính thức.';for(let id of ['a','b','s','e','h'])$(id).value=state[id];$('plan').value=state.plan;document.querySelectorAll('[data-pressure]').forEach(el=>{let i=Number(el.dataset.pressure);el.disabled=!!state.live;if(document.activeElement!==el)el.value=state.p[i]});renderExamples()}
+function loadCase(i){current=i;state=structuredClone(cases[i]);if(window.dev&&dev.mode&&$('useLive').checked)$('useLive').checked=false;render()}
+function setup(){ $('exampleButtons').innerHTML=cases.map((c,i)=>`<button data-case="${i}">Ví dụ ${i+1} · ${c.plan}</button>`).join('');$('pressureInputs').innerHTML=Array.from({length:13},(_,i)=>`<label>K${i+1}<input type="number" data-pressure="${i}" min="0" max="30" step="0.1"></label>`).join('');$('exampleButtons').addEventListener('click',e=>{let b=e.target.closest('[data-case]');if(b)loadCase(Number(b.dataset.case))});for(let id of ['a','b','s','e','h','plan'])$(id).addEventListener('change',()=>{state[id]=id==='plan'?$(id).value:val(id);render()});$('pressureInputs').addEventListener('input',e=>{if(e.target.matches('[data-pressure]')){let n=Number(e.target.dataset.pressure),p=Number(e.target.value);state.p[n]=Math.min(30,Math.max(0,p));render()}});$('comparison').addEventListener('click',e=>{let el=e.target.closest('[data-example]');if(el)loadCase(Number(el.dataset.example))});$('reset').onclick=()=>loadCase(current);$('print').onclick=()=>window.print();$('downloadJson').onclick=()=>download('du_lieu_13_khoang.json',JSON.stringify({description:'Mô phỏng, chưa RD xác nhận',...state},null,2),'application/json');$('saveSvg').onclick=()=>{let svg=$('chart').cloneNode(true);svg.setAttribute('xmlns',SVG);svg.setAttribute('width','1200');svg.setAttribute('height','462');download('bieu_do_ap_suat_13_khoang.svg',new XMLSerializer().serializeToString(svg),'image/svg+xml')};loadCase(0)}
+function renderExamples(){document.querySelectorAll('#exampleButtons button').forEach((e,i)=>e.classList.toggle('active',i===current&&!state.live));$('comparison').innerHTML=cases.map((c,i)=>{let [v,e,h]=c.plan.split('-').map(Number);let cz=j=>j+1>=c.s&&j+1<c.s+v?'#8fc8f8':j+1>=c.e&&j+1<c.e+e?'#ffe1a0':j+1>=c.h&&j+1<c.h+h?'#a7e2c8':'#eaf0f5';return `<button class="mini ${i===current&&!state.live?'current':''}" data-example="${i}"><strong>${c.name}</strong><div class="strips">${Array.from({length:13},(_,j)=>`<i style="background:${cz(j)}"></i>`).join('')}</div><small>A=${c.a}, B=${c.b} · Vai ${c.s}–${c.s+v-1}, Eo ${c.e}–${c.e+e-1}, Hông ${c.h}–${c.h+h-1}</small></button>`}).join('')}
+function download(name,data,type){let url=URL.createObjectURL(new Blob([data],{type:type+';charset=utf-8'}));let a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+/* ---------- Thiết bị: WiFi (HTTP /api/state, /api/cmd) hoặc USB (Web Serial, dòng "@cmd"/"@J") ---------- */
+var dev={mode:null,base:'',timer:null,port:null,reader:null,writer:null,last:null,pending:[]};
+const servedByDevice=location.protocol.startsWith('http')&&/^\/(index\.html)?$/.test(location.pathname);
+const popcount=n=>{let c=0;n>>>=0;while(n){c+=n&1;n>>>=1}return c};
+function setConn(cls,text,info){let el=$('connState');el.className='pill '+cls;el.textContent=text;$('connInfo').textContent=info||'';document.querySelectorAll('[data-need]').forEach(b=>b.disabled=!dev.mode);renderValves()}
+const VI_MSG={'state':'đọc trạng thái','zeroed':'đã lấy mức hiện tại làm 0 và lưu vào bộ nhớ','zero cleared':'đã xóa hiệu chỉnh 0','could not save offsets':'không lưu được hiệu chỉnh 0','period set':'đã đổi chu kỳ đọc','ms must be 200..10000':'chu kỳ phải từ 0,2 đến 10 giây','connecting':'đang vào WiFi nhà, xem trạng thái bên dưới','wifi error':'lỗi cài WiFi','valve set':'đã đổi trạng thái van','valve error':'lỗi điều khiển van','valve outputs locked in firmware (DEVCTL_VALVE_ENABLE = 0)':'van đang khóa trong firmware, chưa kích chân nào','unknown command':'lệnh không hợp lệ','auto on':'đã bật tự động giữ áp','auto off':'đã tắt tự động, mọi van đóng','targets set':'đã đặt áp suất mục tiêu','level must be 1..8':'cấp phải từ 1 đến 8','kg must be 1..200':'cân nặng phải từ 1 đến 200 kg','auto mode on: switch it off to use valves by hand':'đang chạy tự động, tắt tự động rồi mới bật van bằng tay'};
+function showMsg(ok,text){let m=$('cmdMsg');m.style.display='';m.className='note '+(ok?'success':'danger');m.textContent=text}
+function onState(st){dev.last=st;let ok=st.ok>>>0;
+$('liveCells').innerHTML=st.p.map((v,i)=>`<div class="${v===null?'err':''}" title="Thô ${st.raw[i]??'—'} kPa · bù 0: ${st.zero[i]} kPa"><small>P${String(i+1).padStart(2,'0')}</small><b>${v===null?'ERR':v.toFixed(1)}</b></div>`).join('');
+$('liveStamp').textContent=`Lần đọc #${st.seq} lúc ${new Date().toLocaleTimeString('vi-VN')} · ${popcount(ok)}/13 cảm biến tốt · kPa đã trừ hiệu chỉnh 0`;
+if(st.wifi){$('apName').textContent=st.wifi.ap_ssid;$('wifiInfo').textContent=st.wifi.sta_ssid?(st.wifi.connected?`Đã vào WiFi "${st.wifi.sta_ssid}". Trên máy cùng WiFi, mở http://${st.wifi.host||'smartmattress.local'} hoặc http://${st.wifi.sta_ip}`:`Chưa vào được WiFi "${st.wifi.sta_ssid}" (sai mật khẩu hoặc xa router); WiFi riêng của đệm đang bật để cài lại.`):`Chưa cài WiFi nhà; đang dùng WiFi riêng của đệm (${st.wifi.clients} máy đang vào).`}
+if(document.activeElement!==$('period'))$('period').value=String(st.period);
+if($('useLive').checked){state.live=true;state.ok=ok;state.p=st.p.map(v=>v===null?0:Math.round(v*10)/10);state.name='Dữ liệu thật từ đệm · lần đọc #'+st.seq;render()}
+renderValves();renderAuto(st)}
+function renderAuto(st){let a=st.auto;if(!a)return;const act={idle:'đang giữ',inflate:'đang nạp',exhaust:'đang xả'};
+$('autoCells').innerHTML=a.target.map((t,i)=>{let p=st.p[i],cls=(a.fault>>>i)&1?'err':'';let mark=a.active===i?(a.action==='inflate'?' ▲':' ▼'):'';return `<div class="${cls}" title="Mục tiêu ${t} kPa ±${a.tol}"><small>K${i+1}${mark}</small><b>${t.toFixed(1)}</b><small>${p===null?'ERR':p.toFixed(1)}</small></div>`}).join('');
+$('autoInfo').textContent=(a.on?'Tự động: BẬT':'Tự động: TẮT')+(a.active>=0?` · khoang ${a.active+1} ${act[a.action]}`:'')+(a.msg?` · ${a.msg}`:'')+' · ô trên: mục tiêu (kPa), dưới: áp thật. Nạp/xả từng khoang một, đầu → chân, dung sai ±'+a.tol+' kPa.'}
+function renderValves(){let v=(dev.last&&dev.last.valve)||{enabled:false,num:32,mask:0},en=!!dev.mode&&v.enabled,manual=en&&!(dev.last&&dev.last.auto&&dev.last.auto.on);
+$('valveGrid').innerHTML=Array.from({length:v.num},(_,i)=>`<button data-valve="${i}" class="${(v.mask>>>i)&1?'on':''}" ${manual?'':'disabled'}>V${i+1}</button>`).join('');$('btnValveOff').disabled=!en;$('btnValveAll').disabled=!manual;
+$('valveInfo').textContent=v.enabled?'Bấm để bật/tắt từng van. Khi khởi động mọi van đều tắt; Ở chế độ thủ công, van giữ trạng thái đến khi có lệnh tắt, kể cả khi ngắt kết nối. Tắt tất cả cũng dừng chế độ tự động.':'Van đang khóa trong firmware (DEVCTL_VALVE_ENABLE = 0) cho tới khi xác nhận chân DS/SHCP/STCP và số van. Lệnh van sẽ bị từ chối, không chân nào được kích.'}
+async function sendCmd(cmd){if(!dev.mode){showMsg(false,'Chưa kết nối thiết bị.');return null}
+try{let r;if(dev.mode==='http'){let res=await fetch(dev.base+'/api/cmd',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(cmd)});r=await res.json();pollOnce()}
+else{r=await new Promise((resolve,reject)=>{dev.pending.push(resolve);dev.writer.write(new TextEncoder().encode('@cmd '+JSON.stringify(cmd)+'\n')).catch(reject);setTimeout(()=>reject(new Error('thiết bị không trả lời')),3000)})}
+showMsg(r.ok,(r.ok?'Đã thực hiện: ':'Thiết bị từ chối: ')+(VI_MSG[r.msg]||r.msg));return r}catch(e){showMsg(false,'Gửi lệnh lỗi: '+e.message);return null}}
+async function pollOnce(){if(dev.mode!=='http')return;try{let res=await fetch(dev.base+'/api/state',{cache:'no-store'});let st=await res.json();if(dev.mode!=='http')return;onState(st);setConn('on',(!dev.base&&location.hostname==='127.0.0.1')?'Đã kết nối (USB)':'Đã kết nối (WiFi)',dev.base||location.host)}catch(e){if(dev.mode==='http')setConn('off','Mất kết nối WiFi','Kiểm tra máy đã vào WiFi của đệm chưa')}}
+async function startHttp(base){await stopAll();dev.mode='http';dev.base=base;setConn('wait','Đang kết nối…',base||location.host);pollOnce();dev.timer=setInterval(pollOnce,1000)}
+async function startSerial(){if(!('serial' in navigator)){showMsg(false,'Trình duyệt này không hỗ trợ USB. Hãy mở file bằng Chrome hoặc Edge trên máy tính.');return}
+let port;try{port=await navigator.serial.requestPort()}catch(e){return}
+try{await stopAll();await port.open({baudRate:115200});try{await port.setSignals({dataTerminalReady:false,requestToSend:false})}catch(e){}
+dev.port=port;dev.mode='serial';dev.writer=port.writable.getWriter();clearInterval(dev.timer);dev.timer=setInterval(()=>{if(dev.mode==='serial')dev.writer.write(new TextEncoder().encode('@cmd {"cmd":"ping"}\n')).catch(()=>{})},5000);setConn('wait','Đang chờ dữ liệu USB…','115200 baud');readSerial(port)}catch(e){showMsg(false,'Không mở được cổng USB: '+e.message+'. Đóng idf.py monitor hoặc chương trình khác đang giữ cổng.')}}
+async function readSerial(port){let buf='';const dec=new TextDecoder();dev.reader=port.readable.getReader();
+try{while(true){let {value,done}=await dev.reader.read();if(done)break;buf+=dec.decode(value,{stream:true});let lines=buf.split('\n');buf=lines.pop();
+for(let ln of lines){let i=ln.indexOf('@J ');if(i<0)continue;try{let o=JSON.parse(ln.slice(i+3));if('seq' in o){onState(o);setConn('on','Đã kết nối (USB)','115200 baud')}else if('ok' in o){let r=dev.pending.shift();r&&r(o)}}catch(e){}}}}
+catch(e){if(dev.mode==='serial')setConn('off','Mất kết nối USB',e.message)}}
+async function stopAll(){clearInterval(dev.timer);dev.timer=null;let p=dev.port;dev.mode=null;dev.pending=[];
+if(p){try{await dev.reader.cancel()}catch(e){}try{dev.reader.releaseLock()}catch(e){}try{dev.writer.releaseLock()}catch(e){}try{await p.close()}catch(e){}}
+dev.port=dev.reader=dev.writer=null;setConn('wait','Chưa kết nối','')}
+function setupDevice(){$('btnHttp').onclick=()=>{let h=$('devHost').value.trim().replace(/\/+$/,'');startHttp(h?(/^https?:\/\//.test(h)?h:'http://'+h):'')};$('btnSerial').onclick=startSerial;$('btnStop').onclick=()=>stopAll();
+$('btnTarget').onclick=()=>{let index=Number($('targetIndex').value)-1,kpa=Number($('targetKpa').value);if(!Number.isInteger(index)||index<0||index>12||!Number.isFinite(kpa)||kpa<0||kpa>17){showMsg(false,'Khoang phải từ 1–13, áp suất từ 0–17 kPa.');return}sendCmd({cmd:'target',index,kpa})};$('btnTare').onclick=()=>sendCmd({cmd:'tare'});$('btnTareClear').onclick=()=>sendCmd({cmd:'tare_clear'});$('period').onchange=()=>sendCmd({cmd:'period',ms:Number($('period').value)});
+$('btnWifi').onclick=()=>{let ssid=$('wSsid').value.trim();if(!ssid){showMsg(false,'Nhập tên WiFi trước.');return}sendCmd({cmd:'wifi',ssid,pass:$('wPass').value});$('wPass').value=''};
+$('valveGrid').addEventListener('click',e=>{let b=e.target.closest('[data-valve]');if(b&&!b.disabled)sendCmd({cmd:'valve',index:Number(b.dataset.valve),on:!b.classList.contains('on')})});$('btnValveOff').onclick=()=>sendCmd({cmd:'valve_off'});$('btnAutoOn').onclick=()=>sendCmd({cmd:'auto',on:true});$('btnAutoOff').onclick=()=>sendCmd({cmd:'auto',on:false});$('btnLevel').onclick=()=>sendCmd({cmd:'level',level:Number($('autoLevel').value)});$('btnKg').onclick=()=>{let kg=Number($('autoKg').value);if(!kg){showMsg(false,'Nhập cân nặng trước.');return}sendCmd({cmd:'weight',kg})};$('btnValveAll').onclick=()=>{let n=(dev.last&&dev.last.valve&&dev.last.valve.num)||32;sendCmd({cmd:'valve_mask',mask:n>=32?4294967295:(2**n-1)})};
+$('useLive').onchange=()=>{if(!$('useLive').checked){state.live=false;loadCase(current)}else if(dev.last)onState(dev.last)};
+$('liveCells').innerHTML=Array.from({length:13},(_,i)=>`<div><small>P${String(i+1).padStart(2,'0')}</small><b>—</b></div>`).join('');setConn('wait','Chưa kết nối','');
+if(servedByDevice){$('devHost').value=location.host;startHttp('')}}
+setup();setupDevice();
+/* KPI cards on top of the dashboard. */
+(function(){const _on=onState,_sc=setConn;
+onState=function(st){_on(st);let ok=popcount(st.ok>>>0),v=st.valve||{mask:0};$('kSensors').textContent=ok+'/13';$('kSensors').style.color=ok<13?'var(--bad)':'';$('kAuto').textContent=st.auto?(st.auto.on?'BẬT':'TẮT'):'—';$('kAuto').style.color=st.auto&&st.auto.on?'var(--ok)':'';$('kValves').textContent=v.enabled?popcount(v.mask>>>0)+' / '+v.num:'Khóa'};
+setConn=function(cls,text,info){_sc(cls,text,info);$('kConn').textContent=cls==='on'?(dev.mode==='serial'||text.includes('USB')?'USB':'WiFi'):(cls==='off'?'Mất kết nối':'Chưa kết nối');$('kConn').style.color=cls==='on'?'var(--ok)':(cls==='off'?'var(--bad)':'')};
+setConn(document.getElementById('connState').className.includes('on')?'on':'wait',$('connState').textContent,$('connInfo').textContent)})();
+</script></body></html>

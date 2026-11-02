@@ -26,6 +26,7 @@ zerr_t oled_lvgl_hide_spinner(void);
 
 /* Text */
 zerr_t oled_lvgl_set_text(const char *p_text);
+zerr_t oled_lvgl_set_text_small(const char *p_text);
 zerr_t oled_lvgl_blink_text(const char *p_text, uint32_t period_ms);
 zerr_t oled_lvgl_stop_blink(void);
 

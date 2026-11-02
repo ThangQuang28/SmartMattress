@@ -40,6 +40,10 @@ typedef struct
 zerr_t 
 z74hc595_open(z74hc595_t *p_dev, gpio_num_t pin_data, gpio_num_t pin_clock, gpio_num_t pin_latch, uint8_t chip_num);
 
+/* First latched frame can be HIGH for active-low output boards. */
+zerr_t z74hc595_open_initial(z74hc595_t *p_dev, gpio_num_t pin_data, gpio_num_t pin_clock,
+                            gpio_num_t pin_latch, uint8_t chip_num, uint8_t initial);
+
 zerr_t 
 z74hc595_close(z74hc595_t *p_dev);
 

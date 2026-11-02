@@ -26,6 +26,7 @@ set(COMPONENTS
     lwip
     json
     esp_http_client
+    esp_http_server
     esp_https_ota
     app_update
 )

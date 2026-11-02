@@ -17,8 +17,14 @@
 
 /* BSP. */
 #include "74hc595_bsp.h"
+#include "esp_rom_sys.h"
 
 /* Define ----------------------------------------------------------------------------------------*/
+
+/* Half period of SHCP/STCP. The ref/02 driver that switched valves one by one on this board logged
+   every bit, which made each clock phase last milliseconds; 1 us phases make one valve drive the
+   whole chain (long wires / slow edges). 50 us keeps a 32-bit write under 10 ms. */
+#define H595_BSP_HALF_PERIOD_US     50U
 
 /* Private data types ----------------------------------------------------------------------------*/
 
@@ -40,7 +46,7 @@ h595_bsp_open(h595_bsp_t *p_bsp, gpio_num_t pin_data, gpio_num_t pin_clock, gpio
         pin_data == pin_latch ||
         pin_clock == pin_latch)
     {
-        return ESP_ERR_INVALID_ARG;
+        return ZERR_INVALID_PARAM;
     }
 
     memset(p_bsp, 0, sizeof(*p_bsp));
@@ -115,6 +121,7 @@ zerr_t h595_bsp_shift_out(h595_bsp_t *p_bsp, uint8_t data)
         {
             return ret;
         }
+        esp_rom_delay_us(H595_BSP_HALF_PERIOD_US); /* Hold: data changes only after SHCP is low. */
 
         ret = h595_bsp_set_level(p_bsp->pin_data,
                                  (data >> bit) & 0x01U);
@@ -123,14 +130,18 @@ zerr_t h595_bsp_shift_out(h595_bsp_t *p_bsp, uint8_t data)
             return ZERR_ERROR;
         }
 
+        esp_rom_delay_us(H595_BSP_HALF_PERIOD_US); /* Data setup before the rising edge. */
         ret = h595_bsp_set_level(p_bsp->pin_clock, 1);
         if (ret != ESP_OK)
         {
             return ZERR_ERROR;
         }
+        esp_rom_delay_us(H595_BSP_HALF_PERIOD_US); /* SHCP high time. */
     }
 
-    return h595_bsp_set_level(p_bsp->pin_clock, 0);
+    esp_err_t ret = h595_bsp_set_level(p_bsp->pin_clock, 0);
+    esp_rom_delay_us(H595_BSP_HALF_PERIOD_US);  /* Last bit settled before the latch. */
+    return ret;
 }
 
 zerr_t h595_bsp_latch(h595_bsp_t *p_bsp)
@@ -146,20 +157,21 @@ zerr_t h595_bsp_latch(h595_bsp_t *p_bsp)
         return ZERR_ERROR;
     }
 
+    esp_rom_delay_us(H595_BSP_HALF_PERIOD_US);
     ret = h595_bsp_set_level(p_bsp->pin_latch, 1);
     if (ret != ESP_OK)
     {
         return ZERR_ERROR;
     }
 
+    esp_rom_delay_us(H595_BSP_HALF_PERIOD_US);
     return h595_bsp_set_level(p_bsp->pin_latch, 0);
 }
 
 /* Private function prototypes -------------------------------------------------------------------*/
 static zerr_t h595_bsp_set_level(gpio_num_t pin, uint32_t level)
 {
-    gpio_set_level(pin, level);
-    return ZERR_OK;
+    return (ESP_OK == gpio_set_level(pin, level)) ? ZERR_OK : ZERR_ERROR;
 }
 
 /* END OF FILE ************************************************************************************/

@@ -2,54 +2,44 @@ idf_component_register(
     SRCS
         "common/src/utility.c"
         "common/src/zerr.c"
-        "espnow/espnow.c"
-        "espnow/package.c"
         "ota/zota.c"
         "firebase/firebase.c"
         "smartconfig/smart_config.c"
         "wifi_prov/wifi_prov.c"
         "mqtt/mqtt_app.c"
-        "esp/esp_at.c"
-        "esp/esp_frame.c"
-        "dc_motor/dc_motor.c"
-        "temperature/aht20/aht20.c"
-        "temperature/bmp280/bmp280.c"
-        "temperature/sht3x/sht3x.c"
         "btn/btn.c"
         "flash/flash.c"
-        "ztime/ztime.c"
-        "zschedule/zschedule.c"
-        "send_frame/fan_send.c"
 
         "iic_devices/drivers/tca9548/tca9548.c"
         "iic_devices/screen/oled/driver/esp_lcd_panel_sh1106.c"
         "iic_devices/screen/oled/oled_lvgl.c"
         "iic_devices/pressure/agr12/agr12.c"
+        "iic_devices/pressure/pressure_array/pressure_array.c"
         "logic_ic/74hc595/74hc595.c"
+        "logic_ic/valve/valve.c"
+        "webui/devctl.c"
+        "webui/webui.c"
+        "webui/captive_dns.c"
+        "pctl/pctl.c"
     INCLUDE_DIRS
         "common/inc"
-        "dc_motor"
-        "temperature/aht20"
-        "temperature/bmp280"
-        "temperature/sht3x"
         "btn"
-        "espnow"
         "firebase"
         "smartconfig"
         "wifi_prov"
         "mqtt"
-        "esp"
         "flash"
         "ota"
-        "ztime"
-        "zschedule"
-        "send_frame"
 
         "iic_devices/drivers/tca9548"
         "iic_devices/screen/oled/driver"
         "iic_devices/screen/oled"
         "iic_devices/pressure/agr12"
+        "iic_devices/pressure/pressure_array"
         "logic_ic/74hc595"
+        "logic_ic/valve"
+        "webui"
+        "pctl"
     REQUIRES 
         esp_driver_gpio
         esp_event 
@@ -65,6 +55,10 @@ idf_component_register(
         # esp_wifi
         esp_http_client
         esp_https_ota
+        esp_lcd
+        esp_http_server
+        espressif__mdns
+        esp_driver_uart
         zdriver
     PRIV_REQUIRES 
         nvs_flash
@@ -79,4 +73,6 @@ idf_component_register(
         "mqtt/certs/device.crt"
         "mqtt/certs/device.key"
         "mqtt/certs/rootca.pem"      
+        # Web app served at http://192.168.4.1/ (same file as smart_mattress_chart/index.html).
+        "../smart_mattress_chart/index.html"
 )

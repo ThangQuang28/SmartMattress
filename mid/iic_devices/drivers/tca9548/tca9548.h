@@ -23,6 +23,10 @@ extern "C" {
 /* Definitions -----------------------------------------------------------------------------------*/
 
 #define TCA9548_I2C_ADDR_DEFAULT     0x70U
+/* Address = 0x70 | A2A1A0 (TCA9548A datasheet table 7-1). Both muxes sit on one bus, so their
+   address pins must differ. Assumed wiring: TCA one A2..A0 = 000, TCA two = 001. */
+#define TCA9548_I2C_ADDR_ONE         0x70U
+#define TCA9548_I2C_ADDR_TWO         0x71U
 #define TCA9548_CHANNEL_NUM          8U
 
 /* Public data types -----------------------------------------------------------------------------*/

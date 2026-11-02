@@ -1,0 +1,425 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="vi"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hướng dẫn Đệm thông minh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#f4f7fa; --paper:#ffffff; --ink:#15283b; --muted:#5d7083; --line:#dde5ee;
+  --accent:#1665c1; --accent2:#0f8a86; --mark:#e5484d; --soft:#eef4fb; --warnbg:#fff5e1; --warn:#8a5a00; --okbg:#e4f6ee; --ok:#12805c;
+  --zv:#8fc8f8; --ze:#ffd98a; --zh:#94dcbc; --zo:#dfe6ee; --todo:#b4233a;
+  --f:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1621; --paper:#152232; --ink:#e6eef7; --muted:#9db0c3; --line:#2c4058;
+  --accent:#5ba5f7; --accent2:#33c4b5; --mark:#ff7a70; --soft:#1a2b3f; --warnbg:#3a2c10; --warn:#f2c069; --okbg:#123326; --ok:#47d19a;
+  --zv:#2f6ea6; --ze:#8a6a1e; --zh:#2b7d5c; --zo:#2a3a4d; --todo:#ff8a8a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1621; --paper:#152232; --ink:#e6eef7; --muted:#9db0c3; --line:#2c4058;
+  --accent:#5ba5f7; --accent2:#33c4b5; --mark:#ff7a70; --soft:#1a2b3f; --warnbg:#3a2c10; --warn:#f2c069; --okbg:#123326; --ok:#47d19a;
+  --zv:#2f6ea6; --ze:#8a6a1e; --zh:#2b7d5c; --zo:#2a3a4d; --todo:#ff8a8a; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:15px;line-height:1.6;padding:28px 16px 48px}
+main{max-width:980px;margin:0 auto;display:grid;gap:22px}
+header.hero{display:grid;gap:8px}
+.kicker{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2)}
+h1{margin:0;font-size:clamp(26px,4vw,38px);line-height:1.15;text-wrap:balance;font-weight:800}
+.lead{margin:0;color:var(--muted);max-width:68ch}
+.flow{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.flow a{font-size:12.5px;font-weight:600;color:var(--accent);text-decoration:none;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.flow a:hover,.flow a:focus-visible{border-color:var(--accent);outline:none}
+.part{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent2);margin:14px 0 -8px}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px}
+.step.wide{grid-template-columns:minmax(0,1fr)}
+.num{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--accent);color:#fff;font-weight:800;font-size:17px}
+.step h2{margin:2px 0 6px;font-size:19px;text-wrap:balance}
+.step h3{margin:16px 0 6px;font-size:16px}
+.step p{margin:0 0 8px;max-width:72ch}
+.step ul,.step ol{margin:0 0 8px;padding-left:20px;max-width:72ch}
+.step li{margin:3px 0}
+.ui{font-weight:700;color:var(--accent)}
+.shot{margin:10px 0 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--soft)}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption,.fig figcaption{font-size:12.5px;color:var(--muted);padding:8px 12px;border-top:1px solid var(--line)}
+.fig{margin:10px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--paper);overflow:hidden}
+.fig svg{display:block;width:100%;height:auto;padding:12px}
+.fig.flowfig svg{max-width:620px;margin:0 auto}
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:8px 0}
+.way{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--soft);min-width:0}
+.way b{display:block;font-size:13.5px}.way span{font-size:13px;color:var(--muted)}
+code{font-family:ui-monospace,Consolas,monospace;font-size:13px;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 6px;word-break:break-word}
+.note{border-radius:14px;padding:14px 18px;background:var(--warnbg);color:var(--warn)}
+.note h3{margin:0 0 6px;font-size:15px}.note ul{margin:0;padding-left:20px}
+.tip{border-radius:10px;padding:10px 14px;background:var(--warnbg);color:var(--warn);margin:8px 0 10px;font-size:14px}
+.okbox{border-radius:10px;padding:10px 14px;background:var(--okbg);color:var(--ok);margin:8px 0 10px;font-size:14px}
+.tw{overflow-x:auto;margin:8px 0}
+table{border-collapse:collapse;font-size:13.5px;width:100%;min-width:520px}
+th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft)}
+td.c,th.c{text-align:center}
+.badge{display:inline-block;font-size:11.5px;font-weight:700;border-radius:999px;padding:1px 8px;background:var(--warnbg);color:var(--warn)}
+.badge.todo{background:transparent;border:1.5px solid var(--todo);color:var(--todo)}
+.zv{background:var(--zv)}.ze{background:var(--ze)}.zh{background:var(--zh)}
+/* SVG */
+svg .b{fill:var(--paper);stroke:var(--accent);stroke-width:1.5}
+svg .b.s{fill:var(--soft)}
+svg .b.opt{stroke-dasharray:5 4}
+svg .b.new{fill:var(--okbg);stroke:var(--ok);stroke-width:2}
+svg .b.todo{fill:none;stroke:var(--todo);stroke-dasharray:7 5;stroke-width:2}
+svg .b.warn{fill:var(--warnbg);stroke:var(--warn)}
+svg .d{fill:var(--okbg);stroke:var(--ok);stroke-width:1.5}
+svg .t{fill:var(--ink);font-family:var(--f)}
+svg .tw{fill:#fff;font-family:var(--f)}
+svg .lab{fill:var(--muted);font-family:var(--f)}
+svg .a{fill:none;stroke:var(--muted);stroke-width:1.6}
+svg .a.dash{stroke-dasharray:6 5}
+svg .ah{fill:var(--muted)}
+svg .grid{stroke:var(--line);stroke-width:1}
+svg .bar.zv{fill:var(--zv)}svg .bar.ze{fill:var(--ze)}svg .bar.zh{fill:var(--zh)}svg .bar.zo{fill:var(--zo)}
+svg .mk-a{stroke:#c53d39}svg .mk-at{fill:#c53d39;font-family:var(--f)}
+svg .mk-b{stroke:#078774}svg .mk-bt{fill:#0a9a84;font-family:var(--f)}
+svg .lvl{fill:color-mix(in srgb,#1665c1 calc(22% + var(--l)*10%),#9fb4c9)}
+footer{color:var(--muted);font-size:12.5px;text-align:center}
+@media (max-width:640px){.step{grid-template-columns:1fr;padding:16px}.ways{grid-template-columns:1fr}.num{width:38px;height:38px;font-size:15px}}
+</style>
+</head><body>
+<main>
+<header class="hero">
+  <span class="kicker">Đệm hơi 13 khoang · ESP32 · bản chi tiết 22/10 (cập nhật tự chuyển tư thế)</span>
+  <h1>Hướng dẫn sử dụng Đệm thông minh</h1>
+  <p class="lead">Từ lúc cắm điện tới khi đệm tự giữ áp theo tư thế: kết nối, ý nghĩa từng thẻ và từng nút trên trang web, cách đệm tìm vai và hông (A, B), cách tính áp đề xuất, lưu đồ chạy chương trình và cách xử lý sự cố. Ảnh chụp từ trang thật với số liệu mẫu; sơ đồ vẽ lại để giải thích.</p>
+  <nav class="flow" aria-label="Mục lục">
+    <a href="#tongquan">Tổng quan</a><a href="#ketnoi">Kết nối</a><a href="#khoidong">Khởi động</a><a href="#giaodien">Từng thẻ, từng nút</a><a href="#tomtat">Tóm tắt nút</a><a href="#chutrinh">Chu trình RD</a><a href="#cannang">Theo cân nặng</a><a href="#tuchuyen">Tự chuyển tư thế</a><a href="#ab">Cách chọn A, B</a><a href="#thamso">Tham số áp đề xuất</a><a href="#luudo">Lưu đồ</a><a href="#van">Van bằng tay</a><a href="#ghi">Ghi dữ liệu</a><a href="#antoan">An toàn</a><a href="#suco">Xử lý sự cố</a>
+  </nav>
+</header>
+
+<section class="new" aria-label="Mới trong bản này" style="border-radius:14px;padding:14px 18px;background:var(--okbg);color:var(--ok)">
+  <h2 style="margin:0 0 4px;font-size:15px">Mới trong bản này</h2>
+  <ul style="margin:0;padding-left:20px;color:var(--ink)">
+    <li><b>Đặt theo cân nặng rồi mời nằm lên</b>: nhập cân nặng, đệm đưa 13 khoang về áp theo cân nặng rồi tự dừng và báo "mời nằm lên"; người nằm lên, chọn tư thế, bấm <b>Phân tích cơ thể</b> (mục <a href="#cannang">Đặt theo cân nặng</a>). <span class="badge">Cần nạp bản mới</span></li>
+    <li><b>Tự chuyển bộ áp theo tư thế</b>: cứ 5 phút đệm kiểm tra người đang nằm tư thế nào và tự chuyển sang bộ áp đã lưu khớp nhất (mục <a href="#tuchuyen">Tự chuyển tư thế</a>). <span class="badge">Cần nạp bản mới</span></li>
+    <li>Lưu đồ đã thêm bước đặt theo cân nặng và chu kỳ tự chuyển tư thế (khung viền xanh lá).</li>
+    <li>Thêm bảng <a href="#tomtat">tóm tắt nhanh các nút</a>.</li>
+  </ul>
+</section>
+
+<section class="step wide" id="tomtat"><div>
+  <h2>Tóm tắt nhanh các nút</h2>
+  <div class="tw"><table><thead><tr><th style="width:34%">Nút</th><th>Bấm khi nào</th></tr></thead><tbody>
+    <tr><td><span class="ui">Kết nối WiFi</span> / <span class="ui">Kết nối USB</span> / <span class="ui">Ngắt</span></td><td>Nối hoặc ngắt trang với đệm.</td></tr>
+    <tr><td><span class="ui">Bật tự động</span> / <span class="ui">Tắt</span></td><td>Bật hoặc tắt giữ áp theo bộ đang lưu trong đệm.</td></tr>
+    <tr><td><span class="ui">Đặt cấp</span></td><td>Chọn cấp nền N bằng tay.</td></tr>
+    <tr><td><span class="ui">Đặt theo cân nặng</span></td><td>Chưa có người nằm: đệm đưa 13 khoang về áp theo cân nặng rồi tự dừng, báo "mời nằm lên". <span class="badge">Cần nạp bản mới</span></td></tr>
+    <tr><td><span class="ui">Phân tích cơ thể</span></td><td>Người đã nằm lên và chọn tư thế: tìm A, B và đề xuất áp ở cấp N. <span class="badge">Cần nạp bản mới</span></td></tr>
+    <tr><td><span class="ui">Giữ áp lại</span></td><td>Bỏ qua phân tích, cho đệm giữ áp tiếp. <span class="badge">Cần nạp bản mới</span></td></tr>
+    <tr><td><span class="ui">Tìm A, B</span></td><td>Người đang nằm tư thế chuẩn, muốn biết vai và hông ở khoang nào.</td></tr>
+    <tr><td><span class="ui">Tính áp đề xuất</span></td><td>Điền 13 ô mục tiêu theo RD cho tư thế đang chọn.</td></tr>
+    <tr><td><span class="ui">Lấy áp hiện tại</span></td><td>Điền 13 ô bằng áp đang đọc.</td></tr>
+    <tr><td><span class="ui">Áp dụng và giữ áp</span></td><td>Chạy: đệm nạp/xả tới 13 ô mục tiêu rồi giữ.</td></tr>
+    <tr><td><span class="ui">Lưu bộ áp</span> / <span class="ui">Dùng bộ đã lưu</span></td><td>Lưu hoặc gọi lại bộ áp của tư thế đang chọn (ngửa, nghiêng, tự do).</td></tr>
+    <tr><td><span class="ui">Dừng</span></td><td>Dừng mọi thứ: tắt tự động, đóng van, dừng bơm.</td></tr>
+    <tr><td>Nút <span class="ui">V1–V32</span>, <span class="ui">Bật tất cả</span>, <span class="ui">Tắt tất cả</span></td><td>Thử van bằng tay (phải Dừng tự động trước).</td></tr>
+    <tr><td><span class="ui">Lưu chân</span></td><td>Đổi chân DS/SHCP/STCP của 74HC595.</td></tr>
+    <tr><td><span class="ui">Tải file CSV</span> / <span class="ui">Xóa dữ liệu đã ghi</span></td><td>Lấy hoặc xóa dữ liệu cảm biến đã ghi trên máy đang mở trang.</td></tr>
+    <tr><td><span class="ui">Cân 0</span> / <span class="ui">Xóa hiệu chỉnh 0</span></td><td>Đặt hoặc bỏ điểm 0 cảm biến (đệm xả hết hơi, không người).</td></tr>
+    <tr><td><span class="ui">Lưu</span> (WiFi)</td><td>Cho đệm vào WiFi nhà.</td></tr>
+  </tbody></table></div>
+</div></section>
+
+<p class="part">Phần 1 · Làm quen</p>
+
+<section class="step" id="tongquan"><div class="num">1</div><div>
+  <h2>Đệm gồm những gì</h2>
+  <p>Đệm có <b>13 khoang khí</b> đánh số từ đầu xuống chân (K1–K13). Mỗi khoang có một cảm biến áp suất AGR12 (P01–P13). Bo ESP32 đọc 13 cảm biến, bật tắt van qua 4 IC 74HC595, hiện số lên màn OLED và phát trang web điều khiển.</p>
+  <figure class="fig"><svg viewBox="0 0 700 400" role="img" aria-label="Sơ đồ phần cứng"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" class="ah"/></marker></defs><rect class="b s" x="20.0" y="115.0" width="160" height="110" rx="10"/><text class="t" x="100" y="150.5" font-size="13" text-anchor="middle">ESP32</text><text class="t" x="100" y="166.5" font-size="13" text-anchor="middle">SDA 21 · SCL 22</text><text class="t" x="100" y="182.5" font-size="13" text-anchor="middle">DS 23 · SHCP 25</text><text class="t" x="100" y="198.5" font-size="13" text-anchor="middle">STCP 26</text><rect class="b" x="265.0" y="20.0" width="210" height="50" rx="10"/><text class="t" x="370" y="41.5" font-size="13" text-anchor="middle">TCA9548A 0x70</text><text class="t" x="370" y="57.5" font-size="13" text-anchor="middle">kênh 0–7 → P01–P08</text><rect class="b" x="265.0" y="92.0" width="210" height="66" rx="10"/><text class="t" x="370" y="113.5" font-size="13" text-anchor="middle">TCA9548A 0x71</text><text class="t" x="370" y="129.5" font-size="13" text-anchor="middle">kênh 4–7 → P09–P12</text><text class="t" x="370" y="145.5" font-size="13" text-anchor="middle">kênh 3 → P13</text><rect class="b" x="265.0" y="185.0" width="210" height="40" rx="10"/><text class="t" x="370" y="209.5" font-size="13" text-anchor="middle">OLED SH1106 (I2C)</text><rect class="b" x="265.0" y="262.0" width="210" height="56" rx="10"/><text class="t" x="370" y="286.5" font-size="13" text-anchor="middle">4 × 74HC595 (3,3 V)</text><text class="t" x="370" y="302.5" font-size="13" text-anchor="middle">/OE → GND, /MR → 3,3 V</text><rect class="b" x="525.0" y="262.0" width="150" height="56" rx="10"/><text class="t" x="600" y="286.5" font-size="13" text-anchor="middle">Mạch kích van</text><text class="t" x="600" y="302.5" font-size="13" text-anchor="middle">24 V</text><rect class="b" x="525.0" y="55.0" width="150" height="60" rx="10"/><text class="t" x="600" y="81.5" font-size="13" text-anchor="middle">13 cảm biến AGR12</text><text class="t" x="600" y="97.5" font-size="13" text-anchor="middle">đầu → chân</text><path class="a" d="M180 140 L262 55" marker-end="url(#ah)"/><path class="a" d="M180 155 L262 125" marker-end="url(#ah)"/><path class="a" d="M180 180 L262 205" marker-end="url(#ah)"/><path class="a" d="M180 205 L262 285" marker-end="url(#ah)"/><path class="a" d="M475 45 L522 75" marker-end="url(#ah)"/><path class="a" d="M475 120 L522 98" marker-end="url(#ah)"/><path class="a" d="M475 290 L522 290" marker-end="url(#ah)"/><text class="lab" x="560" y="368.5" font-size="12" text-anchor="middle">V1–V13 nạp · V14–V26 xả · V27 bơm</text><text class="lab" x="560" y="384.5" font-size="12" text-anchor="middle">V28–V32 dư (bản đồ giả định)</text><path class="a" d="M600 318 L600 350" marker-end="url(#ah)"/><text class="lab" x="214" y="92.5" font-size="11" text-anchor="middle">I2C</text><text class="lab" x="205" y="266.5" font-size="11" text-anchor="middle">dịch bit</text></svg><figcaption>Sơ đồ phần cứng. Chân 74HC595 hiện tại DS 23, SHCP 25, STCP 26 (đổi được trên web). Bản đồ van V1–V13 nạp, V14–V26 xả, V27 bơm <b>là giả định, chưa xác nhận trên đệm thật</b>.</figcaption></figure>
+  <h3>Độ cứng: cấp 1–8</h3>
+  <p>Trang web và RD dùng cấp thay cho kPa. Mỗi giá trị áp trên trang có nhãn <b>Cấp n</b> là cấp gần nhất; dưới 1 kPa ghi "&lt;C1".</p>
+  <div class="tw"><table>
+    <thead><tr><th>Cấp</th><th class="c">1</th><th class="c">2</th><th class="c">3</th><th class="c">4</th><th class="c">5</th><th class="c">6</th><th class="c">7</th><th class="c">8</th></tr></thead>
+    <tbody><tr><th>kPa</th><td class="c">2</td><td class="c">4</td><td class="c">6</td><td class="c">8</td><td class="c">10</td><td class="c">12</td><td class="c">14</td><td class="c">17</td></tr></tbody>
+  </table></div>
+</div></section>
+
+<section class="step" id="ketnoi"><div class="num">2</div><div>
+  <h2>Kết nối với đệm</h2>
+  <p>Chọn một trong ba cách. Khi kết nối được, góc trên bên phải hiện <span class="ui">Đã kết nối</span>.</p>
+  <div class="ways">
+    <div class="way"><b>WiFi riêng của đệm (luôn bật)</b><span>Vào WiFi <code>SmartMattress-708D</code>, mật khẩu <code>12345678</code>. Trang tự bật, hoặc mở trình duyệt gõ <code>http://192.168.4.1</code>.</span></div>
+    <div class="way"><b>Cáp USB (máy tính)</b><span>Bấm đúp <code>Mo_web_qua_USB.bat</code> trong thư mục <code>smart_mattress_chart</code>. Giữ cửa sổ đen mở suốt lúc dùng. Phải đóng <code>idf.py monitor</code> trước (cả hai cùng dùng COM11).</span></div>
+    <div class="way"><b>WiFi nhà (tùy chọn)</b><span>Lưu WiFi nhà trong thẻ Cài đặt. Máy cùng WiFi mở <code>http://smartmattress.local</code> hoặc địa chỉ IP hiện trên OLED.</span></div>
+  </div>
+  <div class="tip">Trang trông cũ, thiếu nút? Bấm <b>Ctrl+F5</b> để tải lại bản mới. Trên điện thoại: tắt hẳn tab rồi mở lại.</div>
+  <figure class="shot"><img src="img/v2_1.jpg" alt="Trang điều khiển đã kết nối" loading="lazy"><figcaption>Trạng thái <i>Đã kết nối</i>, nút <i>Kết nối USB</i> và thẻ <i>Tự động: BẬT</i>.</figcaption></figure>
+</div></section>
+
+<section class="step" id="khoidong"><div class="num">3</div><div>
+  <h2>Bật nguồn: đệm tự bơm lên 17 kPa</h2>
+  <ol>
+    <li>Cấp nguồn 24 V cho van và bơm, và nguồn cho bo ESP32.</li>
+    <li>Màn OLED hiện 13 giá trị P01–P13 (kPa). Cứ 15 giây, màn hiện 3 giây địa chỉ mở web.</li>
+    <li>Đệm chờ tới khi <b>đọc được đủ 13 cảm biến, ổn định 3 lần liên tiếp</b>. Nếu có cảm biến lỗi, đệm chờ chứ không bơm.</li>
+    <li>Đệm <b>tự bơm từng khoang, từ đầu xuống chân, lên 17 kPa</b> (cấp 8) rồi giữ trong khoảng ±0,5 kPa.</li>
+  </ol>
+  <p>Không muốn đệm tự bơm: mở web và bấm <span class="ui">Dừng</span>. Lần cắm điện sau đệm lại tự bơm.</p>
+</div></section>
+
+<p class="part">Phần 2 · Trang web, từng thẻ và từng nút</p>
+
+<section class="step wide" id="giaodien"><div>
+  <h2>Các thẻ trên trang và việc của từng nút</h2>
+  <p>Trang chia hai cột trên máy tính (một cột trên điện thoại). Các nút cần đệm trả lời sẽ quay vòng trong lúc chờ, xong thì có <b>viền xanh</b> (đã làm) hoặc <b>viền đỏ</b> (bị từ chối), kèm thông báo nổi ở cuối màn hình.</p>
+
+  <h3>Hàng thẻ trên cùng</h3>
+  <p>Tóm tắt nhanh: trạng thái kết nối, áp cao nhất/thấp nhất, và thẻ <b>Tự động</b> (BẬT khi đệm đang tự bơm/giữ áp).</p>
+
+  <h3>Thẻ "Áp suất 13 khoang"</h3>
+  <div class="tw"><table><thead><tr><th style="width:32%">Thành phần</th><th>Việc nó làm</th></tr></thead><tbody>
+    <tr><td>13 ô P01–P13</td><td>Áp thật từng khoang (kPa) và nhãn cấp. Ô đỏ <b>ERR</b> là cảm biến đó đọc lỗi (xem Xử lý sự cố).</td></tr>
+    <tr><td>Ô tích <span class="ui">Dùng áp suất thật</span></td><td>Biểu đồ phân vùng ở cuối trang vẽ theo áp thật thay vì số liệu ví dụ.</td></tr>
+    <tr><td>Dải màu Vai / Eo / Hông</td><td>Vùng đang dùng để tính áp đề xuất (sau khi bấm Tìm A, B).</td></tr>
+  </tbody></table></div>
+
+  <h3>Thẻ "Tự động giữ áp suất"</h3>
+  <div class="tw"><table><thead><tr><th style="width:32%">Nút / ô</th><th>Việc nó làm</th></tr></thead><tbody>
+    <tr><td><span class="ui">Bật tự động</span> / <span class="ui">Tắt</span></td><td>Bật: đệm giữ áp theo 13 ô mục tiêu đang lưu trong đệm; nút đổi xanh "Đang tự động". Tắt: dừng tự động, mọi van đóng.</td></tr>
+    <tr><td>Ô <span class="ui">Cấp</span> + <span class="ui">Đặt cấp</span></td><td>Chọn cấp nền <b>N</b> (1–8) cho cả đệm.</td></tr>
+    <tr><td>Ô <span class="ui">Cân nặng</span> + <span class="ui">Đặt theo cân nặng</span></td><td>Chọn N theo cân nặng (≤ 60 kg → cấp 6 = 12 kPa; ≤ 80 kg → cấp 7 = 14 kPa; trên 80 kg → cấp 8 = 17 kPa), rồi tự động đưa cả 13 khoang về áp đó (Pcn). Trang hiện "Đang đưa các khoang về áp theo cân nặng…". Đủ 13 khoang thì đệm tự dừng giữ, đóng mọi van, và hiện khung xanh "Đã đạt áp theo cân nặng, mời nằm lên". <span class="badge">Cần nạp bản mới</span></td></tr>
+    <tr><td><span class="ui">Phân tích cơ thể</span> (hiện sau khi đạt áp theo cân nặng)</td><td>Người đã nằm lên và chọn Tư thế: tìm A, B từ áp thật, chia vùng và đề xuất 13 ô mục tiêu ở cấp N. Sau đó bấm Áp dụng và giữ áp.</td></tr>
+    <tr><td><span class="ui">Giữ áp lại</span></td><td>Không phân tích, cho đệm giữ áp Pcn tiếp như trước.</td></tr>
+    <tr><td>Ô <span class="ui">Tư thế</span></td><td>Nằm ngửa, Nằm nghiêng, Nằm tự do. Quyết định bảng N-x dùng để tính và bộ áp được lưu/dùng.</td></tr>
+    <tr><td><span class="ui">Tính áp đề xuất</span></td><td>Tìm A, B từ áp thật (trừ Nằm tự do), chia vùng, rồi điền 13 ô mục tiêu theo bảng RD và tích cả 13 ô. Chưa gửi xuống đệm.</td></tr>
+    <tr><td><span class="ui">Lưu bộ áp</span></td><td>Lưu 13 ô mục tiêu và các ô đang tích vào bộ nhớ đệm, theo tư thế đang chọn (3 bộ riêng).</td></tr>
+    <tr><td><span class="ui">Dùng bộ đã lưu</span></td><td>Điền lại 13 ô từ bộ đã lưu của tư thế đang chọn. Chưa chạy.</td></tr>
+    <tr><td>13 ô mục tiêu P01–P13 và ô tích</td><td>Áp muốn giữ (0–17 kPa), cấp hiện dưới mỗi ô. <b>Chỉ khoang được tích mới được chỉnh</b>; khoang bỏ tích để nguyên.</td></tr>
+    <tr><td><span class="ui">Áp dụng và giữ áp</span></td><td>Gửi 13 ô xuống đệm và bật tự động. Đệm nạp/xả từng khoang, đầu → chân, tới ±0,5 kPa rồi giữ mãi.</td></tr>
+    <tr><td><span class="ui">Dừng</span></td><td>Tắt tự động, đóng mọi van, dừng bơm. Áp trong đệm giữ nguyên.</td></tr>
+    <tr><td><span class="ui">Lấy áp hiện tại</span></td><td>Điền 13 ô mục tiêu bằng áp đang đọc được, tiện để giữ nguyên trạng thái hiện tại hoặc sửa từ đó.</td></tr>
+    <tr><td>Hàng K1–K13</td><td>Số lớn: mục tiêu và cấp. Dòng nhỏ: áp thật và cấp thật. ▲ đang nạp, ▼ đang xả.</td></tr>
+  </tbody></table></div>
+
+  <h3>Thẻ "Kết nối thiết bị"</h3>
+  <div class="tw"><table><tbody>
+    <tr><td style="width:32%"><span class="ui">Kết nối WiFi</span></td><td>Kết nối qua WiFi tới địa chỉ trong ô (mặc định đúng địa chỉ trang đang mở).</td></tr>
+    <tr><td><span class="ui">Kết nối USB</span></td><td>Kết nối thẳng qua cổng COM (Chrome/Edge trên máy tính). Không dùng được khi monitor hoặc .bat đang giữ COM11.</td></tr>
+    <tr><td><span class="ui">Ngắt</span></td><td>Ngắt kết nối. Sau 30 giây không có ai kết nối, đệm tự tắt các van bật bằng tay.</td></tr>
+  </tbody></table></div>
+
+  <h3>Thẻ "Van khí" và "Chân nối 74HC595"</h3>
+  <p>Xem mục <a href="#van">Van bằng tay</a>.</p>
+
+  <h3>Thẻ "Ghi dữ liệu cảm biến"</h3>
+  <p>Xem mục <a href="#ghi">Ghi dữ liệu</a>.</p>
+
+  <h3>Thẻ "Cài đặt"</h3>
+  <div class="tw"><table><tbody>
+    <tr><td style="width:32%"><span class="ui">Cân 0</span></td><td>Lấy mức đang đọc làm điểm 0 cho cả 13 cảm biến và lưu trong đệm. Chỉ bấm khi đệm <b>xả hết hơi, không có người</b> (bấm Dừng trước).</td></tr>
+    <tr><td><span class="ui">Xóa hiệu chỉnh 0</span></td><td>Bỏ điểm 0 đã lưu, quay về số đọc gốc.</td></tr>
+    <tr><td>Ô <span class="ui">Chu kỳ đọc</span></td><td>0,5 / 1 / 2 / 5 giây giữa hai lần đọc 13 cảm biến.</td></tr>
+    <tr><td>Tên WiFi, Mật khẩu, <span class="ui">Lưu</span></td><td>Cho đệm vào WiFi nhà. WiFi riêng SmartMattress-708D vẫn luôn bật.</td></tr>
+  </tbody></table></div>
+
+  <h3>Mục "Phân vùng Vai – Eo – Hông" (cuối trang, bấm để mở)</h3>
+  <div class="tw"><table><tbody>
+    <tr><td style="width:32%"><span class="ui">Tìm A, B từ áp suất hiện tại</span></td><td>Tìm A, B và cách chia vùng từ áp thật (xem <a href="#ab">Cách chọn A, B</a>). Kết quả hiện ngay cạnh nút và trên biểu đồ.</td></tr>
+    <tr><td>Ví dụ 1–5</td><td>Năm ví dụ trong đề bài RD để đối chiếu.</td></tr>
+    <tr><td>Ô A, B, đầu vùng, phương án</td><td>Sửa tay vị trí A, B và phân vùng nếu muốn thử.</td></tr>
+    <tr><td><span class="ui">Tải SVG</span>, <span class="ui">Xuất JSON</span>, <span class="ui">In</span>, <span class="ui">Khôi phục ví dụ</span></td><td>Lưu biểu đồ, lưu số liệu, in trang, đưa về ví dụ ban đầu.</td></tr>
+  </tbody></table></div>
+</div></section>
+
+<p class="part">Phần 3 · Chu trình chỉnh áp theo RD</p>
+
+<section class="step" id="chutrinh"><div class="num">4</div><div>
+  <h2>Chu trình từng bước</h2>
+  <ol>
+    <li><b>Cân 0</b> (lần đầu hoặc khi thay cảm biến): Dừng → để đệm xả hết hơi, không người nằm → Cài đặt → <span class="ui">Cân 0</span>.</li>
+    <li><b>Đặt theo cân nặng</b> (chưa có người nằm): nhập cân nặng → <span class="ui">Đặt theo cân nặng</span>. Đợi khung xanh "Đã đạt áp theo cân nặng, mời nằm lên" (xem <a href="#cannang">mục 5</a>).</li>
+    <li><b>Người nằm lên đúng tư thế chuẩn</b>: ngửa thì duỗi thẳng, hai tay đặt trên ngực; nghiêng thì hai chân chồng nhau, co 90°.</li>
+    <li><b>Chọn Tư thế</b> rồi bấm <span class="ui">Phân tích cơ thể</span>. Trang tìm A, B và điền 13 ô ở cấp N (Nằm tự do thì không cần A, B). Bản firmware cũ: dùng <span class="ui">Đặt cấp</span> và <span class="ui">Tính áp đề xuất</span>.</li>
+    <li>Có thể sửa tay vài ô, bỏ tích khoang không muốn chỉnh.</li>
+    <li>Bấm <span class="ui">Áp dụng và giữ áp</span>. Đợi đệm nạp/xả xong (hàng K1–K13 hết ▲▼).</li>
+    <li>Người nằm cảm nhận. Chưa thoải mái → sửa vài ô → bấm lại Áp dụng.</li>
+    <li>Ưng rồi → <span class="ui">Lưu bộ áp</span> (giữ đúng tư thế đang chọn).</li>
+    <li>Lần sau: chọn tư thế → <span class="ui">Dùng bộ đã lưu</span> → <span class="ui">Áp dụng và giữ áp</span>.</li>
+    <li>Khi đã lưu từ 2 bộ trở lên, đệm <b>tự chuyển bộ</b> khi người đổi tư thế (xem <a href="#tuchuyen">mục 6</a>).</li>
+  </ol>
+  <figure class="shot"><img src="img/v2_6.jpg" alt="Ô Tư thế, nút Tính áp đề xuất và 13 ô mục tiêu" loading="lazy"><figcaption>Tính áp đề xuất với N = 6, nằm ngửa: 13 ô được điền, cấp hiện dưới mỗi ô.</figcaption></figure>
+  <figure class="shot"><img src="img/v2_7.jpg" alt="Áp dụng và giữ áp đang chạy" loading="lazy"><figcaption>Áp dụng và giữ áp đang chạy (nút xanh); khoang 4 đang xả về 8 kPa.</figcaption></figure>
+  <figure class="shot"><img src="img/v2_8.jpg" alt="Lưu bộ áp và Dùng bộ đã lưu" loading="lazy"><figcaption>Lưu bộ áp và Dùng bộ đã lưu.</figcaption></figure>
+</div></section>
+
+<section class="step" id="cannang"><div class="num">5</div><div>
+  <h2>Đặt theo cân nặng rồi mời nằm lên <span class="badge">Cần nạp bản mới</span></h2>
+  <p>Đây là cách bắt đầu một lần chỉnh áp cho một người mới.</p>
+  <ol>
+    <li>Đệm <b>chưa có người nằm</b>. Nhập cân nặng vào ô <span class="ui">Cân nặng</span>, bấm <span class="ui">Đặt theo cân nặng</span>.</li>
+    <li>Đệm tự động đưa <b>cả 13 khoang về áp theo cân nặng (Pcn)</b>. Trang hiện "Đang đưa các khoang về áp theo cân nặng…".</li>
+    <li>Khi đủ 13 khoang đạt áp, đệm <b>tự dừng giữ áp, đóng mọi van</b>, trang hiện khung xanh <b>"Đã đạt áp theo cân nặng, mời nằm lên"</b>.</li>
+    <li>Người nằm lên đúng tư thế chuẩn. Chọn <span class="ui">Tư thế</span>, rồi:
+      <ul>
+        <li>bấm <span class="ui">Phân tích cơ thể</span>: tìm A, B và đề xuất 13 ô ở cấp N, sau đó bấm <span class="ui">Áp dụng và giữ áp</span>; hoặc</li>
+        <li>bấm <span class="ui">Giữ áp lại</span> nếu không muốn phân tích, đệm giữ áp Pcn tiếp.</li>
+      </ul></li>
+  </ol>
+  <div class="tw"><table><thead><tr><th>Cân nặng</th><th>≤ 60 kg</th><th>61–80 kg</th><th>&gt; 80 kg</th></tr></thead>
+  <tbody><tr><th>Cấp N</th><td>6</td><td>7</td><td>8</td></tr><tr><th>Pcn (cả 13 khoang)</th><td>12 kPa</td><td>14 kPa</td><td>17 kPa</td></tr></tbody></table></div>
+  <div class="tip">Vì đệm đóng hết van trước khi người nằm lên, áp đo được lúc nằm phản ánh đúng chỗ vai và hông đè xuống, nên tìm A, B chính xác hơn.</div>
+</div></section>
+
+<section class="step" id="tuchuyen"><div class="num">6</div><div>
+  <h2>Tự chuyển bộ áp theo tư thế <span class="badge">Cần nạp bản mới</span></h2>
+  <p>Khi đệm đang tự động giữ áp, nó tự nhận người đang nằm ngửa, nghiêng hay tự do và chuyển sang bộ áp đã lưu tương ứng. Không cần bấm gì thêm.</p>
+  <h3>Điều kiện</h3>
+  <ul>
+    <li>Đã <b>lưu ít nhất 2 bộ áp</b> (trong 3 bộ: ngửa, nghiêng, tự do) bằng nút Lưu bộ áp.</li>
+    <li>Đang ở chế độ tự động (đã bấm Áp dụng và giữ áp hoặc Bật tự động).</li>
+  </ul>
+  <h3>Cách hoạt động</h3>
+  <ol>
+    <li>Cứ <b>5 phút</b>, đệm tạm dừng giữ áp trong <b>1 phút</b> và <b>đóng mọi van</b>, để áp trong khoang phản ánh đúng người đang nằm.</li>
+    <li>Trong phút đó, đệm so 13 áp thật với từng bộ đã lưu.</li>
+    <li>Bộ nào <b>khớp ±0,5 kPa ở mọi khoang suốt cả phút</b> thì đệm chuyển sang bộ đó. Việc so có tính cả trường hợp người <b>xê dịch lên hoặc xuống vài khoang</b>.</li>
+    <li>Không bộ nào khớp và <b>hơn nửa số khoang</b> lệch khỏi bộ đang giữ: đệm chuyển sang <b>Nằm tự do</b>.</li>
+    <li>Không bộ nào khớp nhưng lệch ít (không quá nửa số khoang): <b>giữ bộ hiện tại</b>.</li>
+    <li>Đệm giữ áp tiếp theo bộ được chọn, 5 phút sau kiểm tra lại.</li>
+  </ol>
+  <h3>Xem trên trang web</h3>
+  <ul>
+    <li>Lúc giữ áp: <code>Bộ đang giữ: … · kiểm tra tư thế sau m:ss</code> (đếm ngược tới lần kiểm tra sau).</li>
+    <li>Trong phút kiểm tra: <code>Đang kiểm tra tư thế…</code>. Lúc này van đóng hết là bình thường.</li>
+  </ul>
+  <div class="tip">Để đệm nhận đúng, mỗi bộ áp nên được lưu khi người đang nằm đúng tư thế đó và đã thấy thoải mái (bước 8 của chu trình).</div>
+</div></section>
+
+<section class="step" id="ab"><div class="num">7</div><div>
+  <h2>Cách chọn A, B và chia vùng Vai – Eo – Hông</h2>
+  <p><b>A</b> là khoang chịu áp cao nhất ở vùng <b>vai</b>, <b>B</b> là khoang chịu áp cao nhất ở vùng <b>hông</b>. Khi người nằm, vai và hông đè nặng nhất nên áp ở hai chỗ đó tạo thành hai đỉnh.</p>
+  <h3>Các bước trang web làm khi bấm Tìm A, B (hoặc Phân tích cơ thể, Tính áp đề xuất)</h3>
+  <ol>
+    <li><b>Đọc 13 áp thật</b> P01–P13 lúc người đang nằm tư thế chuẩn.</li>
+    <li><b>Gom các đỉnh</b>: những khoang liền nhau có áp gần bằng nhau ở đỉnh (lệch ≤ 0,2 kPa) coi là cùng một đỉnh. Vị trí đỉnh là khoang giữa nhóm; nhóm có số khoang chẵn thì vị trí là số lẻ ,5 (ví dụ hai khoang 3 và 4 cùng max → 3,5).</li>
+    <li><b>Chọn hai đỉnh cao nhất tách biệt</b>: cách nhau ít nhất 2 khoang và giữa chúng có chỗ trũng thấp hơn cả hai đỉnh quá 0,2 kPa. Đỉnh phía đầu là A (Vai), phía chân là B (Hông). Không thấy hai đỉnh như vậy thì trang báo "Chưa thấy 2 đỉnh áp tách biệt", hãy nằm lại đúng tư thế.</li>
+    <li><b>Đếm số khoang nằm giữa A và B</b> (không tính A, B).</li>
+    <li><b>Tra bảng RD</b> để chia số khoang Vai-Eo-Hông. Khi có hai phương án, A là số nguyên thì chọn phương án có số khoang Vai lẻ (A đúng giữa vùng), A là số ,5 thì chọn số chẵn.</li>
+    <li><b>Đặt vùng</b>: vùng Vai lấy A làm tâm; vùng Eo nối ngay sau Vai; vùng Hông nối ngay sau Eo. Khoang ngoài 3 vùng là "ngoài vùng".</li>
+  </ol>
+  <div class="tw"><table>
+    <thead><tr><th>Số khoang giữa A và B</th><th class="c">3</th><th class="c">4</th><th class="c">5</th><th class="c">6</th><th class="c">7</th><th class="c">8</th></tr></thead>
+    <tbody><tr><th>Chia Vai-Eo-Hông</th><td class="c">2-1-2 hoặc 3-1-3</td><td class="c">2-2-2 hoặc 3-2-3</td><td class="c">2-3-2 hoặc 3-3-3</td><td class="c">4-2-4</td><td class="c">4-3-4</td><td class="c">4-4-4</td></tr></tbody>
+  </table></div>
+  <p class="small" style="color:var(--muted);font-size:13px">Ngoài 3–8 khoang thì không có trong bảng RD; trang báo và không chia vùng.</p>
+  <h3>Ví dụ 1 của RD</h3>
+  <p>Áp đo được (kPa), K1 → K13: <code>4 · 6 · 14 · 16 · 14 · 8 · 7 · 8 · 14 · 16 · 14 · 6 · 4</code></p>
+  <ol>
+    <li>Hai đỉnh: K4 = 16 và K10 = 16. Giữa chúng có chỗ trũng 7 kPa ở K7, nên là hai đỉnh tách biệt.</li>
+    <li>A = 4 (Vai), B = 10 (Hông).</li>
+    <li>Khoang giữa: K5, K6, K7, K8, K9 → <b>5 khoang</b>.</li>
+    <li>Bảng: 5 → 2-3-2 hoặc 3-3-3. A = 4 là số nguyên nên chọn Vai lẻ → <b>3-3-3</b>.</li>
+    <li>Vai 3 khoang lấy K4 làm tâm → <b>K3–K5</b>; Eo tiếp theo → <b>K6–K8</b>; Hông → <b>K9–K11</b> (B = 10 nằm đúng giữa). K1, K2, K12, K13 ngoài vùng.</li>
+  </ol>
+  <figure class="fig"><svg viewBox="0 0 650 320" role="img" aria-label="Ví dụ 1: áp 13 khoang, A=4, B=10"><line class="grid" x1="40" x2="638" y1="210.0" y2="210.0"/><text class="lab" x="34" y="214.0" font-size="11" text-anchor="end">0</text><line class="grid" x1="40" x2="638" y1="160.0" y2="160.0"/><text class="lab" x="34" y="164.0" font-size="11" text-anchor="end">5</text><line class="grid" x1="40" x2="638" y1="110.0" y2="110.0"/><text class="lab" x="34" y="114.0" font-size="11" text-anchor="end">10</text><line class="grid" x1="40" x2="638" y1="60.0" y2="60.0"/><text class="lab" x="34" y="64.0" font-size="11" text-anchor="end">15</text><rect class="bar zo" x="40" y="170.0" width="40" height="40.0" rx="4"/><text class="t" x="60.0" y="165.0" font-size="11.5" text-anchor="middle">4</text><text class="lab" x="60.0" y="226" font-size="11.5" text-anchor="middle">K1</text><rect class="bar zo" x="86" y="150.0" width="40" height="60.0" rx="4"/><text class="t" x="106.0" y="145.0" font-size="11.5" text-anchor="middle">6</text><text class="lab" x="106.0" y="226" font-size="11.5" text-anchor="middle">K2</text><rect class="bar zv" x="132" y="70.0" width="40" height="140.0" rx="4"/><text class="t" x="152.0" y="65.0" font-size="11.5" text-anchor="middle">14</text><text class="lab" x="152.0" y="226" font-size="11.5" text-anchor="middle">K3</text><rect class="bar zv" x="178" y="50.0" width="40" height="160.0" rx="4"/><text class="t" x="198.0" y="45.0" font-size="11.5" text-anchor="middle">16</text><text class="lab" x="198.0" y="226" font-size="11.5" text-anchor="middle">K4</text><rect class="bar zv" x="224" y="70.0" width="40" height="140.0" rx="4"/><text class="t" x="244.0" y="65.0" font-size="11.5" text-anchor="middle">14</text><text class="lab" x="244.0" y="226" font-size="11.5" text-anchor="middle">K5</text><rect class="bar ze" x="270" y="130.0" width="40" height="80.0" rx="4"/><text class="t" x="290.0" y="125.0" font-size="11.5" text-anchor="middle">8</text><text class="lab" x="290.0" y="226" font-size="11.5" text-anchor="middle">K6</text><rect class="bar ze" x="316" y="140.0" width="40" height="70.0" rx="4"/><text class="t" x="336.0" y="135.0" font-size="11.5" text-anchor="middle">7</text><text class="lab" x="336.0" y="226" font-size="11.5" text-anchor="middle">K7</text><rect class="bar ze" x="362" y="130.0" width="40" height="80.0" rx="4"/><text class="t" x="382.0" y="125.0" font-size="11.5" text-anchor="middle">8</text><text class="lab" x="382.0" y="226" font-size="11.5" text-anchor="middle">K8</text><rect class="bar zh" x="408" y="70.0" width="40" height="140.0" rx="4"/><text class="t" x="428.0" y="65.0" font-size="11.5" text-anchor="middle">14</text><text class="lab" x="428.0" y="226" font-size="11.5" text-anchor="middle">K9</text><rect class="bar zh" x="454" y="50.0" width="40" height="160.0" rx="4"/><text class="t" x="474.0" y="45.0" font-size="11.5" text-anchor="middle">16</text><text class="lab" x="474.0" y="226" font-size="11.5" text-anchor="middle">K10</text><rect class="bar zh" x="500" y="70.0" width="40" height="140.0" rx="4"/><text class="t" x="520.0" y="65.0" font-size="11.5" text-anchor="middle">14</text><text class="lab" x="520.0" y="226" font-size="11.5" text-anchor="middle">K11</text><rect class="bar zo" x="546" y="150.0" width="40" height="60.0" rx="4"/><text class="t" x="566.0" y="145.0" font-size="11.5" text-anchor="middle">6</text><text class="lab" x="566.0" y="226" font-size="11.5" text-anchor="middle">K12</text><rect class="bar zo" x="592" y="170.0" width="40" height="40.0" rx="4"/><text class="t" x="612.0" y="165.0" font-size="11.5" text-anchor="middle">4</text><text class="lab" x="612.0" y="226" font-size="11.5" text-anchor="middle">K13</text><path class="mk-a" d="M198.0 18 V32.0" stroke-width="2.5"/><text class="mk-at" x="198.0" y="14" font-size="12.5" font-weight="700" text-anchor="middle">A = 4 (đỉnh Vai)</text><path class="mk-b" d="M474.0 18 V32.0" stroke-width="2.5"/><text class="mk-bt" x="474.0" y="14" font-size="12.5" font-weight="700" text-anchor="middle">B = 10 (đỉnh Hông)</text><path class="a" d="M224 238 V244 H448 V238"/><text class="t" x="336.0" y="260" font-size="12" text-anchor="middle">5 khoang giữa A và B (K5–K9) → chia 3-3-3</text><rect class="bar zv" x="132" y="272" width="132" height="22" rx="5"/><text class="t" x="198.0" y="287" font-size="12" font-weight="700" text-anchor="middle">Vai 3–5</text><rect class="bar ze" x="270" y="272" width="132" height="22" rx="5"/><text class="t" x="336.0" y="287" font-size="12" font-weight="700" text-anchor="middle">Eo 6–8</text><rect class="bar zh" x="408" y="272" width="132" height="22" rx="5"/><text class="t" x="474.0" y="287" font-size="12" font-weight="700" text-anchor="middle">Hông 9–11</text></svg><figcaption>Ví dụ 1: cột là áp từng khoang, màu là vùng. Xanh dương Vai, vàng Eo, xanh lá Hông, xám ngoài vùng.</figcaption></figure>
+</div></section>
+
+<section class="step" id="thamso"><div class="num">8</div><div>
+  <h2>Tham số tính áp đề xuất</h2>
+  <h3>Bước 1: cấp nền N</h3>
+  <div class="tw"><table><thead><tr><th>Cân nặng</th><th>≤ 60 kg</th><th>61–80 kg</th><th>&gt; 80 kg</th></tr></thead>
+  <tbody><tr><th>N</th><td>cấp 6 (12 kPa)</td><td>cấp 7 (14 kPa)</td><td>cấp 8 (17 kPa)</td></tr></tbody></table></div>
+  <p>Hoặc chọn thẳng N ở ô Cấp.</p>
+  <h3>Bước 2: cấp từng khoang theo vùng và tư thế (bảng N-x)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Vùng</th><th>Nằm ngửa</th><th>Nằm nghiêng</th><th>Nằm tự do</th></tr></thead>
+    <tbody>
+      <tr><td class="zv"><b>Vai</b></td><td>khoang thường N-2<br>khoang chuyển tiếp N-1</td><td>khoang thường N-4<br>khoang chuyển tiếp N-3</td><td rowspan="4">Cả 13 khoang = N (bộ Ptd). Không cần tìm A, B.</td></tr>
+      <tr><td class="ze"><b>Eo</b></td><td>khoang thường N<br>khoang chuyển tiếp N-1</td><td>khoang thường N-2<br>chuyển tiếp gần Vai N-3<br>chuyển tiếp gần Hông N-1</td></tr>
+      <tr><td class="zh"><b>Hông</b></td><td>khoang thường N-2<br>khoang chuyển tiếp N-1</td><td>khoang thường N-2<br>khoang chuyển tiếp N-1</td></tr>
+      <tr><td><b>Ngoài vùng</b></td><td colspan="2">giữ N</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><b>Khoang chuyển tiếp</b> = 2 khoang ngoài cùng (đầu và cuối) của một vùng có từ 3 khoang trở lên. Vùng 1–2 khoang thì mọi khoang là khoang thường.</li>
+    <li><b>Kẹp cấp</b>: tính ra nhỏ hơn 1 thì lấy cấp 1; không vượt cấp 8.</li>
+    <li>Đổi cấp sang kPa theo bảng cấp (cấp 1 = 2 kPa … cấp 8 = 17 kPa) và điền vào 13 ô mục tiêu.</li>
+  </ul>
+  <h3>Kết quả với Ví dụ 1 (Vai 3–5, Eo 6–8, Hông 9–11), N = 6</h3>
+  <figure class="fig"><svg viewBox="0 0 624 92" role="img" aria-label="Nằm ngửa, N = 6"><text class="t" x="0" y="14" font-size="12.5" font-weight="700">Nằm ngửa, N = 6</text><rect class="lvl" style="--l:6" x="0" y="22" width="44" height="46" rx="6"/><text class="tw" x="22" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="22" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="22" y="84" font-size="11" text-anchor="middle">K1</text><rect class="lvl" style="--l:6" x="48" y="22" width="44" height="46" rx="6"/><text class="tw" x="70" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="70" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="70" y="84" font-size="11" text-anchor="middle">K2</text><rect class="lvl" style="--l:5" x="96" y="22" width="44" height="46" rx="6"/><text class="tw" x="118" y="40" font-size="12" text-anchor="middle" font-weight="700">C5</text><text class="tw" x="118" y="58" font-size="11" text-anchor="middle">10</text><text class="lab" x="118" y="84" font-size="11" text-anchor="middle">K3</text><rect class="lvl" style="--l:4" x="144" y="22" width="44" height="46" rx="6"/><text class="tw" x="166" y="40" font-size="12" text-anchor="middle" font-weight="700">C4</text><text class="tw" x="166" y="58" font-size="11" text-anchor="middle">8</text><text class="lab" x="166" y="84" font-size="11" text-anchor="middle">K4</text><rect class="lvl" style="--l:5" x="192" y="22" width="44" height="46" rx="6"/><text class="tw" x="214" y="40" font-size="12" text-anchor="middle" font-weight="700">C5</text><text class="tw" x="214" y="58" font-size="11" text-anchor="middle">10</text><text class="lab" x="214" y="84" font-size="11" text-anchor="middle">K5</text><rect class="lvl" style="--l:5" x="240" y="22" width="44" height="46" rx="6"/><text class="tw" x="262" y="40" font-size="12" text-anchor="middle" font-weight="700">C5</text><text class="tw" x="262" y="58" font-size="11" text-anchor="middle">10</text><text class="lab" x="262" y="84" font-size="11" text-anchor="middle">K6</text><rect class="lvl" style="--l:6" x="288" y="22" width="44" height="46" rx="6"/><text class="tw" x="310" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="310" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="310" y="84" font-size="11" text-anchor="middle">K7</text><rect class="lvl" style="--l:5" x="336" y="22" width="44" height="46" rx="6"/><text class="tw" x="358" y="40" font-size="12" text-anchor="middle" font-weight="700">C5</text><text class="tw" x="358" y="58" font-size="11" text-anchor="middle">10</text><text class="lab" x="358" y="84" font-size="11" text-anchor="middle">K8</text><rect class="lvl" style="--l:5" x="384" y="22" width="44" height="46" rx="6"/><text class="tw" x="406" y="40" font-size="12" text-anchor="middle" font-weight="700">C5</text><text class="tw" x="406" y="58" font-size="11" text-anchor="middle">10</text><text class="lab" x="406" y="84" font-size="11" text-anchor="middle">K9</text><rect class="lvl" style="--l:4" x="432" y="22" width="44" height="46" rx="6"/><text class="tw" x="454" y="40" font-size="12" text-anchor="middle" font-weight="700">C4</text><text class="tw" x="454" y="58" font-size="11" text-anchor="middle">8</text><text class="lab" x="454" y="84" font-size="11" text-anchor="middle">K10</text><rect class="lvl" style="--l:5" x="480" y="22" width="44" height="46" rx="6"/><text class="tw" x="502" y="40" font-size="12" text-anchor="middle" font-weight="700">C5</text><text class="tw" x="502" y="58" font-size="11" text-anchor="middle">10</text><text class="lab" x="502" y="84" font-size="11" text-anchor="middle">K11</text><rect class="lvl" style="--l:6" x="528" y="22" width="44" height="46" rx="6"/><text class="tw" x="550" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="550" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="550" y="84" font-size="11" text-anchor="middle">K12</text><rect class="lvl" style="--l:6" x="576" y="22" width="44" height="46" rx="6"/><text class="tw" x="598" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="598" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="598" y="84" font-size="11" text-anchor="middle">K13</text></svg><svg viewBox="0 0 624 92" role="img" aria-label="Nằm nghiêng, N = 6"><text class="t" x="0" y="14" font-size="12.5" font-weight="700">Nằm nghiêng, N = 6</text><rect class="lvl" style="--l:6" x="0" y="22" width="44" height="46" rx="6"/><text class="tw" x="22" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="22" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="22" y="84" font-size="11" text-anchor="middle">K1</text><rect class="lvl" style="--l:6" x="48" y="22" width="44" height="46" rx="6"/><text class="tw" x="70" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="70" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="70" y="84" font-size="11" text-anchor="middle">K2</text><rect class="lvl" style="--l:3" x="96" y="22" width="44" height="46" rx="6"/><text class="tw" x="118" y="40" font-size="12" text-anchor="middle" font-weight="700">C3</text><text class="tw" x="118" y="58" font-size="11" text-anchor="middle">6</text><text class="lab" x="118" y="84" font-size="11" text-anchor="middle">K3</text><rect class="lvl" style="--l:2" x="144" y="22" width="44" height="46" rx="6"/><text class="tw" x="166" y="40" font-size="12" text-anchor="middle" font-weight="700">C2</text><text class="tw" x="166" y="58" font-size="11" text-anchor="middle">4</text><text class="lab" x="166" y="84" font-size="11" text-anchor="middle">K4</text><rect class="lvl" style="--l:3" x="192" y="22" width="44" height="46" rx="6"/><text class="tw" x="214" y="40" font-size="12" text-anchor="middle" font-weight="700">C3</text><text class="tw" x="214" y="58" font-size="11" text-anchor="middle">6</text><text class="lab" x="214" y="84" font-size="11" text-anchor="middle">K5</text><rect class="lvl" style="--l:3" x="240" y="22" width="44" height="46" rx="6"/><text class="tw" x="262" y="40" font-size="12" text-anchor="middle" font-weight="700">C3</text><text class="tw" x="262" y="58" font-size="11" text-anchor="middle">6</text><text class="lab" x="262" y="84" font-size="11" text-anchor="middle">K6</text><rect class="lvl" style="--l:4" x="288" y="22" width="44" height="46" rx="6"/><text class="tw" x="310" y="40" font-size="12" text-anchor="middle" font-weight="700">C4</text><text class="tw" x="310" y="58" font-size="11" text-anchor="middle">8</text><text class="lab" x="310" y="84" font-size="11" text-anchor="middle">K7</text><rect class="lvl" style="--l:5" x="336" y="22" width="44" height="46" rx="6"/><text class="tw" x="358" y="40" font-size="12" text-anchor="middle" font-weight="700">C5</text><text class="tw" x="358" y="58" font-size="11" text-anchor="middle">10</text><text class="lab" x="358" y="84" font-size="11" text-anchor="middle">K8</text><rect class="lvl" style="--l:5" x="384" y="22" width="44" height="46" rx="6"/><text class="tw" x="406" y="40" font-size="12" text-anchor="middle" font-weight="700">C5</text><text class="tw" x="406" y="58" font-size="11" text-anchor="middle">10</text><text class="lab" x="406" y="84" font-size="11" text-anchor="middle">K9</text><rect class="lvl" style="--l:4" x="432" y="22" width="44" height="46" rx="6"/><text class="tw" x="454" y="40" font-size="12" text-anchor="middle" font-weight="700">C4</text><text class="tw" x="454" y="58" font-size="11" text-anchor="middle">8</text><text class="lab" x="454" y="84" font-size="11" text-anchor="middle">K10</text><rect class="lvl" style="--l:5" x="480" y="22" width="44" height="46" rx="6"/><text class="tw" x="502" y="40" font-size="12" text-anchor="middle" font-weight="700">C5</text><text class="tw" x="502" y="58" font-size="11" text-anchor="middle">10</text><text class="lab" x="502" y="84" font-size="11" text-anchor="middle">K11</text><rect class="lvl" style="--l:6" x="528" y="22" width="44" height="46" rx="6"/><text class="tw" x="550" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="550" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="550" y="84" font-size="11" text-anchor="middle">K12</text><rect class="lvl" style="--l:6" x="576" y="22" width="44" height="46" rx="6"/><text class="tw" x="598" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="598" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="598" y="84" font-size="11" text-anchor="middle">K13</text></svg><svg viewBox="0 0 624 92" role="img" aria-label="Nằm tự do, N = 6"><text class="t" x="0" y="14" font-size="12.5" font-weight="700">Nằm tự do, N = 6</text><rect class="lvl" style="--l:6" x="0" y="22" width="44" height="46" rx="6"/><text class="tw" x="22" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="22" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="22" y="84" font-size="11" text-anchor="middle">K1</text><rect class="lvl" style="--l:6" x="48" y="22" width="44" height="46" rx="6"/><text class="tw" x="70" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="70" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="70" y="84" font-size="11" text-anchor="middle">K2</text><rect class="lvl" style="--l:6" x="96" y="22" width="44" height="46" rx="6"/><text class="tw" x="118" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="118" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="118" y="84" font-size="11" text-anchor="middle">K3</text><rect class="lvl" style="--l:6" x="144" y="22" width="44" height="46" rx="6"/><text class="tw" x="166" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="166" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="166" y="84" font-size="11" text-anchor="middle">K4</text><rect class="lvl" style="--l:6" x="192" y="22" width="44" height="46" rx="6"/><text class="tw" x="214" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="214" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="214" y="84" font-size="11" text-anchor="middle">K5</text><rect class="lvl" style="--l:6" x="240" y="22" width="44" height="46" rx="6"/><text class="tw" x="262" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="262" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="262" y="84" font-size="11" text-anchor="middle">K6</text><rect class="lvl" style="--l:6" x="288" y="22" width="44" height="46" rx="6"/><text class="tw" x="310" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="310" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="310" y="84" font-size="11" text-anchor="middle">K7</text><rect class="lvl" style="--l:6" x="336" y="22" width="44" height="46" rx="6"/><text class="tw" x="358" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="358" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="358" y="84" font-size="11" text-anchor="middle">K8</text><rect class="lvl" style="--l:6" x="384" y="22" width="44" height="46" rx="6"/><text class="tw" x="406" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="406" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="406" y="84" font-size="11" text-anchor="middle">K9</text><rect class="lvl" style="--l:6" x="432" y="22" width="44" height="46" rx="6"/><text class="tw" x="454" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="454" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="454" y="84" font-size="11" text-anchor="middle">K10</text><rect class="lvl" style="--l:6" x="480" y="22" width="44" height="46" rx="6"/><text class="tw" x="502" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="502" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="502" y="84" font-size="11" text-anchor="middle">K11</text><rect class="lvl" style="--l:6" x="528" y="22" width="44" height="46" rx="6"/><text class="tw" x="550" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="550" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="550" y="84" font-size="11" text-anchor="middle">K12</text><rect class="lvl" style="--l:6" x="576" y="22" width="44" height="46" rx="6"/><text class="tw" x="598" y="40" font-size="12" text-anchor="middle" font-weight="700">C6</text><text class="tw" x="598" y="58" font-size="11" text-anchor="middle">12</text><text class="lab" x="598" y="84" font-size="11" text-anchor="middle">K13</text></svg><figcaption>Mỗi ô: cấp (C) và kPa. Ví dụ nằm nghiêng, Vai: K4 thường = 6-4 = C2 (4 kPa), K3 và K5 chuyển tiếp = 6-3 = C3 (6 kPa); Eo: K6 gần Vai = C3, K7 = C4, K8 gần Hông = C5.</figcaption></figure>
+</div></section>
+
+<section class="step wide" id="luudo"><div>
+  <h2>Lưu đồ cài đặt và chạy chương trình</h2>
+  <p>Từ lúc cắm điện tới khi vận hành bình thường. Khung nét đứt là bước tùy chọn; khung viền xanh lá là phần mới (đặt theo cân nặng, tự chuyển tư thế) <span class="badge">cần nạp bản mới</span>.</p>
+  <figure class="fig flowfig"><svg viewBox="0 0 660 1950" role="img" aria-label="Lưu đồ cài đặt và chạy từ lúc bật nguồn"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" class="ah"/></marker></defs><rect class="b s" x="180.0" y="17.0" width="300" height="46" rx="10"/><text class="t" x="330" y="44.5" font-size="13" text-anchor="middle">Cấp nguồn 24 V (van, bơm) và nguồn ESP32</text><path class="a" d="M330 63 L330 92" marker-end="url(#ah)"/><rect class="b" x="180.0" y="94.0" width="300" height="62" rx="10"/><text class="t" x="330" y="113.5" font-size="13" text-anchor="middle">Khởi động: I2C 25 kHz, màn OLED,</text><text class="t" x="330" y="129.5" font-size="13" text-anchor="middle">phát WiFi SmartMattress-708D,</text><text class="t" x="330" y="145.5" font-size="13" text-anchor="middle">web http://192.168.4.1</text><path class="a" d="M330 156 L330 184" marker-end="url(#ah)"/><rect class="b" x="180.0" y="185.0" width="300" height="44" rx="10"/><text class="t" x="330" y="211.5" font-size="13" text-anchor="middle">Đọc 13 cảm biến P01–P13</text><path class="a" d="M330 229 L330 252" marker-end="url(#ah)"/><path class="d" d="M330 254.0 L480.0 300 L330 346.0 L180.0 300Z"/><text class="t" x="330" y="296.5" font-size="13" text-anchor="middle">Đủ 13 cảm biến đọc được,</text><text class="t" x="330" y="312.5" font-size="13" text-anchor="middle">ổn định 3 lần liên tiếp?</text><path class="a" d="M480 300 L560 300 L560 207 L482 207" marker-end="url(#ah)"/><text class="lab" x="585" y="255" font-size="12" text-anchor="middle">Chưa</text><path class="a" d="M330 346 L330 378" marker-end="url(#ah)"/><text class="lab" x="348" y="366" font-size="12" text-anchor="middle">Đủ</text><rect class="b s" x="180.0" y="379.0" width="300" height="62" rx="10"/><text class="t" x="330" y="406.5" font-size="13" text-anchor="middle">Tự bơm từng khoang, đầu → chân,</text><text class="t" x="330" y="422.5" font-size="13" text-anchor="middle">lên 17 kPa (cấp 8)</text><path class="a" d="M330 441 L330 470" marker-end="url(#ah)"/><rect class="b" x="180.0" y="472.0" width="300" height="56" rx="10"/><text class="t" x="330" y="496.5" font-size="13" text-anchor="middle">Giữ áp ±0,5 kPa</text><text class="t" x="330" y="512.5" font-size="13" text-anchor="middle">→ đệm dùng được ngay</text><path class="a" d="M330 528 L330 556" marker-end="url(#ah)"/><rect class="b" x="180.0" y="558.0" width="300" height="54" rx="10"/><text class="t" x="330" y="581.5" font-size="13" text-anchor="middle">Mở web: WiFi SmartMattress-708D</text><text class="t" x="330" y="597.5" font-size="13" text-anchor="middle">hoặc Mo_web_qua_USB.bat</text><path class="a" d="M330 612 L330 640" marker-end="url(#ah)"/><rect class="b opt" x="180.0" y="642.0" width="300" height="56" rx="10"/><text class="t" x="330" y="666.5" font-size="13" text-anchor="middle">Lần đầu / thay cảm biến: Dừng,</text><text class="t" x="330" y="682.5" font-size="13" text-anchor="middle">xả hết hơi, bấm Cân 0</text><path class="a" d="M330 698 L330 726" marker-end="url(#ah)"/><rect class="b new" x="125.0" y="725.0" width="410" height="60" rx="10"/><text class="t" x="330" y="743.5" font-size="13" text-anchor="middle">Nhập cân nặng → Đặt theo cân nặng: 13 khoang về Pcn</text><text class="t" x="330" y="759.5" font-size="13" text-anchor="middle">(12 / 14 / 17 kPa), rồi tự dừng, đóng van:</text><text class="t" x="330" y="775.5" font-size="13" text-anchor="middle">“Đã đạt áp theo cân nặng, mời nằm lên” · cần nạp bản mới</text><path class="a" d="M330 782 L330 808" marker-end="url(#ah)"/><path class="d" d="M330 808.0 L470.0 850 L330 892.0 L190.0 850Z"/><text class="t" x="330" y="846.5" font-size="13" text-anchor="middle">Người nằm lên,</text><text class="t" x="330" y="862.5" font-size="13" text-anchor="middle">chọn Tư thế</text><path class="a" d="M190 850 L90 850 L90 1018 L180 1018" marker-end="url(#ah)"/><text class="lab" x="110" y="840" font-size="12" text-anchor="middle">Nằm tự do</text><path class="a" d="M330 892 L330 920" marker-end="url(#ah)"/><text class="lab" x="388" y="910" font-size="12" text-anchor="middle">Ngửa / nghiêng</text><rect class="b" x="180.0" y="921.0" width="300" height="58" rx="10"/><text class="t" x="330" y="946.5" font-size="13" text-anchor="middle">Phân tích cơ thể: tìm A, B</text><text class="t" x="330" y="962.5" font-size="13" text-anchor="middle">→ chia Vai–Eo–Hông</text><path class="a" d="M330 979 L330 1000" marker-end="url(#ah)"/><rect class="b s" x="180.0" y="1000.0" width="300" height="36" rx="10"/><text class="t" x="330" y="1022.5" font-size="13" text-anchor="middle">Đề xuất áp ở cấp N (13 ô mục tiêu)</text><path class="a" d="M330 1036 L330 1062" marker-end="url(#ah)"/><rect class="b" x="180.0" y="1063.0" width="300" height="50" rx="10"/><text class="t" x="330" y="1084.5" font-size="13" text-anchor="middle">Áp dụng và giữ áp</text><text class="t" x="330" y="1100.5" font-size="13" text-anchor="middle">(nạp/xả từng khoang tới ±0,5 kPa)</text><path class="a" d="M330 1113 L330 1138" marker-end="url(#ah)"/><path class="d" d="M330 1138.0 L470.0 1180 L330 1222.0 L190.0 1180Z"/><text class="t" x="330" y="1176.5" font-size="13" text-anchor="middle">Người nằm</text><text class="t" x="330" y="1192.5" font-size="13" text-anchor="middle">thấy thoải mái?</text><path class="a" d="M470 1180 L570 1180 L570 1088 L482 1088" marker-end="url(#ah)"/><text class="lab" x="578" y="1138" font-size="12">Chưa:</text><text class="lab" x="578" y="1153" font-size="12">sửa ô</text><path class="a" d="M330 1222 L330 1250" marker-end="url(#ah)"/><text class="lab" x="348" y="1240" font-size="12" text-anchor="middle">Rồi</text><rect class="b" x="180.0" y="1253.0" width="300" height="50" rx="10"/><text class="t" x="330" y="1274.5" font-size="13" text-anchor="middle">Lưu bộ áp</text><text class="t" x="330" y="1290.5" font-size="13" text-anchor="middle">(3 bộ: ngửa · nghiêng · tự do)</text><path class="a" d="M330 1303 L330 1330" marker-end="url(#ah)"/><rect class="b s" x="180.0" y="1333.0" width="300" height="58" rx="10"/><text class="t" x="330" y="1358.5" font-size="13" text-anchor="middle">Vận hành bình thường: giữ ±0,5 kPa</text><text class="t" x="330" y="1374.5" font-size="13" text-anchor="middle">theo bộ đang giữ</text><path class="a" d="M330 1391 L330 1418" marker-end="url(#ah)"/><rect class="b new" x="150.0" y="1420.0" width="360" height="76" rx="10"/><text class="t" x="330" y="1446.5" font-size="13" text-anchor="middle">Mỗi 5 phút: tạm dừng giữ áp 1 phút, đóng mọi van,</text><text class="t" x="330" y="1462.5" font-size="13" text-anchor="middle">so 13 áp thật với các bộ đã lưu (cần ≥ 2 bộ)</text><text class="t" x="330" y="1478.5" font-size="13" text-anchor="middle">cần nạp bản mới</text><path class="a" d="M330 1496 L330 1522" marker-end="url(#ah)"/><path class="d" d="M330 1520.0 L505.0 1575 L330 1630.0 L155.0 1575Z"/><text class="t" x="330" y="1563.5" font-size="13" text-anchor="middle">Khớp một bộ ±0,5 kPa mỗi khoang</text><text class="t" x="330" y="1579.5" font-size="13" text-anchor="middle">suốt 1 phút? (kể cả khi</text><text class="t" x="330" y="1595.5" font-size="13" text-anchor="middle">người xê dịch vài khoang)</text><path class="a" d="M505 1575 L527 1575" marker-end="url(#ah)"/><text class="lab" x="516" y="1566" font-size="12" text-anchor="middle">Có</text><rect class="b s" x="528.0" y="1547.0" width="128" height="56" rx="10"/><text class="t" x="592" y="1571.5" font-size="13" text-anchor="middle">Chuyển sang</text><text class="t" x="592" y="1587.5" font-size="13" text-anchor="middle">bộ khớp đó</text><path class="a" d="M330 1630 L330 1657" marker-end="url(#ah)"/><text class="lab" x="358" y="1645" font-size="12" text-anchor="middle">Không</text><path class="d" d="M330 1657.0 L480.0 1705 L330 1753.0 L180.0 1705Z"/><text class="t" x="330" y="1701.5" font-size="13" text-anchor="middle">Hơn nửa số khoang</text><text class="t" x="330" y="1717.5" font-size="13" text-anchor="middle">lệch khỏi bộ hiện tại?</text><path class="a" d="M180 1705 L155 1705" marker-end="url(#ah)"/><text class="lab" x="168" y="1696" font-size="12" text-anchor="middle">Có</text><rect class="b s" x="5.0" y="1677.0" width="150" height="56" rx="10"/><text class="t" x="80" y="1701.5" font-size="13" text-anchor="middle">Chuyển sang</text><text class="t" x="80" y="1717.5" font-size="13" text-anchor="middle">Nằm tự do</text><path class="a" d="M330 1753 L330 1780" marker-end="url(#ah)"/><text class="lab" x="358" y="1770" font-size="12" text-anchor="middle">Không</text><rect class="b s" x="180.0" y="1783.0" width="300" height="44" rx="10"/><text class="t" x="330" y="1809.5" font-size="13" text-anchor="middle">Giữ bộ hiện tại</text><text class="lab" x="330" y="1854.5" font-size="12" text-anchor="middle">Sau mỗi lần kiểm tra: giữ áp theo bộ được chọn, 5 phút sau kiểm tra lại.</text><rect class="b warn" x="20" y="1872" width="620" height="64" rx="10"/><text class="t" x="330" y="1900.5" font-size="12.5" text-anchor="middle">Luôn chạy nền: khoang nào &gt; 20 kPa → tắt mọi van và bơm, dừng tự động.</text><text class="t" x="330" y="1916.5" font-size="12.5" text-anchor="middle">Khoang nạp/xả quá 60 s chưa đạt → tạm bỏ qua, 5 phút sau thử lại.</text></svg><figcaption>Lưu đồ. Hai việc ở khung vàng chạy liên tục trong firmware bất kể đang ở bước nào.</figcaption></figure>
+</div></section>
+
+<p class="part">Phần 4 · Các chức năng khác</p>
+
+<section class="step" id="van"><div class="num">9</div><div>
+  <h2>Điều khiển van bằng tay và cài chân 74HC595</h2>
+  <p>Thẻ <span class="ui">Van khí</span> có 32 nút <b>V1–V32</b>. Bấm một nút để bật (nút sáng) hoặc tắt van đó. <b>Bật trên web = van mở thật.</b></p>
+  <ul>
+    <li><span class="ui">Bật tất cả</span> / <span class="ui">Tắt tất cả</span>: bật hoặc tắt cả 32 van. <b>Không nên bật tất cả</b>: nguồn bị sụt và cảm biến báo lỗi. Thử từng van một.</li>
+    <li>Khi đang tự động, các nút van bị khóa (mờ) để tránh xung đột. Bấm <span class="ui">Dừng</span> trước rồi mới bật tay.</li>
+    <li>Sau 30 giây không còn trang nào kết nối, đệm tự tắt các van bật bằng tay.</li>
+  </ul>
+  <h3>Chân nối 74HC595</h3>
+  <p>Chọn GPIO cho <b>DS</b> (dữ liệu), <b>SHCP</b> (xung dịch), <b>STCP</b> (chốt) rồi bấm <span class="ui">Lưu chân</span>. Ba chân phải khác nhau; lưu xong mọi van tắt và chân mới được nhớ trong đệm. Hiện tại: <b>DS 23, SHCP 25, STCP 26</b>.</p>
+  <div class="tw"><table><thead><tr><th>Van</th><th>Việc (giả định, chưa xác nhận)</th></tr></thead><tbody>
+    <tr><td>V1–V13</td><td>Van nạp khoang K1–K13</td></tr>
+    <tr><td>V14–V26</td><td>Van xả khoang K1–K13</td></tr>
+    <tr><td>V27</td><td>Bơm</td></tr>
+    <tr><td>V28–V32</td><td>Chưa dùng</td></tr>
+  </tbody></table></div>
+  <div class="tip">Chế độ tự động dựa vào bản đồ này. Nếu đệm thật đấu khác, cần sửa trong firmware trước khi dùng tự động.</div>
+</div></section>
+
+<section class="step" id="ghi"><div class="num">10</div><div>
+  <h2>Ghi dữ liệu cảm biến và tải CSV</h2>
+  <p>Thẻ <span class="ui">Ghi dữ liệu cảm biến</span> (cột phải):</p>
+  <ul>
+    <li>Ô <span class="ui">Tự động ghi mỗi lần đọc</span> (mặc định tích): trang lưu mỗi lần đọc vào trình duyệt của máy đang mở, giữ cả khi tải lại trang, tối đa 30.000 dòng (khoảng 8 giờ ở chu kỳ 1 giây). Số dòng hiện ở góc thẻ.</li>
+    <li><span class="ui">Tải file CSV</span>: lưu file về máy, mở được bằng Excel. Cột: thời gian, P01–P13 (kPa, lỗi ghi ERR), C01–C13 (cấp), tự động, khoang đang chỉnh, nạp/xả/giữ, van đang mở.</li>
+    <li><span class="ui">Xóa dữ liệu đã ghi</span>: chỉ xóa bản trong trình duyệt của máy đó.</li>
+    <li>Mở web bằng <code>Mo_web_qua_USB.bat</code> thì máy tính còn <b>tự lưu liên tục</b> vào <code>smart_mattress_chart\data\log_YYYYMMDD.csv</code>, mỗi ngày một file, kể cả khi không mở trang (chỉ cần cửa sổ đen còn mở).</li>
+  </ul>
+  <figure class="shot"><img src="img/v2_9.jpg" alt="Thẻ Ghi dữ liệu cảm biến" loading="lazy"><figcaption>Số dòng đã ghi, ô Tự động ghi và nút Tải file CSV.</figcaption></figure>
+</div></section>
+
+<section class="step" id="antoan"><div class="num">11</div><div>
+  <h2>An toàn và cách đệm giữ áp</h2>
+  <ul>
+    <li><b>Ngắt an toàn 20 kPa</b>: khoang nào vượt 20 kPa thì đệm tắt mọi van và bơm, dừng tự động.</li>
+    <li><b>Giữ áp ±0,5 kPa</b>: thấp hơn mục tiêu quá 0,5 kPa thì nạp, cao hơn quá 0,5 kPa thì xả, mỗi lần một khoang, từ đầu xuống chân.</li>
+    <li><b>60 giây / 5 phút</b>: khoang nạp hoặc xả quá 60 giây chưa đạt thì tạm bỏ qua, 5 phút sau thử lại (tránh bơm mãi khi khoang bị xì).</li>
+    <li>Cảm biến đọc lỗi được đọc lại ngay một lần; vẫn lỗi thì khoang đó tạm dừng chỉnh.</li>
+    <li>Ô mục tiêu tối đa 17 kPa.</li>
+  </ul>
+  <div class="note"><h3>Lưu ý</h3><ul>
+    <li>Tự chuyển tư thế: mỗi 5 phút có 1 phút van đóng hết để kiểm tra; trong phút này đệm không nạp/xả (ngắt an toàn 20 kPa vẫn chạy).</li>
+    <li>Nhận tư thế dựa trên bộ áp đã lưu, chưa phải tự nhận tư thế khi chưa lưu bộ nào.</li>
+  </ul></div>
+</div></section>
+
+<section class="step" id="suco"><div class="num">12</div><div>
+  <h2>Xử lý sự cố</h2>
+  <div class="tw"><table><thead><tr><th style="width:30%">Hiện tượng</th><th>Nguyên nhân và cách xử lý</th></tr></thead><tbody>
+    <tr><td>Ô áp báo <b>ERR</b> lẻ tẻ</td><td>Nhiễu hoặc sụt nguồn lúc bơm/van đóng mở, lúc mới bật nguồn (vài giây đầu), lúc WiFi dò mạng. Thường tự hết ở lần đọc sau. Để hết hẳn: tách nguồn 24 V van/bơm khỏi nguồn 3,3 V (chỉ chung GND), diode chống ngược ở mỗi van, tụ lọc ở nguồn 3,3 V, dây I2C ngắn và không chạy song song dây van.</td></tr>
+    <tr><td>Nhiều ô ERR khi bật nhiều van</td><td>Nguồn sụt. Đừng bấm Bật tất cả; thử từng van một.</td></tr>
+    <tr><td>Đệm không tự bơm khi bật nguồn</td><td>Chưa đủ 13 cảm biến đọc ổn định 3 lần. Kiểm tra ô ERR và dây cảm biến. Hoặc ai đó đã bấm Dừng.</td></tr>
+    <tr><td>Một khoang đọc 12–14 kPa khi không tải</td><td>Lệch điểm 0 của cảm biến (đang theo dõi). Thử Cân 0 khi đệm xả hết hơi.</td></tr>
+    <tr><td>Bấm nút van không có tác dụng</td><td>Đang tự động nên nút van bị khóa. Bấm Dừng.</td></tr>
+    <tr><td>Không nạp được code / .bat báo COM11 bận</td><td><code>idf.py monitor</code> hoặc cửa sổ <code>Mo_web_qua_USB.bat</code> đang giữ COM11. Đóng monitor bằng <b>Ctrl+]</b>, đóng cửa sổ .bat, rồi thử lại.</td></tr>
+    <tr><td>Kết nối USB trên web không được</td><td>Như trên, cổng đang bị chiếm; hoặc trình duyệt không phải Chrome/Edge.</td></tr>
+    <tr><td>Trang thiếu nút, trông cũ</td><td>Trình duyệt dùng bản lưu cũ. Bấm <b>Ctrl+F5</b>.</td></tr>
+    <tr><td>Không vào được 192.168.4.1</td><td>Kiểm tra đã vào WiFi SmartMattress-708D chưa; điện thoại có thể tự chuyển sang 4G vì WiFi này không có Internet, hãy chọn "Giữ kết nối".</td></tr>
+    <tr><td>Đệm không tự chuyển tư thế</td><td>Cần lưu ít nhất 2 bộ áp và đang ở chế độ tự động; kiểm tra đã nạp bản firmware mới. Bộ áp lưu khi nằm không đúng tư thế sẽ khó khớp, hãy lưu lại.</td></tr>
+    <tr><td>Tìm A, B báo chưa thấy 2 đỉnh</td><td>Người chưa nằm đúng tư thế chuẩn, hoặc đệm còn quá mềm/quá cứng đều. Nằm lại rồi thử; vẫn không được thì sửa tay A, B trong mục Phân vùng.</td></tr>
+  </tbody></table></div>
+</div></section>
+
+<footer>Theo trang <code>smart_mattress_chart/index.html</code> và firmware ngày 22/10 · Đề bài RD 05.10.26 · Bản đồ van là giả định, chưa xác nhận. Tự chuyển tư thế: cần nạp bản mới.</footer>
+</main>
+</body></html>
+
+</body></html>

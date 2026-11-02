@@ -9,13 +9,14 @@
 #define AGR12_BSP_H
 
 #include "zcfg.h"
+#include "zerr.h"
 
 /* Definitions -----------------------------------------------------------------------------------*/
 
 #define AGR12_BSP_I2C_ADDR             0x50U
 #define AGR12_BSP_CMD_MEASURE          0xACU
 #define AGR12_BSP_CMD_PRESSURE         0x12U
-#define AGR12_BSP_MEASURE_DELAY_MS     200U
+#define AGR12_BSP_MEASURE_DELAY_MS     80U     /* Datasheet 7.2.1: wait 80 ms after 0xAC 0x12. */
 #define AGR12_BSP_DATA_SIZE            3U
 
 /* Types -----------------------------------------------------------------------------------------*/
@@ -31,6 +32,8 @@ typedef struct
 zerr_t agr12_bsp_open(void);
 
 zerr_t agr12_bsp_read(uint8_t address, uint32_t timeout_ms, agr12_bsp_data_t *p_data);
+zerr_t agr12_bsp_trigger(uint8_t address, uint32_t timeout_ms);
+zerr_t agr12_bsp_fetch(uint8_t address, uint32_t timeout_ms, agr12_bsp_data_t *p_data);
 
 #endif /* AGR12_BSP_H */
 

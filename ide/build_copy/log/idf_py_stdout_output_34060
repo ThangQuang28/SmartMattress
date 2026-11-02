@@ -1,0 +1,18 @@
+[1/10] Performing build step for 'bootloader'
+[1/1] C:\Windows\system32\cmd.exe /C "cd /D "D:\thang_bui\Vibecode\IOT_FWCore - Copy\IOT_FWCore\ide\build_copy\bootloader\esp-idf\esptool_py" && D:\thang_bui\code\Espressif\python_env\idf5.4_py3.11_env\Scripts\python.exe D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 "D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/bootloader.bin""
+Bootloader binary size 0x65b0 bytes. 0xa50 bytes (9%) free.
+[2/10] No install step for 'bootloader'
+[3/10] Generating ../../index.html.S
+[4/10] Completed 'bootloader'
+[5/10] Building ASM object esp-idf/mid/CMakeFiles/__idf_mid.dir/__/__/index.html.S.obj
+[6/10] Linking C static library esp-idf\mid\libmid.a
+[7/10] Generating ld/sections.ld
+[8/10] Linking CXX executable zenFWCore.elf
+[9/10] Generating binary image from built executable
+esptool.py v4.11.0
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/zenFWCore.bin
+[10/10] C:\Windows\system32\cmd.exe /C "cd /D "D:\thang_bui\Vibecode\IOT_FWCore - Copy\IOT_FWCore\ide\build_copy\esp-idf\esptool_py" && D:\thang_bui\code\Espressif\python_env\idf5.4_py3.11_env\Scripts\python.exe D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/partition_table/check_sizes.py --offset 0x8000 partition --type app "D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/partition_table/partition-table.bin" "D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/zenFWCore.bin""
+zenFWCore.bin binary size 0x139790 bytes. Smallest app partition is 0x1e0000 bytes. 0xa6870 bytes (35%) free.

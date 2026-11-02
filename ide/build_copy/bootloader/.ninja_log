@@ -1,0 +1,173 @@
+# ninja log v6
+48	609	8147006786430888	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_sys.c.obj	6b8e0991bb12892
+17	628	8147006786091775	esp-idf/log/CMakeFiles/__idf_log.dir/src/noos/log_timestamp.c.obj	c3551dc687d9a1a8
+16	128	8150552131763023	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+2366	2730	8147006809553981	esp-idf/esp_bootloader_format/CMakeFiles/__idf_esp_bootloader_format.dir/esp_bootloader_desc.c.obj	6b9717b38ec6b190
+125	619	8147006787186431	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_longjmp.S.obj	c58da8d09cb80e2d
+29	647	8147006786235429	esp-idf/log/CMakeFiles/__idf_log.dir/src/log_timestamp_common.c.obj	362263bdc45c715d
+68	638	8147006786634870	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_crc.c.obj	f985b8d9e1a4cfd3
+96	713	8147006786915115	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_efuse.c.obj	dec5ff0eeb5c3a1
+112	657	8147006787060263	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_gpio.c.obj	44f53e60b2097af8
+134	666	8147006787286870	esp-idf/esp_common/CMakeFiles/__idf_esp_common.dir/src/esp_err_to_name.c.obj	4bbba69b2225f082
+1301	2074	8147006798952549	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_init.c.obj	7153fb3cc604f26
+742	1275	8147006793360223	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_fields.c.obj	225d0338d5ff359f
+38	675	8147006786333488	esp-idf/log/CMakeFiles/__idf_log.dir/src/noos/log_lock.c.obj	37c5e6accacb2b5b
+2470	2782	8147006810630125	esp-idf/hal/CMakeFiles/__idf_hal.dir/mpu_hal.c.obj	e0948c27829651b5
+78	695	8147006786715108	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_uart.c.obj	62c9cf71b4ddea36
+1929	2934	8147006805231554	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp_image_format.c.obj	d52d98f476093d6
+58	733	8147006786534707	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_print.c.obj	9389015c41c35ba6
+143	742	8147006787341485	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/cpu.c.obj	e5b2c55d3e489c5c
+629	1461	8147006792213249	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_clk.c.obj	1491c9305dbf927b
+1092	1690	8147006796825180	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_fields.c.obj	74a1e094c762f58e
+733	1181	8147006793268529	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_table.c.obj	c9050fb8829d10d7
+158	750	8147006787516061	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/esp_cpu_intr.c.obj	9f0289185b3305dd
+666	1359	8147006792589874	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_time.c.obj	2901a37f335107de
+619	1083	8147006792134279	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/cpu_region_protect.c.obj	388c03e6b523648a
+2001	2458	8147006805954211	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_console_loader.c.obj	b3c010343fb54d0
+2761	3046	8147006813559956	esp-idf/soc/CMakeFiles/__idf_soc.dir/dport_access_common.c.obj	46d2894daf5b8aaa
+1779	2366	8147006803739082	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/flash_qio_mode.c.obj	c1b36b457fe34c90
+87	1092	8147006786715108	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_spiflash.c.obj	7dfd833ecd9acb16
+610	1166	8147006791999730	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_memory_utils.c.obj	8295d317099035f4
+1396	2001	8147006799906760	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_encrypt.c.obj	ac986e5a1ca14355
+657	1349	8147006792523704	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_sleep.c.obj	25a37c5e0c93c968
+713	1231	8147006793063513	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_err.c.obj	285dab8c723d22e
+675	1284	8147006792664370	esp-idf/log/liblog.a	8f7b394cc3aaa2c
+638	1301	8147006792329402	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_clk_init.c.obj	2728f1515ae5aec1
+751	1327	8147006793360223	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_utility.c.obj	9cdeb7591725cc47
+1166	1970	8147006797496478	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_utility.c.obj	ea1fabea3a2f2743
+1231	1825	8147006798187084	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common.c.obj	c072d692757df7d8
+695	1396	8147006792817279	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/chip_info.c.obj	6135d3470a275193
+647	1405	8147006792353726	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_init.c.obj	a27284d6940ee2cb
+3015	3315	8147006816019679	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/pcnt_periph.c.obj	594d22b55c823cda
+1405	1961	8147006800007455	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/secure_boot.c.obj	8d4f2c9915825242
+1083	1779	8147006796779373	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_api.c.obj	6aeafa75adf8a210
+2658	3007	8147006812507518	esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32/cache_hal_esp32.c.obj	c60ccc21b7c0ea9b
+1327	1803	8147006799157955	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_mem.c.obj	93eb94b88a6fd9b3
+1690	2507	8147006802820182	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash.c.obj	1b9fda3362cf699f
+1181	1898	8147006797765534	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/efuse_controller/keys/without_key_purposes/three_key_blocks/esp_efuse_api_key.c.obj	89ca0222227ead17
+2479	2807	8147006810699022	esp-idf/hal/CMakeFiles/__idf_hal.dir/efuse_hal.c.obj	1b03e77d1927e874
+1359	1929	8147006799544543	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_efuse.c.obj	965fe3e30b278b71
+1275	1951	8147006798663869	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common_loader.c.obj	3c43fb454282cfa4
+2375	2761	8147006809697698	esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_wrap.c.obj	e79e9bf1dc3f646
+2083	2694	8147006806787790	esp-idf/esp_common/libesp_common.a	8ac40c9aad355fac
+1350	2012	8147006799415420	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random.c.obj	a2ebae57de57b6a1
+1284	2083	8147006798783983	esp-idf/esp_rom/libesp_rom.a	e1543324c61b0e21
+1461	2101	8147006800560291	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random_esp32.c.obj	488003b98bbf41b0
+1898	2470	8147006804930272	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_partitions.c.obj	2b05c2fca2752263
+1951	2658	8147006805385790	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_init.c.obj	2843c7824ae40d28
+1961	2357	8147006805560103	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_loader.c.obj	df67082a30d2e09e
+2074	2375	8147006806690929	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32/bootloader_soc.c.obj	3442bebf970f556b
+2012	2479	8147006806012916	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32/bootloader_sha.c.obj	e8221463154cc3d0
+2490	2925	8147006810851765	esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32/efuse_hal.c.obj	aabb5a6760261c9
+2357	2790	8147006809526156	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_panic.c.obj	41b2a42d29659eab
+1803	2490	8147006803926720	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash_config_esp32.c.obj	2ae9f6f1f4e94512
+1971	2524	8147006805651018	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_console.c.obj	c795c280c3dbb774
+1825	2741	8147006804205859	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_utility.c.obj	58601b835235ac3f
+2101	2773	8147006806909992	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32/bootloader_esp32.c.obj	2e3997756d548384
+2458	2870	8147006810473724	esp-idf/hal/CMakeFiles/__idf_hal.dir/hal_utils.c.obj	22cb91c8861786af
+2507	3015	8147006810991174	esp-idf/hal/CMakeFiles/__idf_hal.dir/wdt_hal_iram.c.obj	d279cac6654b4ab7
+2773	3037	8147006813671882	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/interrupts.c.obj	35f1071c4ffb74b8
+3110	3373	8147006817053598	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/timer_periph.c.obj	66b665ed3ab98b53
+2741	3074	8147006813365692	esp-idf/soc/CMakeFiles/__idf_soc.dir/lldesc.c.obj	4ccd92f3b886b4b2
+2790	3084	8147006813847266	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/uart_periph.c.obj	991fe7e41aac981a
+2782	3110	8147006813748898	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/gpio_periph.c.obj	b82ab19cd143ef40
+2524	3121	8147006811191330	esp-idf/hal/CMakeFiles/__idf_hal.dir/mmu_hal.c.obj	c93deb0a6fb24ddf
+2870	3142	8147006814615794	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/adc_periph.c.obj	948421087e08a58
+2807	3184	8147006814008432	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/dport_access.c.obj	4ddf26c39af001d0
+2934	3192	8147006815291037	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/spi_periph.c.obj	fea260faccaff76a
+2925	3202	8147006815172452	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/emac_periph.c.obj	66b82e4517abe20f
+2694	3263	8147006812848302	esp-idf/esp_hw_support/libesp_hw_support.a	213d5790b0a9a7d0
+3046	3296	8147006816378140	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/sdm_periph.c.obj	71d2cb4ed2c026ff
+3007	3341	8147006816019679	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/ledc_periph.c.obj	a7aba413b254b4e7
+3395	3545	8147006821055273	project_elf_src_esp32.c	c713f26f1a8a2d92
+3084	3350	8147006816797718	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/i2c_periph.c.obj	aa1697d8f909614a
+3038	3360	8147006816317354	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/rmt_periph.c.obj	e4c92fc5d8f88d88
+3121	3395	8147006817152842	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/lcd_periph.c.obj	d9001573f84c53ec
+3074	3383	8147006816657244	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/i2s_periph.c.obj	fb434070f582188c
+3142	3451	8147006817287566	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/mcpwm_periph.c.obj	75ec5db149105872
+3202	3480	8147006817976736	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/touch_sensor_periph.c.obj	b2739b4546f0edab
+3193	3525	8147006817759505	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/sdmmc_periph.c.obj	2ea3df943d0d5f1d
+3184	3527	8147006817759505	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/mpi_periph.c.obj	b8fd09cd669169c7
+3395	3545	8147006821055273	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/project_elf_src_esp32.c	c713f26f1a8a2d92
+3296	3564	8147006818912691	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/twai_periph.c.obj	ac2a2ff4a9fbf73f
+3341	3565	8147006819365934	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/dac_periph.c.obj	1367b5d656463917
+3350	3573	8147006819451871	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/rtc_io_periph.c.obj	1d6b8b1d32dc5ad9
+3374	3573	8147006819654308	esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/eri.c.obj	f813377acf0066f3
+3315	3581	8147006818999911	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/wdt_periph.c.obj	ace1b3a7a5516401
+3360	3599	8147006819527852	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/sdio_slave_periph.c.obj	b70cf4bb107c86b6
+3263	3601	8147006818544820	esp-idf/esp_system/libesp_system.a	534f5fee6a471f82
+3383	3614	8147006819730608	esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xt_trax.c.obj	321b8883d759a379
+3545	3646	8147006821400369	CMakeFiles/bootloader.elf.dir/project_elf_src_esp32.c.obj	37c49a0d46519fcc
+3451	3658	8147006820423706	esp-idf/main/CMakeFiles/__idf_main.dir/bootloader_start.c.obj	970243d3fb51de5d
+3601	3755	8147006821956353	esp-idf/efuse/libefuse.a	935132fcd8052e8e
+2731	3842	8147006813263265	esp-idf/micro-ecc/CMakeFiles/__idf_micro-ecc.dir/uECC_verify_antifault.c.obj	3cb21ea48414aba9
+3756	3961	8147006823501357	esp-idf/bootloader_support/libbootloader_support.a	1f516ed093c87ca1
+3961	4075	8147006825502530	esp-idf/esp_bootloader_format/libesp_bootloader_format.a	9123bc250b4eb6e4
+4075	4183	8147006826707085	esp-idf/spi_flash/libspi_flash.a	dbd5f7d479ab39b5
+4183	4321	8147006827690779	esp-idf/hal/libhal.a	2d2a62f464cc6172
+4321	4433	8147006829159344	esp-idf/micro-ecc/libmicro-ecc.a	2dbce4749060c980
+4433	4654	8147006830285080	esp-idf/soc/libsoc.a	ddf6bcde9dd91294
+4654	4769	8147006832494997	esp-idf/xtensa/libxtensa.a	c7b4cd91500f2c39
+4769	4875	8147006833645152	esp-idf/main/libmain.a	6432caa012906540
+4875	5089	8147006834697865	bootloader.elf	7cfde8c3ac145078
+5089	5472	8147006840615663	.bin_timestamp	697e50b53214da23
+5089	5472	8147006840615663	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/.bin_timestamp	697e50b53214da23
+16	128	8150552131763023	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+22	153	8150552317024838	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+22	153	8150552317024838	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	126	8150554003107924	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	126	8150554003107924	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+27	163	8150554185693346	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+27	163	8150554185693346	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	132	8150555249082562	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	132	8150555249082562	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+24	180	8150555431562032	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+24	180	8150555431562032	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+14	130	8150556235685604	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+14	130	8150556235685604	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+19	177	8150556422208206	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+19	177	8150556422208206	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	129	8150571241336889	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	129	8150571241336889	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+18	155	8150571418397744	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+18	155	8150571418397744	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+18	146	8150576327739519	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+18	146	8150576327739519	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+21	151	8150576523653049	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+21	151	8150576523653049	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+21	152	8150591091675735	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+21	152	8150591091675735	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	137	8150591986554201	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	137	8150591986554201	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+17	171	8150592171717611	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+17	171	8150592171717611	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+22	148	8150601619167675	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+22	148	8150601619167675	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+14	167	8150601806694862	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+14	167	8150601806694862	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	139	8150604368242721	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	139	8150604368242721	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	125	8150608639854670	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	125	8150608639854670	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+22	148	8150608838002449	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+22	148	8150608838002449	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	126	8150628114994258	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	126	8150628114994258	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+20	164	8150628301964289	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+20	164	8150628301964289	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+14	127	8150635039814721	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+14	127	8150635039814721	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+19	155	8150635220374877	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+19	155	8150635220374877	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	135	8150636567474962	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	135	8150636567474962	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+18	167	8150636752602044	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+18	167	8150636752602044	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	126	8150649762429390	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	126	8150649762429390	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+26	185	8150649943099053	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+26	185	8150649943099053	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	125	8150668421145590	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+15	125	8150668421145590	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+23	171	8150668602065891	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a
+23	171	8150668602065891	D:/thang_bui/Vibecode/IOT_FWCore - Copy/IOT_FWCore/ide/build_copy/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	ce0d4baeb2a10e5a

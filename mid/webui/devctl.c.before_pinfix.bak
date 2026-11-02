@@ -1,0 +1,510 @@
+/***************************************************************************************************************
+ * @auth            : duonghd
+ * @file            : devctl.c
+ * @description     : Device state and JSON commands shared by the web server and the USB serial link.
+***************************************************************************************************************/
+
+/*  Indent using spaces
+    Tab width: 4 spaces
+    Line width: 100 characters
+    Line ending: LF (0x0A) */
+
+/* Includes --------------------------------------------------------------------------------------*/
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/semphr.h"
+#include "esp_log.h"
+#include "esp_timer.h"
+#include "driver/uart.h"
+#include "cJSON.h"
+
+#include "devctl.h"
+#include "webui.h"
+#include "pctl.h"
+#include "flash.h"
+#if DEVCTL_VALVE_ENABLE
+#include "valve.h"
+#else
+#define VALVE_OUTPUT_NUM            32U
+#endif
+
+/* Define ----------------------------------------------------------------------------------------*/
+
+#define DEVCTL_NVS_KEY_ZERO         "p_zero"
+#define DEVCTL_NVS_KEY_PERIOD       "scan_ms"
+#define DEVCTL_PERIOD_DEFAULT_MS    1000U
+#define DEVCTL_PERIOD_MIN_MS        200U
+#define DEVCTL_PERIOD_MAX_MS        10000U
+
+#define DEVCTL_UART                 UART_NUM_0
+#define DEVCTL_UART_RX_BUF          1024
+#define DEVCTL_LINE_MAX             256U
+#define DEVCTL_SERIAL_PREFIX_CMD    "@cmd "
+#define DEVCTL_SERIAL_PREFIX_JSON   "@J "
+#define DEVCTL_SERIAL_STACK         6144U
+
+/* Private variables -----------------------------------------------------------------------------*/
+
+static SemaphoreHandle_t g_lock = NULL;
+static float g_raw[PRESSURE_SENSOR_NUM];
+static float g_zero[PRESSURE_SENSOR_NUM];
+static uint32_t g_ok_mask = 0U;
+static uint32_t g_seq = 0U;
+static uint32_t g_period_ms = DEVCTL_PERIOD_DEFAULT_MS;
+static volatile TickType_t g_last_client = 0;
+#if !DEVCTL_VALVE_ENABLE
+static const uint32_t g_valve_mask = 0U;
+#endif
+
+static const char *TAG = "DEVCTL";
+
+/* Private function prototypes -------------------------------------------------------------------*/
+
+static size_t devctl_append_floats(char *p_buf, size_t size, const float *p_val, uint32_t mask,
+                                   bool use_mask);
+static void devctl_reply(char *p_reply, size_t size, bool ok, const char *p_msg);
+static void devctl_serial_task(void *p_para);
+
+/* Public functions ------------------------------------------------------------------------------*/
+
+zerr_t devctl_open(void)
+{
+    size_t len = 0U;
+
+    if (NULL != g_lock)
+    {
+        return ZERR_OK;
+    }
+
+    g_lock = xSemaphoreCreateMutex();
+    if (NULL == g_lock)
+    {
+        return ZERR_MEM_OUT;
+    }
+
+    memset(g_zero, 0, sizeof(g_zero));
+    if ((ZERR_OK != flash_read(DEVCTL_NVS_KEY_ZERO, g_zero, sizeof(g_zero), &len)) ||
+        (sizeof(g_zero) != len))
+    {
+        memset(g_zero, 0, sizeof(g_zero));
+    }
+
+    uint32_t period = 0U;
+    if ((ZERR_OK == flash_read(DEVCTL_NVS_KEY_PERIOD, &period, sizeof(period), &len)) &&
+        (sizeof(period) == len) && (period >= DEVCTL_PERIOD_MIN_MS) &&
+        (period <= DEVCTL_PERIOD_MAX_MS))
+    {
+        g_period_ms = period;
+    }
+
+#if DEVCTL_VALVE_ENABLE
+    zerr_t ret = valve_open();
+    if (ZERR_OK != ret)
+    {
+        ESP_LOGE(TAG, "valve open failed: %d", (int)ret);
+    }
+#else
+    ESP_LOGW(TAG, "valve outputs locked (DEVCTL_VALVE_ENABLE = 0)");
+#endif
+
+    (void)pctl_open();
+
+    return ZERR_OK;
+}
+
+uint32_t devctl_period_ms(void)
+{
+    return g_period_ms;
+}
+
+void devctl_touch(void)
+{
+    g_last_client = xTaskGetTickCount();
+}
+
+void devctl_tick(void)
+{
+#if DEVCTL_VALVE_ENABLE && (DEVCTL_VALVE_IDLE_OFF_MS > 0)
+    if ((!pctl_is_auto()) && (0U != valve_get_mask()) &&
+        ((xTaskGetTickCount() - g_last_client) > pdMS_TO_TICKS(DEVCTL_VALVE_IDLE_OFF_MS)))
+    {
+        ESP_LOGW(TAG, "no web client for %u s, all valves off",
+                 (unsigned int)(DEVCTL_VALVE_IDLE_OFF_MS / 1000U));
+        (void)valve_all_off();
+    }
+#endif
+}
+
+void devctl_update(const float *p_raw, uint32_t ok_mask, float *p_out)
+{
+    xSemaphoreTake(g_lock, portMAX_DELAY);
+    for (uint8_t i = 0U; i < PRESSURE_SENSOR_NUM; i++)
+    {
+        g_raw[i] = p_raw[i];
+        p_out[i] = p_raw[i] - g_zero[i];
+    }
+    g_ok_mask = ok_mask;
+    g_seq++;
+    xSemaphoreGive(g_lock);
+}
+
+size_t devctl_state_json(char *p_buf, size_t size)
+{
+    float val[PRESSURE_SENSOR_NUM];
+    size_t len;
+
+    xSemaphoreTake(g_lock, portMAX_DELAY);
+    for (uint8_t i = 0U; i < PRESSURE_SENSOR_NUM; i++)
+    {
+        val[i] = g_raw[i] - g_zero[i];
+    }
+
+    len = (size_t)snprintf(p_buf, size, "{\"t\":%llu,\"seq\":%lu,\"period\":%lu,\"ok\":%lu,\"p\":",
+                           (unsigned long long)(esp_timer_get_time() / 1000),
+                           (unsigned long)g_seq, (unsigned long)g_period_ms,
+                           (unsigned long)g_ok_mask);
+    if (len < size)
+    {
+        len += devctl_append_floats(&p_buf[len], size - len, val, g_ok_mask, true);
+    }
+    if (len < size)
+    {
+        len += (size_t)snprintf(&p_buf[len], size - len, ",\"raw\":");
+    }
+    if (len < size)
+    {
+        len += devctl_append_floats(&p_buf[len], size - len, g_raw, g_ok_mask, true);
+    }
+    if (len < size)
+    {
+        len += (size_t)snprintf(&p_buf[len], size - len, ",\"zero\":");
+    }
+    if (len < size)
+    {
+        len += devctl_append_floats(&p_buf[len], size - len, g_zero, 0U, false);
+    }
+    xSemaphoreGive(g_lock);
+
+    if (len < size)
+    {
+#if DEVCTL_VALVE_ENABLE
+        uint32_t mask = valve_get_mask();
+#else
+        uint32_t mask = g_valve_mask;
+#endif
+        len += (size_t)snprintf(&p_buf[len], size - len,
+                                ",\"valve\":{\"enabled\":%s,\"num\":%u,\"mask\":%lu},\"wifi\":",
+                                DEVCTL_VALVE_ENABLE ? "true" : "false",
+                                (unsigned int)VALVE_OUTPUT_NUM, (unsigned long)mask);
+    }
+    if (len < size)
+    {
+        len += webui_wifi_json(&p_buf[len], size - len);
+    }
+    if (len < size)
+    {
+        len += (size_t)snprintf(&p_buf[len], size - len, ",\"auto\":");
+    }
+    if (len < size)
+    {
+        len += pctl_json(&p_buf[len], size - len);
+    }
+    if (len < size)
+    {
+        len += (size_t)snprintf(&p_buf[len], size - len, "}");
+    }
+
+    return (len < size) ? len : (size - 1U);
+}
+
+zerr_t devctl_command(const char *p_json, char *p_reply, size_t reply_size)
+{
+    zerr_t ret = ZERR_INVALID_PARAM;
+    const char *p_msg = "unknown command";
+    cJSON *p_root = cJSON_Parse(p_json);
+    const cJSON *p_cmd = cJSON_GetObjectItemCaseSensitive(p_root, "cmd");
+
+    if (!cJSON_IsString(p_cmd))
+    {
+        cJSON_Delete(p_root);
+        devctl_reply(p_reply, reply_size, false, "expected {\"cmd\":\"...\"}");
+        return ZERR_INVALID_PARAM;
+    }
+
+    const char *p_name = p_cmd->valuestring;
+
+    devctl_touch();
+
+    if ((0 == strcmp(p_name, "state")) || (0 == strcmp(p_name, "ping")))
+    {
+        ret = ZERR_OK;
+        p_msg = "state";
+    }
+    else if ((0 == strcmp(p_name, "tare")) || (0 == strcmp(p_name, "tare_clear")))
+    {
+        bool clear = (0 == strcmp(p_name, "tare_clear"));
+
+        xSemaphoreTake(g_lock, portMAX_DELAY);
+        for (uint8_t i = 0U; i < PRESSURE_SENSOR_NUM; i++)
+        {
+            if (clear)
+            {
+                g_zero[i] = 0.0f;
+            }
+            else if (0U != (g_ok_mask & (1UL << i)))
+            {
+                g_zero[i] = g_raw[i];   /* Sensors in error keep their old offset. */
+            }
+        }
+        ret = flash_write(DEVCTL_NVS_KEY_ZERO, g_zero, sizeof(g_zero));
+        xSemaphoreGive(g_lock);
+        p_msg = (ZERR_OK != ret) ? "could not save offsets" : (clear ? "zero cleared" : "zeroed");
+        ESP_LOGI(TAG, "%s", p_msg);
+    }
+    else if (0 == strcmp(p_name, "period"))
+    {
+        const cJSON *p_ms = cJSON_GetObjectItemCaseSensitive(p_root, "ms");
+
+        if (cJSON_IsNumber(p_ms) && (p_ms->valuedouble >= DEVCTL_PERIOD_MIN_MS) &&
+            (p_ms->valuedouble <= DEVCTL_PERIOD_MAX_MS))
+        {
+            uint32_t period = (uint32_t)p_ms->valuedouble;
+
+            g_period_ms = period;
+            ret = flash_write(DEVCTL_NVS_KEY_PERIOD, &period, sizeof(period));
+            p_msg = "period set";
+        }
+        else
+        {
+            p_msg = "ms must be 200..10000";
+        }
+    }
+    else if (0 == strcmp(p_name, "wifi"))
+    {
+        const cJSON *p_ssid = cJSON_GetObjectItemCaseSensitive(p_root, "ssid");
+        const cJSON *p_pass = cJSON_GetObjectItemCaseSensitive(p_root, "pass");
+
+        if (cJSON_IsString(p_ssid) && (strlen(p_ssid->valuestring) <= 32U) &&
+            ((NULL == p_pass) || (cJSON_IsString(p_pass) && (strlen(p_pass->valuestring) <= 64U))))
+        {
+            ret = webui_set_sta(p_ssid->valuestring, (NULL != p_pass) ? p_pass->valuestring : "");
+            p_msg = (ZERR_OK == ret) ? "connecting" : "wifi error";
+        }
+        else
+        {
+            p_msg = "ssid (<=32) and pass (<=64) required";
+        }
+    }
+    else if ((0 == strcmp(p_name, "valve")) || (0 == strcmp(p_name, "valve_mask")) ||
+             (0 == strcmp(p_name, "valve_off")))
+    {
+#if DEVCTL_VALVE_ENABLE
+        if (pctl_is_auto() && (0 != strcmp(p_name, "valve_off")))
+        {
+            ret = ZERR_EXIST;
+            p_msg = "auto mode on: switch it off to use valves by hand";
+        }
+        else if (0 == strcmp(p_name, "valve_off"))
+        {
+            (void)pctl_set_auto(false); /* Prevent the next scan from reopening a valve. */
+            ret = valve_all_off();
+        }
+        else if (0 == strcmp(p_name, "valve_mask"))
+        {
+            const cJSON *p_mask = cJSON_GetObjectItemCaseSensitive(p_root, "mask");
+            ret = (cJSON_IsNumber(p_mask) && p_mask->valuedouble >= 0.0 &&
+                   p_mask->valuedouble <= 4294967295.0 &&
+                   floor(p_mask->valuedouble) == p_mask->valuedouble)
+                      ? valve_set_mask((uint32_t)p_mask->valuedouble)
+                                         : ZERR_INVALID_PARAM;
+        }
+        else
+        {
+            const cJSON *p_idx = cJSON_GetObjectItemCaseSensitive(p_root, "index");
+            const cJSON *p_on = cJSON_GetObjectItemCaseSensitive(p_root, "on");
+            ret = (cJSON_IsNumber(p_idx) && p_idx->valuedouble >= 0.0 &&
+                   p_idx->valuedouble < VALVE_OUTPUT_NUM &&
+                   p_idx->valuedouble == p_idx->valueint && cJSON_IsBool(p_on))
+                      ? valve_set((uint8_t)p_idx->valueint, cJSON_IsTrue(p_on))
+                      : ZERR_INVALID_PARAM;
+        }
+        if (ZERR_EXIST != ret)
+        {
+            p_msg = (ZERR_OK == ret) ? "valve set" : "valve error";
+        }
+#else
+        ret = ZERR_NOT_OPEN;
+        p_msg = "valve outputs locked in firmware (DEVCTL_VALVE_ENABLE = 0)";
+#endif
+    }
+
+    else if (0 == strcmp(p_name, "auto"))
+    {
+        const cJSON *p_on = cJSON_GetObjectItemCaseSensitive(p_root, "on");
+
+        if (cJSON_IsBool(p_on) && DEVCTL_VALVE_ENABLE)
+        {
+            ret = pctl_set_auto(cJSON_IsTrue(p_on));
+            p_msg = cJSON_IsTrue(p_on) ? "auto on" : "auto off";
+        }
+        else
+        {
+            p_msg = "on must be true/false (valves must be enabled)";
+        }
+    }
+    else if (0 == strcmp(p_name, "level"))
+    {
+        const cJSON *p_lv = cJSON_GetObjectItemCaseSensitive(p_root, "level");
+
+        ret = (cJSON_IsNumber(p_lv) && p_lv->valuedouble >= 1.0 &&
+               p_lv->valuedouble <= PCTL_LEVEL_NUM && p_lv->valuedouble == p_lv->valueint)
+                  ? pctl_set_level((uint8_t)p_lv->valueint) : ZERR_INVALID_PARAM;
+        p_msg = (ZERR_OK == ret) ? "targets set" : "level must be 1..8";
+    }
+    else if (0 == strcmp(p_name, "weight"))
+    {
+        const cJSON *p_kg = cJSON_GetObjectItemCaseSensitive(p_root, "kg");
+
+        ret = cJSON_IsNumber(p_kg) ? pctl_set_weight((float)p_kg->valuedouble) : ZERR_INVALID_PARAM;
+        p_msg = (ZERR_OK == ret) ? "targets set" : "kg must be 1..200";
+    }
+    else if (0 == strcmp(p_name, "target"))
+    {
+        const cJSON *p_idx = cJSON_GetObjectItemCaseSensitive(p_root, "index");
+        const cJSON *p_val = cJSON_GetObjectItemCaseSensitive(p_root, "kpa");
+
+        ret = (cJSON_IsNumber(p_idx) && p_idx->valuedouble >= 0.0 &&
+               p_idx->valuedouble < PRESSURE_SENSOR_NUM &&
+               p_idx->valuedouble == p_idx->valueint && cJSON_IsNumber(p_val))
+                  ? pctl_set_target((uint8_t)p_idx->valueint, (float)p_val->valuedouble)
+                  : ZERR_INVALID_PARAM;
+        p_msg = (ZERR_OK == ret) ? "targets set" : "index 0..12, kpa 0..17";
+    }
+
+    cJSON_Delete(p_root);
+    devctl_reply(p_reply, reply_size, (ZERR_OK == ret), p_msg);
+
+    return ret;
+}
+
+zerr_t devctl_serial_open(void)
+{
+    if (!uart_is_driver_installed(DEVCTL_UART))
+    {
+        if (ESP_OK != uart_driver_install(DEVCTL_UART, DEVCTL_UART_RX_BUF, 0, 0, NULL, 0))
+        {
+            return ZERR_NOT_OPEN;
+        }
+    }
+
+    if (pdPASS != xTaskCreate(devctl_serial_task, "devctl serial", DEVCTL_SERIAL_STACK, NULL,
+                              tskIDLE_PRIORITY + 1U, NULL))
+    {
+        return ZERR_MEM_OUT;
+    }
+
+    return ZERR_OK;
+}
+
+void devctl_serial_push_state(void)
+{
+    char buf[DEVCTL_JSON_MAX];
+
+    (void)devctl_state_json(buf, sizeof(buf));
+    printf(DEVCTL_SERIAL_PREFIX_JSON "%s\n", buf);
+}
+
+/* Private functions -----------------------------------------------------------------------------*/
+
+/**
+ * @brief  Append [v0,v1,...] with one decimal; values not in mask become null when use_mask.
+ */
+static size_t devctl_append_floats(char *p_buf, size_t size, const float *p_val, uint32_t mask,
+                                   bool use_mask)
+{
+    size_t len = (size_t)snprintf(p_buf, size, "[");
+
+    for (uint8_t i = 0U; (i < PRESSURE_SENSOR_NUM) && (len < size); i++)
+    {
+        const char *p_sep = (0U == i) ? "" : ",";
+
+        if ((use_mask && (0U == (mask & (1UL << i)))) || !isfinite(p_val[i]))
+        {
+            len += (size_t)snprintf(&p_buf[len], size - len, "%snull", p_sep);
+        }
+        else
+        {
+            len += (size_t)snprintf(&p_buf[len], size - len, "%s%.2f", p_sep, p_val[i]);
+        }
+    }
+    if (len < size)
+    {
+        len += (size_t)snprintf(&p_buf[len], size - len, "]");
+    }
+
+    return (len < size) ? len : (size - 1U);
+}
+
+static void devctl_reply(char *p_reply, size_t size, bool ok, const char *p_msg)
+{
+    if ((NULL != p_reply) && (0U != size))
+    {
+        (void)snprintf(p_reply, size, "{\"ok\":%s,\"msg\":\"%s\"}", ok ? "true" : "false", p_msg);
+    }
+}
+
+/**
+ * @brief  Read "@cmd {json}" lines from UART0, run them, answer "@J {reply}" then "@J {state}".
+ */
+static void devctl_serial_task(void *p_para)
+{
+    static char s_line[DEVCTL_LINE_MAX];
+    char reply[160];
+    size_t len = 0U;
+    uint8_t ch;
+
+    (void)p_para;
+
+    while (true)
+    {
+        if (1 != uart_read_bytes(DEVCTL_UART, &ch, 1U, portMAX_DELAY))
+        {
+            continue;
+        }
+
+        if (('\n' != ch) && ('\r' != ch))
+        {
+            if (len < (sizeof(s_line) - 1U))
+            {
+                s_line[len++] = (char)ch;
+            }
+            continue;
+        }
+
+        s_line[len] = '\0';
+        len = 0U;
+
+        const size_t prefix = strlen(DEVCTL_SERIAL_PREFIX_CMD);
+        if (0 != strncmp(s_line, DEVCTL_SERIAL_PREFIX_CMD, prefix))
+        {
+            continue;
+        }
+
+        (void)devctl_command(&s_line[prefix], reply, sizeof(reply));
+        /* Serial keepalives have no reply: they must not consume a pending UI command. */
+        cJSON *request = cJSON_Parse(&s_line[prefix]);
+        const cJSON *command = cJSON_GetObjectItemCaseSensitive(request, "cmd");
+        if (!cJSON_IsString(command) || (0 != strcmp(command->valuestring, "ping")))
+        {
+            printf(DEVCTL_SERIAL_PREFIX_JSON "%s\n", reply);
+        }
+        cJSON_Delete(request);
+        devctl_serial_push_state();
+    }
+}
+
+/* END OF FILE ************************************************************************************/

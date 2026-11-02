@@ -107,6 +107,12 @@ zerr_t flash_bsp_write(const char *p_key, const void *p_data, size_t size)
     }
 
     nvs_close(handle);
+
+    if (err != ESP_OK)
+    {
+        ret = (err == ESP_ERR_NVS_NOT_ENOUGH_SPACE) ? ZERR_STORAGE_OUT : ZERR_ERROR;
+    }
+
     return ret;
 }
 
@@ -183,6 +189,11 @@ zerr_t flash_bsp_get_size(const char *p_key, size_t *p_size)
 
     nvs_close(handle);
 
+    if (err != ESP_OK)
+    {
+        ret = ZERR_NOT_FOUND;
+    }
+
     return ret;
 }
 
@@ -207,7 +218,7 @@ zerr_t flash_bsp_delete(const char *p_key)
 
     if (err != ESP_OK)
     {
-        ret = ZERR_EXIST;
+        return ZERR_EXIST;
     }
 
     err = nvs_erase_key(handle, p_key);
@@ -218,6 +229,11 @@ zerr_t flash_bsp_delete(const char *p_key)
     }
 
     nvs_close(handle);
+
+    if (err != ESP_OK)
+    {
+        ret = (err == ESP_ERR_NVS_NOT_FOUND) ? ZERR_NOT_FOUND : ZERR_ERROR;
+    }
 
     return ret;
 }

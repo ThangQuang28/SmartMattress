@@ -13,9 +13,9 @@
 
 /* Definitions -----------------------------------------------------------------------------------*/
 
-#define AGR12_READ_RETRY_MAX       100U
-#define AGR12_READ_RETRY_DELAY     100U
-#define AGR12_DEFAULT_TIMEOUT_MS  1000U
+/* A 3-byte transfer takes about 1.5 ms at 25 kHz; 50 ms is enough and keeps a dead sensor from
+   stalling a whole scan for seconds. */
+#define AGR12_DEFAULT_TIMEOUT_MS    50U
 
 /* Public Functions ------------------------------------------------------------------------------*/
 
@@ -62,6 +62,45 @@ zerr_t agr12_read(agr12_t *p_sensor, agr12_data_t *p_data)
     }
 
     ret = agr12_bsp_read(p_sensor->address, p_sensor->timeout_ms, &bsp_data);
+    if (ZERR_OK != ret)
+    {
+        return ret;
+    }
+
+    p_data->pressure_raw = (int16_t)bsp_data.pressure_raw;
+    p_data->pressure_kpa = (float)p_data->pressure_raw / 10.0f;
+    p_data->crc = bsp_data.crc;
+
+    return ZERR_OK;
+}
+
+/**
+ * @brief Start a measurement without waiting for it.
+ */
+zerr_t agr12_trigger(agr12_t *p_sensor)
+{
+    if ((NULL == p_sensor) || (0U == p_sensor->is_open))
+    {
+        return ZERR_INVALID_PARAM;
+    }
+
+    return agr12_bsp_trigger(p_sensor->address, p_sensor->timeout_ms);
+}
+
+/**
+ * @brief Read a measurement started by agr12_trigger() at least AGR12_MEASURE_DELAY_MS ago.
+ */
+zerr_t agr12_fetch(agr12_t *p_sensor, agr12_data_t *p_data)
+{
+    zerr_t ret;
+    agr12_bsp_data_t bsp_data = {0};
+
+    if ((NULL == p_sensor) || (NULL == p_data) || (0U == p_sensor->is_open))
+    {
+        return ZERR_INVALID_PARAM;
+    }
+
+    ret = agr12_bsp_fetch(p_sensor->address, p_sensor->timeout_ms, &bsp_data);
     if (ZERR_OK != ret)
     {
         return ret;

@@ -19,6 +19,7 @@ extern "C" {
 #include "driver/i2c.h"
 
 /* Definitions -----------------------------------------------------------------------------------*/
+#define AGR12_MEASURE_DELAY_MS      80U     /* Datasheet 7.2.1. */
 
 /* Type definitions ------------------------------------------------------------------------------*/
 
@@ -40,6 +41,10 @@ typedef struct
 
 zerr_t agr12_open(agr12_t *p_sensor);
 zerr_t agr12_read(agr12_t *p_sensor, agr12_data_t *p_data);
+/* Non-blocking pair: trigger, wait AGR12_MEASURE_DELAY_MS, then fetch. Lets the caller start
+   several sensors and wait once. */
+zerr_t agr12_trigger(agr12_t *p_sensor);
+zerr_t agr12_fetch(agr12_t *p_sensor, agr12_data_t *p_data);
 zerr_t agr12_get_pressure(agr12_t *p_sensor, float *p_pressure_kpa);
 zerr_t agr12_close(agr12_t *p_sensor);
 

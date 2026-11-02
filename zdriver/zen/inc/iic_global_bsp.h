@@ -18,7 +18,9 @@
 #define BSP_I2C_PORT                I2C_NUM_0
 #define BSP_I2C_SDA_PIN             21
 #define BSP_I2C_SCL_PIN             22
-#define BSP_I2C_FREQ                100000
+/* AGR12 datasheet section 7: I2C clock max 30 kHz. SCL passes through the TCA9548A to every
+   sensor, so the whole bus must stay below that limit (25 kHz keeps a margin). */
+#define BSP_I2C_FREQ                25000
 
 /* Include ---------------------------------------------------------------------------------------*/
 

@@ -1,0 +1,56 @@
+-- IDF_TARGET is not set, guessed 'esp32' from sdkconfig 'D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/sdkconfig'
+-- Found Git: D:/thang_bui/code/Git/cmd/git.exe (found version "2.56.0.windows.2")
+-- ccache will be used for faster recompilation
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: D:/thang_bui/code/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc.exe
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: D:/thang_bui/code/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: D:/thang_bui/code/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32-elf-g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Building ESP-IDF components for target esp32
+NOTICE: Skipping optional dependency: espressif/freetype
+NOTICE: Skipping optional dependency: espressif/libjpeg-turbo
+NOTICE: Skipping optional dependency: espressif/libpng
+NOTICE: Skipping optional dependency: espressif/lz4
+NOTICE: 
+Following dependencies have new versions available:
+Dependency "espressif/mdns": "1.14.0" -> "1.14.1"
+Consider running "idf.py update-dependencies" to update your lock file.
+NOTICE: Processing 4 dependencies:
+NOTICE: [1/4] espressif/esp_lvgl_port (2.9.0)
+NOTICE: [2/4] espressif/mdns (1.14.0)
+NOTICE: [3/4] lvgl/lvgl (9.4.0)
+NOTICE: [4/4] idf (5.4.4)
+-- Project sdkconfig file D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/sdkconfig
+-- Compiler supported targets: xtensa-esp-elf
+-- Found Python3: D:/thang_bui/code/Espressif/python_env/idf5.4_py3.11_env/Scripts/python.exe (found version "3.11.2") found components: Interpreter
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
+-- USING O3
+-- App "zenFWCore" version: 0b28e77-dirty
+-- Adding linker script D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_rom/esp32/ld/esp32.rom.newlib-data.ld
+-- Adding linker script D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_rom/esp32/ld/esp32.rom.syscalls.ld
+-- Adding linker script D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_rom/esp32/ld/esp32.rom.newlib-funcs.ld
+-- Adding linker script D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/soc/esp32/ld/esp32.peripherals.ld
+-- LVGL version: 9.4.0
+-- Components: app app_update bootloader bootloader_support bt console cxx driver efuse esp-tls esp_app_format esp_bootloader_format esp_coex esp_common esp_driver_ana_cmpr esp_driver_dac esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_rmt esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_tsens esp_driver_uart esp_driver_usb_serial_jtag esp_event esp_gdbstub esp_http_client esp_http_server esp_https_ota esp_hw_support esp_lcd esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_security esp_system esp_timer esp_vfs_console esp_wifi espressif__esp_lvgl_port espressif__mdns esptool_py freertos hal heap http_parser json log lvgl__lvgl lwip mbedtls mid mqtt newlib nvs_flash partition_table protobuf-c protocomm pthread sdmmc soc spi_flash tcp_transport vfs wifi_provisioning wpa_supplicant xtensa zdriver
+-- Component paths: D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/app D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/app_update D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/bootloader D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/bootloader_support D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/bt D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/console D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/cxx D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/driver D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/efuse D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp-tls D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_app_format D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_bootloader_format D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_coex D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_common D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_ana_cmpr D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_dac D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_gpio D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_gptimer D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_i2c D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_i2s D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_ledc D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_mcpwm D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_parlio D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_pcnt D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_rmt D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_sdio D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_sdm D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_sdmmc D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_sdspi D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_spi D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_tsens D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_uart D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_driver_usb_serial_jtag D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_event D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_gdbstub D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_http_client D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_http_server D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_https_ota D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_hw_support D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_lcd D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_mm D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_netif D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_netif_stack D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_partition D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_phy D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_pm D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_psram D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_ringbuf D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_rom D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_security D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_system D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_timer D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_vfs_console D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esp_wifi D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/managed_components/espressif__esp_lvgl_port D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/managed_components/espressif__mdns D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/esptool_py D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/freertos D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/hal D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/heap D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/http_parser D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/json D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/log D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/managed_components/lvgl__lvgl D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/lwip D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/mbedtls D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/mid D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/mqtt D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/newlib D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/nvs_flash D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/partition_table D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/protobuf-c D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/protocomm D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/pthread D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/sdmmc D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/soc D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/spi_flash D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/tcp_transport D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/vfs D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/wifi_provisioning D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/wpa_supplicant D:/thang_bui/code/Espressif/frameworks/esp-idf-v5.4.4/components/xtensa D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/zdriver
+-- Configuring done (68.5s)
+-- Generating done (3.2s)
+-- Build files have been written to: D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local

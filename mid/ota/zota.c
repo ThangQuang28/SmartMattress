@@ -115,7 +115,7 @@ zerr_t zota_start(const char* p_url)
         return ZERR_OK;
     }
 
-    gh_zota.state = ZERR_ERROR;
+    gh_zota.state = ZOTA_STATE_ERROR;
 
     ZTRACE_DBG(TR_OTA, ("DEBUG : %s OTA failed: 0x%x", __FUNCTION__, ret));
 

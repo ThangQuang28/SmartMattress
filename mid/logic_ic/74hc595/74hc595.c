@@ -30,6 +30,12 @@
 zerr_t 
 z74hc595_open(z74hc595_t *p_dev, gpio_num_t pin_data, gpio_num_t pin_clock, gpio_num_t pin_latch, uint8_t chip_num)
 {
+    return z74hc595_open_initial(p_dev, pin_data, pin_clock, pin_latch, chip_num, 0x00U);
+}
+
+zerr_t z74hc595_open_initial(z74hc595_t *p_dev, gpio_num_t pin_data, gpio_num_t pin_clock,
+                            gpio_num_t pin_latch, uint8_t chip_num, uint8_t initial)
+{
     zerr_t ret = ZERR_OK;
 
     if (p_dev == NULL || chip_num == 0)
@@ -44,6 +50,8 @@ z74hc595_open(z74hc595_t *p_dev, gpio_num_t pin_data, gpio_num_t pin_clock, gpio
     {
         return ZERR_MEM_OUT;
     }
+
+    memset(p_dev->p_data, initial, chip_num);
 
     ret = h595_bsp_open(&p_dev->bsp, pin_data, pin_clock, pin_latch);
     if (ZERR_OK != ret)

@@ -58,6 +58,7 @@ static oled_lvgl_t gh_oled = {0};
 /* Private function prototypes -------------------------------------------------------------------*/
 
 static zerr_t oled_lvgl_init(void);
+static void lv_obj_set_hidden(lv_obj_t *p_obj, bool hidden);
 static void oled_lvgl_blink_timer_cb(lv_timer_t *p_timer);
 
 /* Public functions ------------------------------------------------------------------------------*/
@@ -135,6 +136,37 @@ zerr_t oled_lvgl_set_text(const char *p_text)
 
     lv_label_set_text(gh_oled.p_label, p_text);
     lv_obj_align(gh_oled.p_label, LV_ALIGN_CENTER, 0, 0);
+
+    lvgl_port_unlock();
+
+    return ZERR_OK;
+}
+
+/**
+ * @brief Show multi-line text in the small 8 px font, left aligned from the top-left corner.
+ *
+ * @param p_text Pointer to the null-terminated text string.
+ *
+ * @return ZERR_OK on success, otherwise an error code.
+ */
+zerr_t oled_lvgl_set_text_small(const char *p_text)
+{
+    if ((p_text == NULL) || (gh_oled.p_disp == NULL) || (gh_oled.p_label == NULL))
+    {
+        return ZERR_NOT_OPEN;
+    }
+
+    if (!lvgl_port_lock(0))
+    {
+        return ZERR_NOT_OPEN;
+    }
+
+#if LV_FONT_UNSCII_8
+    lv_obj_set_style_text_font(gh_oled.p_label, &lv_font_unscii_8, LV_PART_MAIN);
+#endif
+    lv_obj_set_style_text_align(gh_oled.p_label, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN);
+    lv_label_set_text(gh_oled.p_label, p_text);
+    lv_obj_align(gh_oled.p_label, LV_ALIGN_TOP_LEFT, 0, 0);
 
     lvgl_port_unlock();
 
@@ -450,8 +482,8 @@ zerr_t oled_lvgl_show_gif(const uint8_t *p_data, size_t data_size)
 
 #if !LV_USE_GIF
     ZTRACE_DBG(TR_OLED_LVGL, ("ERROR %s: LV_USE_GIF is disabled", __FUNCTION__));
-    return ZERR_ERROR;
-#endif
+    return ZERR_SUPPORT;
+#else
 
     if (!lvgl_port_lock(0))
     {
@@ -481,7 +513,9 @@ zerr_t oled_lvgl_show_gif(const uint8_t *p_data, size_t data_size)
         return ZERR_ERROR;
     }
 
+#if (LVGL_VERSION_MAJOR > 9) || ((LVGL_VERSION_MAJOR == 9) && (LVGL_VERSION_MINOR >= 3))
     lv_gif_set_color_format(gh_oled.p_picture, LV_COLOR_FORMAT_ARGB8888);
+#endif
 
     /*
      * p_data is a raw GIF file buffer embedded with EMBED_FILES.
@@ -499,6 +533,7 @@ zerr_t oled_lvgl_show_gif(const uint8_t *p_data, size_t data_size)
     lvgl_port_unlock();
 
     return ZERR_OK;
+#endif
 }
 
 /* Private functions -----------------------------------------------------------------------------*/
@@ -653,6 +688,21 @@ static zerr_t oled_lvgl_init(void)
     gh_oled.initialized = true;
 
     return ZERR_OK;
+}
+
+/**
+ * @brief LVGL 8/9 removed lv_obj_set_hidden(); hide or show through the HIDDEN flag instead.
+ */
+static void lv_obj_set_hidden(lv_obj_t *p_obj, bool hidden)
+{
+    if (hidden)
+    {
+        lv_obj_add_flag(p_obj, LV_OBJ_FLAG_HIDDEN);
+    }
+    else
+    {
+        lv_obj_clear_flag(p_obj, LV_OBJ_FLAG_HIDDEN);
+    }
 }
 
 static void oled_lvgl_blink_timer_cb(lv_timer_t *p_timer)

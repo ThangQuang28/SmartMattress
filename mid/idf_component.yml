@@ -1,0 +1,6 @@
+## Managed components for the OLED (LVGL). Downloaded by "idf.py build" into managed_components/.
+dependencies:
+  idf: ">=5.4"
+  lvgl/lvgl: "~9.4.0"
+  espressif/esp_lvgl_port: "^2.6.0"
+  espressif/mdns: "^1.4.0"

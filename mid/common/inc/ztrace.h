@@ -36,6 +36,15 @@ extern "C" {
 #define ZTRACE_OFF      0x00
 
 #define ZTRACE_UNWRAP(...) __VA_ARGS__
+
+/* Per-module debug switches used by ZTRACE_DBG / ZTRACE_ERR (active only with ZDEBUG / ZERROR). */
+#define TR_EVTCAP       ZTRACE_ON
+#define TR_FIREBASE     ZTRACE_ON
+#define TR_IIC_BSP      ZTRACE_ON
+#define TR_OLED_LVGL    ZTRACE_ON
+#define TR_OTA          ZTRACE_ON
+#define TR_TCA          ZTRACE_ON
+
 #define ZTRACE_LOGI(tag, args)              \
     do {                                    \
         ESP_LOGI(tag, ZTRACE_UNWRAP args); \

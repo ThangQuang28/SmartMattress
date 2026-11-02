@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/CMakeFiles/bootloader
+D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/CMakeFiles/bootloader.rule
+D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/CMakeFiles/bootloader-complete.rule
+D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+D:/thang_bui/Vibecode/IOT_FWCore/IOT_FWCore/ide/build_local/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
